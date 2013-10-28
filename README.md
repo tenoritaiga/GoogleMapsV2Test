@@ -15,4 +15,4 @@ In the ```res/values``` folder, add a new XML file called ```apikeys.xml``` with
 ```
 You can either generate a developer key specifically for this app on Google Console by using the app's SHA1
 key, or you can generate a blank key that is usable with any app. When Google prompts you for the SHA1
-key and app package name, just don't enter anything and you will receive a blank key.
+key and app package name, just don't enter anything and you'll receive a blank key.
