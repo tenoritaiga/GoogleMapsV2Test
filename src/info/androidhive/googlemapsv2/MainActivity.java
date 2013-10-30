@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -25,6 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,6 +36,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
 
+import info.androidhive.googlemapsv2.adapters.SensorDataAdapter;
 import info.androidhive.googlemapsv2.jsonmodel.Sensor;
 import info.androidhive.googlemapsv2.jsonmodel.SearchResponse;
 
@@ -156,6 +159,10 @@ public class MainActivity extends Activity {
 
 				// Enable / Disable zooming functionality
 				googleMap.getUiSettings().setZoomGesturesEnabled(true);
+				
+				//Set up custom  info window adapter
+				SensorDataAdapter adapter = new SensorDataAdapter(getLayoutInflater());
+				
 
 				double latitude = 40.745066;
 				double longitude = -74.024294;
@@ -194,17 +201,15 @@ public class MainActivity extends Activity {
 		        .icon(BitmapDescriptorFactory.fromResource(R.drawable.alert)));*/
 				
 				for(Sensor sensor : response.Sensors){
-					Log.d("STREAM","We got back: " + response.Sensors);
-					googleMap.addMarker(new MarkerOptions()
+					//Log.d("STREAM","We got back: " + response.Sensors);
+					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
-			        .snippet("PM10: " + sensor.Readings.PM10
-			        		+"\nPM2.5: " + sensor.Readings.PM2_5
-			        		+"\nCO: " + sensor.Readings.CO
-			        		+"\nCO2:" + sensor.Readings.CO2
-			        		+"\nNoise: " + sensor.Readings.Noise)
 			        .icon(BitmapDescriptorFactory.fromResource(R.drawable.airsensor_g)));
+					adapter.hashMap.put(marker, sensor);
 				}
+				googleMap.setInfoWindowAdapter(adapter);
+				
 				
 /*				 Polygon polygon = googleMap.addPolygon(new PolygonOptions()
 			     .add(coord1,coord2,coord3,coord4,coord1)
