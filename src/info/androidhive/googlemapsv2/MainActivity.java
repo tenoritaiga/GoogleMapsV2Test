@@ -107,7 +107,6 @@ public class MainActivity extends Activity {
 		@Override
 		protected SearchResponse doInBackground(Void... params) {
 			String url = "http://192.168.1.100/example.json";
-			System.out.println("HERP DERP DERP\n\n\n\n");
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -116,13 +115,10 @@ public class MainActivity extends Activity {
 				Gson gson = new Gson();
 				Reader reader = new InputStreamReader(stream);
 				SearchResponse response = gson.fromJson(reader,SearchResponse.class);
-				
-				System.out.println("ZOMG IT ACTUALLY WORKED");
 				return response;
 			}
 			catch(NullPointerException npe){
-				//System.out.println("BWOOP BWOOP BWOOP SOMETHING BAD HAPPENED\n\n\n");
-				Log.e("ERROR","BWOOP BWOOP BWOOP SOMETHING BAD HAPPENED",npe);
+				Log.e("ERROR","Warning: Null pointer exception while parsing JSON!",npe);
 			}
 			
 			return null;
@@ -198,11 +194,16 @@ public class MainActivity extends Activity {
 		        .icon(BitmapDescriptorFactory.fromResource(R.drawable.alert)));*/
 				
 				for(Sensor sensor : response.Sensors){
+					Log.d("STREAM","We got back: " + response.Sensors);
 					googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
-			        .snippet(sensor.Readings.PM10 + sensor.Readings.CO)
-			        .icon(BitmapDescriptorFactory.fromResource(R.drawable.alert)));
+			        .snippet("PM10: " + sensor.Readings.PM10
+			        		+"\nPM2.5: " + sensor.Readings.PM2_5
+			        		+"\nCO: " + sensor.Readings.CO
+			        		+"\nCO2:" + sensor.Readings.CO2
+			        		+"\nNoise: " + sensor.Readings.Noise)
+			        .icon(BitmapDescriptorFactory.fromResource(R.drawable.airsensor_g)));
 				}
 				
 /*				 Polygon polygon = googleMap.addPolygon(new PolygonOptions()
