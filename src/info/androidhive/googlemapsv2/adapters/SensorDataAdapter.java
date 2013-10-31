@@ -2,7 +2,6 @@ package info.androidhive.googlemapsv2.adapters;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import info.androidhive.googlemapsv2.R;
 import android.view.LayoutInflater;
@@ -24,13 +23,13 @@ public class SensorDataAdapter implements InfoWindowAdapter {
 	}
 	
 	@Override
-	public View getInfoWindow(Marker marker) {
+	public View getInfoContents(Marker marker) {
 		//Return null here to use default Android window style
 		return null;
 	}
 
 	@Override
-	public View getInfoContents(Marker marker) {
+	public View getInfoWindow(Marker marker) {
 		View v = inflater.inflate(R.layout.marker, null);
 		if (marker != null) {
 			Sensor sensor = hashMap.get(marker);
@@ -39,19 +38,22 @@ public class SensorDataAdapter implements InfoWindowAdapter {
 			textViewTitle.setText(marker.getTitle());
 			
 			TextView PM10 = (TextView) v.findViewById(R.id.PM10);
-			PM10.setText(sensor.Readings.PM10);
+			PM10.setText("PM10: " + sensor.Readings.PM10);
 			
 			TextView PM2_5 = (TextView) v.findViewById(R.id.PM2_5);
-			PM2_5.setText(sensor.Readings.PM2_5);
+			PM2_5.setText("PM2.5: " + sensor.Readings.PM2_5);
 			
 			TextView CO = (TextView) v.findViewById(R.id.CO);
-			CO.setText(sensor.Readings.CO);
+			CO.setText("CO: " + sensor.Readings.CO);
 			
 			TextView CO2 = (TextView) v.findViewById(R.id.CO2);
-			CO2.setText(sensor.Readings.CO2);
+			CO2.setText("CO2: " + sensor.Readings.CO2);
 			
 			TextView Noise = (TextView) v.findViewById(R.id.Noise);
-			Noise.setText(sensor.Readings.Noise);
+			Noise.setText("Noise: " + sensor.Readings.Noise);
+			
+			TextView DateTime = (TextView) v.findViewById(R.id.DateTime);
+			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");
 		}
 		return (v);
 	}
