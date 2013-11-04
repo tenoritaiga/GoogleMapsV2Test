@@ -1,8 +1,7 @@
-GoogleMapsV2Test
+SmartCity, Second Edition
 ================
 
-This is a simple Android activity demonstrating some Maps API v2 features,
-such as custom markers, polygon and circle overlays, and snippet text.
+This repository houses ongoing development on the SmartCity Android application.
 
 To connect to Google Maps, you need to add your own developer API key into a local file.
 In the ```res/values``` folder, add a new XML file called ```apikeys.xml``` with a string like this:
