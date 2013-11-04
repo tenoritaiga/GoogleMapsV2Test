@@ -1,4 +1,4 @@
-package info.androidhive.googlemapsv2.jsonmodel;
+package com.smartcity.redux.jsonmodel;
 
 import java.util.List;
 

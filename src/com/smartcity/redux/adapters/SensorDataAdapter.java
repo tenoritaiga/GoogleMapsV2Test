@@ -1,4 +1,4 @@
-package info.androidhive.googlemapsv2.adapters;
+package com.smartcity.redux.adapters;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.Marker;
-
-import info.androidhive.googlemapsv2.jsonmodel.Sensor;
+import com.smartcity.redux.jsonmodel.Sensor;
 
 public class SensorDataAdapter implements InfoWindowAdapter {
 	LayoutInflater inflater = null;
@@ -24,7 +23,7 @@ public class SensorDataAdapter implements InfoWindowAdapter {
 	
 	@Override
 	public View getInfoContents(Marker marker) {
-		//Return null here to use default Android window style
+		//Not using default Android window style
 		return null;
 	}
 
