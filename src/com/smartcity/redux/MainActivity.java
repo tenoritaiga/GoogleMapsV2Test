@@ -1,4 +1,4 @@
-package info.androidhive.googlemapsv2;
+package com.smartcity.redux;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -35,10 +35,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
+import com.smartcity.redux.adapters.SensorDataAdapter;
+import com.smartcity.redux.jsonmodel.SearchResponse;
+import com.smartcity.redux.jsonmodel.Sensor;
 
-import info.androidhive.googlemapsv2.adapters.SensorDataAdapter;
-import info.androidhive.googlemapsv2.jsonmodel.Sensor;
-import info.androidhive.googlemapsv2.jsonmodel.SearchResponse;
+import info.androidhive.googlemapsv2.R;
 
 public class MainActivity extends Activity {
 
@@ -49,9 +50,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		//Server endpoint for receiving our JSON
-		
 		
 		new JsonParser().execute();
 
@@ -109,7 +107,7 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected SearchResponse doInBackground(Void... params) {
-			String url = "http://192.168.1.100/example.json";
+			String url = "http://pastebin.com/raw.php?i=1VnxAK78";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
