@@ -107,7 +107,8 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected SearchResponse doInBackground(Void... params) {
-			String url = "http://pastebin.com/raw.php?i=1VnxAK78";
+			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
+			String url = "http://pastebin.com/raw.php?i=ikLGcHbY";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -164,12 +165,23 @@ public class MainActivity extends Activity {
 				double latitude = 40.745066;
 				double longitude = -74.024294;
 				
+				String res = "markercolor";
+				int resID;
+				
 				for(Sensor sensor : response.Sensors){
+					
+					if(Float.parseFloat(sensor.Readings.CO2) <= 10)
+						resID = getResources().getIdentifier("airsensor_g","drawable",getPackageName());
+					else if(Float.parseFloat(sensor.Readings.CO2) > 10 && Float.parseFloat(sensor.Readings.CO2) < 20)
+						resID = getResources().getIdentifier("airsensor_y","drawable",getPackageName());
+					else
+						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+					
 					//Log.d("STREAM","We got back: " + response.Sensors);
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
-			        .icon(BitmapDescriptorFactory.fromResource(R.drawable.airsensor_g)));
+			        .icon(BitmapDescriptorFactory.fromResource(resID)));
 					adapter.hashMap.put(marker, sensor);
 				}
 				googleMap.setInfoWindowAdapter(adapter);
