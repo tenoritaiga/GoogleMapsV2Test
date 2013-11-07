@@ -39,7 +39,7 @@ import com.smartcity.redux.adapters.SensorDataAdapter;
 import com.smartcity.redux.jsonmodel.SearchResponse;
 import com.smartcity.redux.jsonmodel.Sensor;
 
-import info.androidhive.googlemapsv2.R;
+import com.smartcity.redux.R;
 
 public class MainActivity extends Activity {
 

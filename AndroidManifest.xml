@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="info.androidhive.googlemapsv2"
+    package="com.smartcity.redux"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <permission
-        android:name="info.androidhive.googlemapsv2.permission.MAPS_RECEIVE"
+        android:name="com.smartcity.redux.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="info.androidhive.googlemapsv2.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.smartcity.redux.permission.MAPS_RECEIVE" />
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -42,11 +42,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- Google API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/MapsAPIKey"/>
+        
+        <meta-data
+            android:name="com.google.android.gms.version" 
+            android:value="@integer/google_play_services_version"/>
+        
     </application>
 
 </manifest>
