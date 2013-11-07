@@ -3,7 +3,7 @@ package com.smartcity.redux.adapters;
 import java.util.HashMap;
 import java.util.Map;
 
-import info.androidhive.googlemapsv2.R;
+import com.smartcity.redux.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
