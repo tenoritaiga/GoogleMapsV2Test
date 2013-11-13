@@ -9,5 +9,6 @@
 
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_traffic_map">Traffic_map</string>
 
 </resources>

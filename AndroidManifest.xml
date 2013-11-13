@@ -58,6 +58,10 @@
             android:name="com.smartcity.redux.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name="com.smartcity.redux.Traffic_map"
+            android:label="@string/title_activity_traffic_map" >
+        </activity>
     </application>
 
 </manifest>

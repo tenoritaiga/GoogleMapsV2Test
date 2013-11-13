@@ -36,5 +36,10 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startTrafficActivity(View view){
+		Intent intent = new Intent(MainActivity.this,Traffic_map.class);
+		MainActivity.this.startActivity(intent);
+	}
 
 }
