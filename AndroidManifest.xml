@@ -62,6 +62,14 @@
             android:name="com.smartcity.redux.Traffic_map"
             android:label="@string/title_activity_traffic_map" >
         </activity>
+        <activity
+            android:name="com.smartcity.redux.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

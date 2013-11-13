@@ -25,7 +25,7 @@
     <ImageButton
         android:id="@+id/ImageButton02"
         android:layout_gravity="left"
-        android:onClick="startMapActivity"
+        android:onClick="startProfileActivity"
         android:src="@drawable/airsensor_y" />
 
     <ImageButton
