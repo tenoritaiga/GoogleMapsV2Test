@@ -31,7 +31,7 @@
     <ImageButton
         android:id="@+id/ImageButton03"
         android:layout_gravity="left"
-        android:onClick="startMapActivity"
+        android:onClick="startTrafficActivity"
         android:src="@drawable/alert" />
 
 </GridLayout>
