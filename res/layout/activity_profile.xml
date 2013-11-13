@@ -1,0 +1,291 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+	<LinearLayout 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:paddingBottom="@dimen/activity_vertical_margin"
+	    android:paddingLeft="@dimen/activity_horizontal_margin"
+	    android:paddingRight="@dimen/activity_horizontal_margin"
+	    android:paddingTop="@dimen/activity_vertical_margin"
+	    tools:context=".ProfileActivity" >
+	
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dip"
+	        android:text="@string/profile_login"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:layout_marginTop="10dip"
+	        android:background="#FFFFFF" />
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_username_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_username"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_username" 
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_password_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_password"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_password" 
+	        	android:inputType="textPassword" />        
+	        
+	    </LinearLayout>
+	    
+	    <Button 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dip"
+	        android:layout_marginRight="10dip"
+	        android:text="@string/profile_button_save_password" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/profile_personal"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:layout_marginTop="10dip"
+	        android:background="#FFFFFF" />
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	    	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_first_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_firstname"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_firstname"
+	        	android:inputType="text" />
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_last_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_lastname"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_lastname"
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_address_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_address"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_address"
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_gender_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_gender"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_gender"
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_age_label"
+	            android:textSize="15sp" />
+	        
+	        <Spinner 
+	            android:id="@+id/age_spinner"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"/>        
+	        
+	    </LinearLayout>
+	    
+	    <Button 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dip"
+	        android:layout_marginRight="10dip"
+	        android:text="@string/profile_button_save" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dip"
+	        android:text="@string/profile_swift911"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:layout_marginTop="10dip"
+	        android:background="#FFFFFF" />
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+
+	        <CheckBox android:id="@+id/checkbox_swift911"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_swift911_label" />       
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_phone_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_phone"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_phone"
+	        	android:inputType="phone"/>        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_email_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_email"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_email"
+	        	android:inputType="textEmailAddress"/>        
+	        
+	    </LinearLayout>
+	    
+	    <Button 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dip"
+	        android:layout_marginRight="10dip"
+	        android:text="@string/profile_button_save_swift911" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dip"
+	        android:text="@string/profile_gps_label"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:layout_marginTop="10dip"
+	        android:background="#FFFFFF" />
+	    
+	    <CheckBox android:id="@+id/checkbox_submit_gps"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_submit_gps" /> 
+	
+	</LinearLayout>
+</ScrollView>
+
