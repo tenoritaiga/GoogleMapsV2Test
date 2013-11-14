@@ -47,7 +47,7 @@ import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSensor;
 import com.smartcity.redux.R;
 
-public class Traffic_map extends Activity {
+public class TrafficMapActivity extends Activity {
 
 	private GoogleMap googleMap;
 	

@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 
 	}
 	
-	public void startMapActivity(View view){
+	public void startAirmapActivity(View view){
 		Intent intent = new Intent(MainActivity.this,AirMapActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void startTrafficActivity(View view){
-		Intent intent = new Intent(MainActivity.this,Traffic_map.class);
+		Intent intent = new Intent(MainActivity.this,TrafficMapActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
