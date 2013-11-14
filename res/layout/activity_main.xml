@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/gridLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="fill_horizontal"
-    android:columnCount="2"
-    android:orientation="horizontal"
-    android:rowCount="2" >
+    android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_column="0"
-        android:layout_gravity="left|top"
-        android:layout_row="0"
-        android:src="@drawable/airsensor_g" 
-        android:onClick="startMapActivity"/>
+    <Button
+        android:id="@+id/airmapButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/cloud"
+        android:onClick="startAirmapActivity"
+        android:text="@string/airmapButtonText" />
 
-    <ImageButton
-        android:id="@+id/ImageButton01"
-        android:layout_gravity="left"
-        android:onClick="startSettingsActivity"
-        android:src="@drawable/airsensor_r" />
-
-    <ImageButton
-        android:id="@+id/ImageButton02"
-        android:layout_gravity="left"
-        android:onClick="startProfileActivity"
-        android:src="@drawable/airsensor_y" />
-
-    <ImageButton
-        android:id="@+id/ImageButton03"
-        android:layout_gravity="left"
+    <Button
+        android:id="@+id/trafficButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/traffic"
         android:onClick="startTrafficActivity"
-        android:src="@drawable/alert" />
+        android:text="@string/trafficButtonText" />
 
-</GridLayout>
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/user"
+        android:onClick="startProfileActivity"
+        android:text="@string/profileButtonText" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/gear"
+        android:onClick="startSettingsActivity"
+        android:text="@string/settingsButtonText" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/scitylogowhite" />
+
+</LinearLayout>
