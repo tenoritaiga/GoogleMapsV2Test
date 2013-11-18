@@ -23,6 +23,14 @@
         android:text="@string/trafficButtonText" />
 
     <Button
+        android:id="@+id/directionsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/directions"
+        android:onClick="startDirectionsActivity"
+        android:text="@string/directionsButtonText" />
+
+    <Button
         android:id="@+id/profileButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -41,7 +49,7 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:src="@drawable/scitylogowhite" />
 
 </LinearLayout>

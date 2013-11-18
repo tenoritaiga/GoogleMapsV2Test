@@ -70,6 +70,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smartcity.redux.MainActivity" />
         </activity>
+        <activity
+            android:name="com.smartcity.redux.DirectionsActivity"
+            android:label="@string/title_activity_directions" >
+        </activity>
     </application>
 
 </manifest>

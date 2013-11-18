@@ -46,5 +46,11 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startDirectionsActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,DirectionsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
 
 }

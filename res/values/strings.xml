@@ -45,11 +45,11 @@
     <string name="profile_button_save">Save</string>
     <string name="profile_button_save_password">Save New Password</string>
     <string name="profile_button_save_swift911">Save Swift 911 Information</string>
-    
     <string name="airmapButtonText">Air Quality Map</string>
     <string name="settingsButtonText">Settings</string>
     <string name="profileButtonText">Set Up Profile</string>
     <string name="trafficButtonText">Traffic Maps</string>
+    <string name="directionsButtonText">Directions</string>
 
     <string-array name="age_ranges">
         <item>18&#8211;25</item>
@@ -58,5 +58,7 @@
         <item>50&#8211;65</item>
         <item>65+</item>
     </string-array>
+
+    <string name="title_activity_directions">DirectionsActivity</string>
 
 </resources>
