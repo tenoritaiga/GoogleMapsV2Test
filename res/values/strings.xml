@@ -62,5 +62,7 @@
         <item>50&#8211;65</item>
         <item>65+</item>
     </string-array>
+    
+    <string name="title_activity_directions">DirectionsActivity</string>
 
 </resources>
