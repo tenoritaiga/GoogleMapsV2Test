@@ -50,6 +50,8 @@
     <string name="settingsButtonText">Settings</string>
     <string name="profileButtonText">Set Up Profile</string>
     <string name="trafficButtonText">Traffic Maps</string>
+    <string name="hoboken311ButtonText">Hoboken 311</string>
+    
 
     <string-array name="age_ranges">
         <item>18&#8211;25</item>
