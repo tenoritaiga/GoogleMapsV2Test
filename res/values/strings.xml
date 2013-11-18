@@ -7,18 +7,21 @@
 
     <color name="bg_color">#ffffff</color>
 
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_display_profile">DisplayProfile</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="title_activity_traffic_map">Traffic_map</string>
+    <string name="title_activity_main">Smart City 2.0</string>
+    <string name="title_activity_display_profile">Profile</string>
+    <string name="title_activity_profile">Edit Profile</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_traffic_map">Traffic Map</string>
     <string name="profile_title">My Profile</string>
     <string name="profile_personal">Personal Info</string>
     <string name="profile_login">Login Credentials</string>
     <string name="profile_swift911">Swift 911 Registration</string>
     <string name="profile_first_label">First Name</string>
     <string name="profile_last_label">Last Name</string>
-    <string name="profile_address_label">Address</string>
+    <string name="profile_home_address_label">Home Address</string>
+    <string name="profile_work_address_label">Work Address</string>
+    <string name="profile_home_zip_label">Home Zip</string>
+    <string name="profile_work_zip_label">Work Zip</string>
     <string name="profile_gender_label">Gender</string>
     <string name="profile_age_label">Age Range</string>
     <string name="profile_phone_label">Phone Number</string>
@@ -28,18 +31,24 @@
     <string name="profile_swift911_label">Signup for Swift 911?</string>
     <string name="profile_gps_label">GPS Location</string>
     <string name="profile_submit_gps">Submit GPS Location Data?</string>
-    <string name="profile_firstname">Daniel</string>
-    <string name="profile_lastname">Schuler</string>
-    <string name="profile_address">1 Castle Point on Hudson</string>
-    <string name="profile_gender">Male</string>
+    <string name="profile_firstname">First</string>
+    <string name="profile_lastname">Last</string>
+    <string name="profile_address">Address</string>
+    <string name="profile_zip">Zip</string>
+    <string name="profile_gender">Gender</string>
     <string name="profile_age">18&#8211;25</string>
-    <string name="profile_phone">201&#8211;421&#8211;7798</string>
-    <string name="profile_email">dschuler@stevens.edu</string>
-    <string name="profile_username">dschuler</string>
-    <string name="profile_password">14ewjerse25</string>
+    <string name="profile_phone">Phone</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_username">username</string>
+    <string name="profile_password">password</string>
     <string name="profile_button_save">Save</string>
     <string name="profile_button_save_password">Save New Password</string>
     <string name="profile_button_save_swift911">Save Swift 911 Information</string>
+    
+    <string name="airmapButtonText">Air Quality Map</string>
+    <string name="settingsButtonText">Settings</string>
+    <string name="profileButtonText">Set Up Profile</string>
+    <string name="trafficButtonText">Traffic Maps</string>
 
     <string-array name="age_ranges">
         <item>18&#8211;25</item>
