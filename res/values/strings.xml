@@ -28,6 +28,7 @@
     <string name="profile_email_label">Email Address</string>
     <string name="profile_username_label">Username</string>
     <string name="profile_password_label">Password</string>
+    <string name="profile_password_confirm_label">Confirm Password</string>
     <string name="profile_swift911_label">Signup for Swift 911?</string>
     <string name="profile_gps_label">GPS Location</string>
     <string name="profile_submit_gps">Submit GPS Location Data?</string>

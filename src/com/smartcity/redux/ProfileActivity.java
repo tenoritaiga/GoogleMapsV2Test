@@ -127,6 +127,8 @@ public class ProfileActivity extends Activity {
 				editText.setText(jsonObject.getString("Username"));
 				editText = (EditText) findViewById(R.id.edit_password);
 				editText.setText(jsonObject.getString("Password"));
+				editText = (EditText) findViewById(R.id.edit_password_confirm);
+				editText.setText(jsonObject.getString("Password"));
 				editText = (EditText) findViewById(R.id.edit_firstname);
 				editText.setText(jsonObject.getString("FirstName"));
 				editText = (EditText) findViewById(R.id.edit_lastname);
