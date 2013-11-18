@@ -136,13 +136,73 @@
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="@string/profile_address_label"
+	            android:text="@string/profile_home_address_label"
 	            android:textSize="15sp" />
 	        
-	        <EditText android:id="@+id/edit_address"
+	        <EditText android:id="@+id/edit_home_address"
 	            android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
 	        	android:text="@string/profile_address"
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_home_zip_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_home_zip"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_zip"
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_work_address_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_work_address"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_address"
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/profile_work_zip_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_work_zip"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_zip"
 	        	android:inputType="text" />        
 	        
 	    </LinearLayout>
