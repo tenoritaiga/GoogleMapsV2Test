@@ -45,6 +45,9 @@
     <string name="profile_button_save">Save</string>
     <string name="profile_button_save_password">Save New Password</string>
     <string name="profile_button_save_swift911">Save Swift 911 Information</string>
+    <string name="profile_password_mismatch_title">Password Mismatch!</string>
+    <string name="profile_password_mismatch_message">Password and Confirm Password do not match!</string>
+    <string name="profile_button_OK">OK</string>
     
     <string name="airmapButtonText">Air Quality Map</string>
     <string name="settingsButtonText">Settings</string>

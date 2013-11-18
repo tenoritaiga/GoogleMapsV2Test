@@ -92,7 +92,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save_password" />
+	        android:text="@string/profile_button_save_password"
+	        android:onClick="saveProfileData" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
@@ -271,7 +272,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save" />
+	        android:text="@string/profile_button_save"
+	        android:onClick="saveProfileData" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
@@ -345,7 +347,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save_swift911" />
+	        android:text="@string/profile_button_save_swift911"
+	        android:onClick="saveProfileData" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"

@@ -17,12 +17,15 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -193,6 +196,25 @@ public class ProfileActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void saveProfileData(View view) {
+		EditText password1 = (EditText) findViewById(R.id.edit_password);
+		EditText password2 = (EditText) findViewById(R.id.edit_password_confirm);
+		if (!(password1.getText().toString().equals(password2.getText().toString()))) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.profile_password_mismatch_title)
+					.setMessage(R.string.profile_password_mismatch_message)
+					.setPositiveButton(R.string.profile_button_OK, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
+			builder.show();
+		}
 	}
 
 }
