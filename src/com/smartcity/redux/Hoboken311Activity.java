@@ -40,7 +40,7 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hoboken311);
-		
+				
 		context = this;
 		
 		
