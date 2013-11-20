@@ -45,6 +45,23 @@
         android:drawableLeft="@drawable/gear"
         android:onClick="startSettingsActivity"
         android:text="@string/settingsButtonText" />
+    <!--  
+     <Button
+        android:id="@+id/directionsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/directions"
+        android:onClick="startDirectionsActivity"
+        android:text="@string/directionsButtonText" />
+        -->
+     
+      <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/gear"
+        android:onClick="startHoboken311Activity"
+        android:text="@string/hoboken311ButtonText" />
 
     <ImageView
         android:id="@+id/imageView1"

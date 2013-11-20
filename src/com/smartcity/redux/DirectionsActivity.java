@@ -43,9 +43,11 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
         map.moveCamera(center);
         map.animateCamera(zoom);
 
+        //need to change these values so that we can update them based on the input
         start = new LatLng(18.015365, -77.499382);
         end = new LatLng(18.012590, -77.500659);
 
+        //this should be an option --> different travel modes
         Routing routing = new Routing(Routing.TravelMode.WALKING);
         routing.registerListener(this);
         routing.execute(start, end);

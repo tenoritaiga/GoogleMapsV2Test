@@ -48,12 +48,271 @@
     <string name="profile_password_mismatch_title">Password Mismatch!</string>
     <string name="profile_password_mismatch_message">Password and Confirm Password do not match!</string>
     <string name="profile_button_OK">OK</string>
-    
     <string name="airmapButtonText">Air Quality Map</string>
     <string name="settingsButtonText">Settings</string>
     <string name="profileButtonText">Set Up Profile</string>
     <string name="trafficButtonText">Traffic Maps</string>
     <string name="directionsButtonText">Directions</string>
+
+    <string name="hoboken311ButtonText">Hoboken 311</string>
+    <string name="btn_311_map">Hoboken 311 Map</string>
+    <string name="txt_prob">Choose a Problem</string>
+    <string name="title_activity_hoboken311">Hoboken 311 Activity</string>
+    
+    <string name="menu_voice">Voice Command</string>
+      
+
+    <string-array name="spn_street">
+        <item>Select Street</item>
+        <item>Jackson St</item>
+        <item>Monroe St</item>
+        <item>Madison St</item>
+        <item>Jefferson St</item>
+        <item>Adams St</item>
+        <item>Grand St</item>
+        <item>Clinton St</item>
+        <item>Willow Ave</item>
+        <item>Graden St</item>
+        <item>Bloomfield St</item>
+        <item>Washington St</item>
+        <item>Court St</item>
+        <item>Hudson St</item>
+        <item>River St</item>
+    </string-array>
+    <string-array name="spn_prob">
+        <item>Select Problem</item>
+        <item>Animals</item>
+        <item>Ask Us/ General FAQs</item>
+        <item>Business &amp; Construction</item>
+        <item>Garbage, Recycling &amp; Graffiti</item>
+        <item>Health &amp; Social Services</item>
+        <item>Housing &amp; Private Property</item>
+        <item>Local Access Channel (Ch. 78 Cablevision/Ch. 47 FiOS)</item>
+        <item>Noise</item>
+        <item>Parking</item>
+        <item>Parks &amp; Trees</item>
+        <item>Signs, Signals &amp; Lights</item>
+        <item>Transportation, Sidewalks &amp; Streets</item>
+        <item>Utilities &amp; Flooding</item>
+    </string-array>
+    <string-array name="spn_spec_animal">
+        <item>Select Problem Specification</item>
+        <item>Animal Bite</item>
+        <item>Animal Carcass in Road</item>
+        <item>Animal Cruelty</item>
+        <item>Dead Animal</item>
+        <item>Dog Defecation</item>
+        <item>Dog Without License</item>
+        <item>Feeding Pigeons</item>
+        <item>Illegal pets or livestock</item>
+        <item>Injured Pet or Animal</item>
+        <item>Kennel Complaints</item>
+        <item>Pigeon Droppings</item>
+        <item>Rodents and Insects</item>
+        <item>Stray Animal</item>
+        <item>Unleashed Animal</item>
+    </string-array>
+    <string-array name="spn_spec_ask">
+        <item>Select Problem Specification</item>
+        <item>Mayor\'s Office</item>
+        <item>Website Feedback</item>
+    </string-array>
+    <string-array name="spn_spec_bus">
+        <item>Select Problem Specification</item>
+        <item>Construction Issues</item>
+        <item>Excessive Signage</item>
+        <item>Sidewalk Cafe Complaint</item>
+    </string-array>
+    <string-array name="spn_spec_bus_const">
+        <item>Select Problem Specification *</item>
+        <item>Abandoned Building/Property</item>
+        <item>Property Alteration Without Permit</item>
+        <item>Container Work Without Permit</item>
+        <item>Sidewalk Work Without Permit</item>
+        <item>Street Work Without Permit</item>
+    </string-array>
+    <string-array name="spn_spec_garb">
+        <item>Select Problem Specification</item>
+        <item>Garbage Related</item>
+        <item>Graffiti Issues</item>
+        <item>Illegal Posting of Flyers</item>
+        <item>Recycling Related</item>
+        <item>Request Container</item>
+        <item>Request Public Bin Installation</item>
+    </string-array>
+    <string-array name="spn_spec_garb_rel">
+        <item>Select Problem Specification *</item>
+        <item>Dumpster Overflow</item>
+        <item>Full Public Waste Bin</item>
+        <item>Hazardous Waste Disposal</item>
+        <item>Illegal Trash/Dumping</item>
+        <item>Improper Storage of Trash Barrels</item>
+        <item>Leaf Collection</item>
+        <item>Missed Trash Pickup</item>
+        <item>Trash</item>
+        <item>Trash on a Vancat Lot</item>
+    </string-array>
+    <string-array name="spn_spec_garb_graff">
+        <item>Select Problem Specification *</item>
+        <item>Graffiti - City Property</item>
+        <item>Graffiti - Parking Meters</item>
+        <item>Graffiti - Parks</item>
+        <item>Graffiti - Private Property</item>
+    </string-array>
+    <string-array name="spn_spec_garb_recycle">
+        <item>Select Problem Specification *</item>
+        <item>Recycling - Missed Pickup</item>
+        <item>Recycling Sticker Request</item>
+    </string-array>
+    <string-array name="spn_spec_health">
+        <item>Select Problem Specification</item>
+        <item>Asbestos</item>
+        <item>Bed Bugs</item>
+        <item>Grease</item>
+        <item>Hoarding</item>
+        <item>Mold</item>
+        <item>Odor Complaint</item>
+        <item>Restaurant Operating Without License</item>
+        <item>Suspected Food Poisoning</item>
+        <item>Unlicensed Vendor</item>
+        <item>Unsanitary Apartment</item>
+        <item>Unsanitary Conditions</item>
+    </string-array>
+    <string-array name="spn_spec_housing">
+        <item>Select Problem Specification</item>
+        <item>Bells/Intercom Not Working</item>
+        <item>Emergency Lighting</item>
+        <item>Exterior Lighting</item>
+        <item>Front Door Does Not Close</item>
+        <item>Illegal Apartment/Property</item>
+        <item>Illegal Sign</item>
+        <item>Landlord Complaint</item>
+        <item>Obstructed Sidewalk</item>
+        <item>Occupancy Without Valid CO/CCO</item>
+        <item>Smoke &amp; Carbon Monoxide Detector</item>
+        <item>Uncut Grass</item>
+        <item>Unsafe Structures</item>
+        <item>Water Leaks</item>
+        <item>Windows Need Replacing</item>
+    </string-array>
+    <string-array name="spn_spec_noise">
+        <item>Select Problem Specification</item>
+        <item>Animal Noise</item>
+        <item>HVAC/Stationary Equipment Noise</item>
+    </string-array>
+    <string-array name="spn_spec_parking">
+        <item>Select Problem Specification</item>
+        <item>Illegally Parked Cars</item>
+        <item>Parking Lot/Garage Complaint</item>
+        <item>Parking Meter Malfunction</item>
+        <item>Report Customer Service Experience</item>
+        <item>Report Handicap Parking Abuse</item>
+        <item>Report Parking Enforcement Experience</item>
+        <item>Report Selective Parking Enforcement</item>
+    </string-array>
+    <string-array name="spn_spec_pt">
+        <item>Select Problem Specification</item>
+        <item>Parks</item>
+        <item>Tree Issues</item>
+    </string-array>
+    <string-array name="spn_spec_pt_park">
+        <item>Select Problem Specification *</item>
+        <item>Bathroom Repair</item>
+        <item>Benches</item>
+        <item>Landscaping</item>
+        <item>Light Out</item>
+        <item>Painting</item>
+        <item>Park Cleaning/Litter</item>
+        <item>Playground Equipment</item>
+        <item>Tree Work</item>
+        <item>Tree Hedges/Weeds</item>
+        <item>Vandalism</item>
+    </string-array>
+    <string-array name="spn_spec_pt_tree">
+        <item>Select Problem Specification *</item>
+        <item>New Tree Request</item>
+        <item>Recommend a Tree Site</item>
+        <item>Request a Sidewalk Tree Pit</item>
+        <item>Tree Fallen Across Road</item>
+        <item>Tree Fallen Across Sidewalk</item>
+        <item>Tree Planting</item>
+        <item>Tree Pruning/Trimming</item>
+        <item>Tre Replacement</item>
+        <item>Tree/Stump Removal</item>
+    </string-array>
+    <string-array name="spn_spec_sign">
+        <item>Select Problem Specification</item>
+        <item>Missing/Damaged Traffic or Parking Sign</item>
+        <item>Pavement Marking</item>
+        <item>Pedestrian Signal Problem</item>
+        <item>Street Light/Lamp Post Out</item>
+        <item>Traffic Signal Problem</item>
+    </string-array>
+    <string-array name="spn_spec_trans">
+        <item>Select Problem Specification</item>
+        <item>Bikes</item>
+        <item>Corner Car Complaint</item>
+        <item>HOP/Senior Shuttle Complaint</item>
+        <item>Maintenance &amp; Repairs</item>
+        <item>Pedestrian Safety</item>
+        <item>Snow</item>
+        <item>Street Cleaning</item>
+        <item>Taxi</item>
+    </string-array>
+    <string-array name="spn_spec_trans_bike">
+        <item>Select Problem Specification *</item>
+        <item>Report a Biking Hazard</item>
+        <item>Report Abandoned Bike</item>
+        <item>Report Damaged Bike Rack/Repair Station</item>
+        <item>Request a Bike Rack</item>
+    </string-array>
+    <string-array name="spn_spec_trans_repair">
+        <item>Select Problem Specification *</item>
+        <item>Broken Sidewalk</item>
+        <item>Curb Missing Paint</item>
+        <item>Pothole</item>
+    </string-array>
+    <string-array name="spn_spec_trans_safety">
+        <item>Select Problem Specification *</item>
+        <item>Crossing Guards</item>
+        <item>Pedestrian Safety Concnern/Traffic Calming Request</item>
+        <item>Report Blocked Crosswalk</item>
+        <item>Report Missing Crosswalk</item>
+        <item>Report Stop Sign Running</item>
+        <item>Request "Stop For Pedestrian In Crosswalk" Sign</item>
+    </string-array>
+    <string-array name="spn_spec_trans_snow">
+        <item>Select Problem Specification *</item>
+        <item>Covered Fire Hydrant</item>
+        <item>Covered Storm Drain</item>
+        <item>Report Business Plowing Snow onto Sidewalk</item>
+        <item>Snow on Crosswalk</item>
+        <item>Unplowed Street</item>
+        <item>Unshoveled Sidewalk</item>
+    </string-array>
+    <string-array name="spn_spec_trans_clean">
+        <item>Select Problem Specification *</item>
+        <item>Report Failure to Clean Sidewalk</item>
+        <item>Request Street Cleaning</item>
+    </string-array>
+    <string-array name="spn_spec_trans_taxi">
+        <item>Select Problem Specification *</item>
+        <item>Limousine Complaint</item>
+        <item>Property Lost In Taxi</item>
+        <item>Taxi Complaint</item>
+        <item>Taxi Office/Inspectors Complaint</item>
+    </string-array>
+    <string-array name="spn_spec_util">
+        <item>Select Problem Specification</item>
+        <item>Flooding</item>
+        <item>No/Inefficient Heat</item>
+        <item>No/Inefficient Hot Water</item>
+    </string-array>
+    <string-array name="spn_spec_flood">
+        <item>Select Problem Specification</item>
+        <item>Clogged Catch Basin</item>
+        <item>Request Cleaning of Sewage from Street/Sidewalk</item>
+    </string-array>
 
     <string-array name="age_ranges">
         <item>18&#8211;25</item>
@@ -62,7 +321,8 @@
         <item>50&#8211;65</item>
         <item>65+</item>
     </string-array>
-    
+
     <string name="title_activity_directions">DirectionsActivity</string>
+    <string name="title_activity_hoboken311">Hoboken311Activity</string>
 
 </resources>
