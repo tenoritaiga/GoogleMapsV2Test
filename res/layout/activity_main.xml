@@ -62,10 +62,18 @@
           android:drawableLeft="@drawable/newgear"
           android:onClick="startSettingsActivity"
           android:text="@string/settingsButtonText" />
+      
+      <Button 
+          android:id="@+id/gasButton"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:drawableLeft="@drawable/newgear"
+          android:onClick="startMyGasActivity"
+          android:text="@string/myGasButtonText"/>
 
       <ImageView
           android:id="@+id/imageView1"
-          android:layout_width="wrap_content"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:src="@drawable/scitylogowhite" />
 
