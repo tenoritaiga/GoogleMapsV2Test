@@ -10,7 +10,11 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -126,7 +130,9 @@ public class ProfileActivity extends Activity {
 		protected void onPostExecute(JSONObject jsonObject){
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.edit_username);
+				EditText editText = (EditText) findViewById(R.id.edit_userid);
+				editText.setText(jsonObject.getString("UserID"));
+				editText = (EditText) findViewById(R.id.edit_username);
 				editText.setText(jsonObject.getString("Username"));
 				editText = (EditText) findViewById(R.id.edit_password);
 				editText.setText(jsonObject.getString("Password"));
@@ -167,6 +173,73 @@ public class ProfileActivity extends Activity {
 					checkBox.setChecked(false);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+	}
+	
+	private class JsonSender extends AsyncTask<Void,Void,Void> {
+		
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			JSONObject json = new JSONObject();
+			JSONObject jsonAddress = new JSONObject();
+
+			try {
+				EditText editText = (EditText) findViewById(R.id.edit_userid);
+				json.put("UserID", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_username);
+				json.put("Username", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_password);
+				json.put("Password", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_firstname);
+				json.put("FirstName", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_lastname);
+				json.put("LastName", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_home_address);
+				jsonAddress.put("NumberAndStreet", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_home_zip);
+				jsonAddress.put("ZipCode", editText.getText().toString());
+				json.put("HomeAddress", jsonAddress);
+				jsonAddress = new JSONObject();
+				editText = (EditText) findViewById(R.id.edit_work_address);
+				jsonAddress.put("NumberAndStreet", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_work_zip);
+				jsonAddress.put("ZipCode", editText.getText().toString());
+				json.put("WorkAddress", jsonAddress);
+				editText = (EditText) findViewById(R.id.edit_gender);
+				json.put("Gender", editText.getText().toString());
+				Spinner spinner = (Spinner) findViewById(R.id.age_spinner);
+				json.put("AgeRange", spinner.getSelectedItem().toString());
+				CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox_swift911);
+				if (checkBox.isChecked() == true)
+					json.put("SignupSwift", true);
+				else
+					json.put("SignupSwift", false);
+				//System.out.println(profile.signup_swift);
+				editText = (EditText) findViewById(R.id.edit_phone);
+				json.put("PhoneNumber", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_email);
+				json.put("EmailAddress", editText.getText().toString());
+				checkBox = (CheckBox) findViewById(R.id.checkbox_submit_gps);
+				if (checkBox.isChecked() == true)
+					json.put("SubmitGPSLocation", true);
+				else
+					json.put("SubmitGPSLocation", false);
+				
+				DefaultHttpClient client = new DefaultHttpClient();
+				HttpPut putRequest = new HttpPut("http://50.17.51.160/api/Users");
+				StringEntity se = new StringEntity(json.toString());
+				se.setContentType("application/json");
+				se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+				putRequest.setEntity(se);
+				HttpResponse response = client.execute(putRequest);
+				System.out.println(response.getStatusLine().getStatusCode());
+				return null;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return null;
 			}
 		}
 	}
@@ -215,6 +288,63 @@ public class ProfileActivity extends Activity {
 					});
 			builder.show();
 		}
-	}
+		else {
+			/*JSONObject json = new JSONObject();
+			JSONObject jsonAddress = new JSONObject();
 
+			try {
+				EditText editText = (EditText) findViewById(R.id.edit_userid);
+				json.put("UserID", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_username);
+				json.put("Username", editText.getText().toString());
+				json.put("Password", password1.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_firstname);
+				json.put("FirstName", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_lastname);
+				json.put("LastName", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_home_address);
+				jsonAddress.put("NumberAndStreet", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_home_zip);
+				jsonAddress.put("ZipCode", editText.getText().toString());
+				json.put("HomeAddress", jsonAddress);
+				jsonAddress = new JSONObject();
+				editText = (EditText) findViewById(R.id.edit_work_address);
+				jsonAddress.put("NumberAndStreet", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_work_zip);
+				jsonAddress.put("ZipCode", editText.getText().toString());
+				json.put("WorkAddress", jsonAddress);
+				editText = (EditText) findViewById(R.id.edit_gender);
+				json.put("Gender", editText.getText().toString());
+				Spinner spinner = (Spinner) findViewById(R.id.age_spinner);
+				json.put("AgeRange", spinner.getSelectedItem().toString());
+				CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox_swift911);
+				if (checkBox.isChecked() == true)
+					json.put("SignupSwift", true);
+				else
+					json.put("SignupSwift", false);
+				//System.out.println(profile.signup_swift);
+				editText = (EditText) findViewById(R.id.edit_phone);
+				json.put("PhoneNumber", editText.getText().toString());
+				editText = (EditText) findViewById(R.id.edit_email);
+				json.put("EmailAddress", editText.getText().toString());
+				checkBox = (CheckBox) findViewById(R.id.checkbox_submit_gps);
+				if (checkBox.isChecked() == true)
+					json.put("SubmitGPSLocation", true);
+				else
+					json.put("SubmitGPSLocation", false);
+				
+				DefaultHttpClient client = new DefaultHttpClient();
+				HttpPut putRequest = new HttpPut("http://50.17.51.160/api/Users");
+				StringEntity se = new StringEntity(json.toString());
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+				putRequest.setEntity(se);
+				HttpResponse response = client.execute(putRequest);
+				System.out.println(response.getStatusLine().getStatusCode());
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}*/
+			new JsonSender().execute();
+		}
+	}
 }

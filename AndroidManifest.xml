@@ -106,14 +106,22 @@
         -->
         <activity
             android:name="com.smartcity.redux.Hoboken311Activity"
-            android:label="@string/title_activity_hoboken311" 
+            android:label="@string/title_activity_hoboken311"
             android:parentActivityName="com.smartcity.redux.MainActivity" >
-            
-            <!-- 
+
+            <!--
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smartcity.redux.MainActivity" />
-                -->
+            -->
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.MyGasActivity"
+            android:label="@string/title_activity_my_gas"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
         </activity>
     </application>
 

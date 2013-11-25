@@ -57,5 +57,8 @@ public class MainActivity extends Activity {
 		MainActivity.this.startActivity(intent);
 	}
 	
-
+	public void startMyGasActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MyGasActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }

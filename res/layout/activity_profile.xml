@@ -36,6 +36,26 @@
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:text="@string/profile_userid_label"
+	            android:textSize="15sp" />
+	        
+	        <EditText android:id="@+id/edit_userid"
+	            android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/profile_userid" 
+	        	android:inputType="text" />        
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	tools:context=".DisplayProfile" >
+	 
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
 	            android:text="@string/profile_username_label"
 	            android:textSize="15sp" />
 	        
@@ -92,8 +112,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save_password"
-	        android:onClick="saveProfileData" />
+	        android:text="@string/profile_button_save_password" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
@@ -272,8 +291,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save"
-	        android:onClick="saveProfileData" />
+	        android:text="@string/profile_button_save" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
@@ -347,8 +365,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save_swift911"
-	        android:onClick="saveProfileData" />
+	        android:text="@string/profile_button_save_swift911" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"

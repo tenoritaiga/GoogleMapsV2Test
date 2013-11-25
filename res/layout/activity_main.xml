@@ -18,7 +18,7 @@
         android:id="@+id/trafficButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:drawableLeft="@drawable/navigate"
+        android:drawableLeft="@drawable/traffic"
         android:onClick="startTrafficActivity"
         android:text="@string/trafficButtonText" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/directionsButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:drawableLeft="@drawable/location"
+        android:drawableLeft="@drawable/directions"
         android:onClick="startDirectionsActivity"
         android:text="@string/directionsButtonText" />
 
@@ -34,9 +34,17 @@
         android:id="@+id/profileButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:drawableLeft="@drawable/person"
+        android:drawableLeft="@drawable/user"
         android:onClick="startProfileActivity"
         android:text="@string/profileButtonText" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/gear"
+        android:onClick="startSettingsActivity"
+        android:text="@string/settingsButtonText" />
     <!--  
      <Button
         android:id="@+id/directionsButton"
@@ -51,22 +59,22 @@
         android:id="@+id/settingsButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:drawableLeft="@drawable/flag"
+        android:drawableLeft="@drawable/gear"
         android:onClick="startHoboken311Activity"
         android:text="@string/hoboken311ButtonText" />
-
+      
       <Button
-          android:id="@+id/settingsButton"
+          android:id="@+id/myGasButton"
           android:layout_width="match_parent"
           android:layout_height="60dp"
-          android:drawableLeft="@drawable/newgear"
-          android:onClick="startSettingsActivity"
-          android:text="@string/settingsButtonText" />
+          android:drawableLeft="@drawable/gear"
+          android:onClick="startMyGasActivity"
+          android:text="@string/myGasButtonText" />
 
-      <ImageView
-          android:id="@+id/imageView1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/scitylogowhite" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:src="@drawable/scitylogowhite" />
 
 </LinearLayout>
