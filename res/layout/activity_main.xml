@@ -62,11 +62,19 @@
         android:drawableLeft="@drawable/gear"
         android:onClick="startHoboken311Activity"
         android:text="@string/hoboken311ButtonText" />
+      
+      <Button
+          android:id="@+id/myGasButton"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:drawableLeft="@drawable/gear"
+          android:onClick="startMyGasActivity"
+          android:text="@string/myGasButtonText" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:src="@drawable/scitylogowhite" />
 
 </LinearLayout>

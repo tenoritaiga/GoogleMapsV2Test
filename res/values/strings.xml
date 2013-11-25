@@ -26,6 +26,7 @@
     <string name="profile_age_label">Age Range</string>
     <string name="profile_phone_label">Phone Number</string>
     <string name="profile_email_label">Email Address</string>
+    <string name="profile_userid_label">User ID</string>
     <string name="profile_username_label">Username</string>
     <string name="profile_password_label">Password</string>
     <string name="profile_password_confirm_label">Confirm Password</string>
@@ -40,6 +41,7 @@
     <string name="profile_age">18&#8211;25</string>
     <string name="profile_phone">Phone</string>
     <string name="profile_email">Email</string>
+    <string name="profile_userid">ID</string>
     <string name="profile_username">username</string>
     <string name="profile_password">password</string>
     <string name="profile_button_save">Save</string>
@@ -53,14 +55,12 @@
     <string name="profileButtonText">Set Up Profile</string>
     <string name="trafficButtonText">Traffic Maps</string>
     <string name="directionsButtonText">Directions</string>
-
     <string name="hoboken311ButtonText">Hoboken 311</string>
+    <string name="myGasButtonText">My Gas</string>
     <string name="btn_311_map">Hoboken 311 Map</string>
     <string name="txt_prob">Choose a Problem</string>
     <string name="title_activity_hoboken311">Hoboken 311 Activity</string>
-    
     <string name="menu_voice">Voice Command</string>
-      
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -313,7 +313,6 @@
         <item>Clogged Catch Basin</item>
         <item>Request Cleaning of Sewage from Street/Sidewalk</item>
     </string-array>
-
     <string-array name="age_ranges">
         <item>18&#8211;25</item>
         <item>26&#8211;35</item>
@@ -324,5 +323,15 @@
 
     <string name="title_activity_directions">DirectionsActivity</string>
     <string name="title_activity_hoboken311">Hoboken311Activity</string>
+    <string name="title_activity_my_gas">MyGasActivity</string>
+    <string name="title_section1">Enter Tank Refill</string>
+    <string name="title_section2">Consumption Data</string>
 
+    <string name="gas_date">Date:</string>
+    <string name="button_date">Change Date</string>
+    <string name="gallons">Number of Gallons</string>
+    <string name="edit_gallons">0</string>
+    <string name="cost">Total Cost</string>
+    <string name="edit_cost">$0.00</string>
+    <string name="button_gas_save">Save</string>
 </resources>
