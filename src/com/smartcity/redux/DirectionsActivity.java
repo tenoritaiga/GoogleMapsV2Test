@@ -1,7 +1,10 @@
 package com.smartcity.redux;
 
+import java.util.Locale;
+
 import android.annotation.TargetApi;
 import android.graphics.Color;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -32,12 +35,21 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
         
+        Bundle extras = getIntent().getExtras();
+        
+        Float startingPoint = Float.parseFloat(extras.getString("startingPoint"));
+        Float destination = Float.parseFloat(extras.getString("destination"));
+        
+        Geocoder geocoder = new Geocoder(this,Locale.US);
+        
+        
+        
 		setupActionBar();
         
         SupportMapFragment fm = (SupportMapFragment)  getSupportFragmentManager().findFragmentById(R.id.map);
         map = fm.getMap();
 
-        CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(18.013610,-77.498803));
+        CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(startingPoint, destination));
         CameraUpdate zoom=  CameraUpdateFactory.zoomTo(15);
 
         map.moveCamera(center);

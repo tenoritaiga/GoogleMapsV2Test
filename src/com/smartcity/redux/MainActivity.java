@@ -52,10 +52,18 @@ public class MainActivity extends Activity {
 		MainActivity.this.startActivity(intent);
 	}
 	
+	public void startDirectionsInputActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,DirectionsInput.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
 	public void startHoboken311Activity(View view) {
 		Intent intent = new Intent(MainActivity.this,Hoboken311Activity.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
-
+	public void startMyGasActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MyGasActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }
