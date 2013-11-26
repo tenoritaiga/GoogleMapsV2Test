@@ -331,6 +331,7 @@
         <item >Driving</item>
         <item >Public Transit</item>
         <item >Walking</item>
+        <item>Biking</item>
     </string-array>
 
     <string name="gas_date">Date:</string>
