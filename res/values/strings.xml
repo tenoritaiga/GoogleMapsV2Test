@@ -322,7 +322,7 @@
     </string-array>
 
     <string name="title_activity_directions">DirectionsActivity</string>
-    <string name="title_activity_hoboken311">Hoboken311Activity</string>
+    <!--  <string name="title_activity_hoboken311">Hoboken311Activity</string>-->
     <string name="title_activity_my_gas">MyGasActivity</string>
     <string name="title_section1">Enter Tank Refill</string>
     <string name="title_section2">Consumption Data</string>
