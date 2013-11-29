@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.smartcity.redux.MyGasActivity;
 import com.smartcity.redux.R;
-import com.smartcity.redux.R.string;
 import com.smartcity.redux.fragments.EnterGasConsumptionFragment;
+import com.smartcity.redux.fragments.ViewGasConsumptionFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -33,7 +33,11 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 		// getItem is called to instantiate the fragment for the given page.
 		// Return a DummySectionFragment (defined as a static inner class
 		// below) with the page number as its lone argument.
-		Fragment fragment = new EnterGasConsumptionFragment();
+		Fragment fragment;
+		if (position == 0)
+			fragment = new EnterGasConsumptionFragment();
+		else
+			fragment = new ViewGasConsumptionFragment();
 		Bundle args = new Bundle();
 		args.putInt(EnterGasConsumptionFragment.ARG_SECTION_NUMBER, position + 1);
 		fragment.setArguments(args);

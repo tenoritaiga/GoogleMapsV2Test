@@ -325,7 +325,7 @@
     <!--  <string name="title_activity_hoboken311">Hoboken311Activity</string>-->
     <string name="title_activity_my_gas">MyGasActivity</string>
     <string name="title_section1">Enter Tank Refill</string>
-    <string name="title_section2">Consumption Data</string>
+    <string name="title_section2">View Consumption Data</string>
     <string name="title_activity_directions_input">Transit Information</string>
     <string-array name="spn_directions_type">
         <item >Driving</item>
@@ -341,4 +341,10 @@
     <string name="cost">Total Cost</string>
     <string name="edit_cost">$0.00</string>
     <string name="button_gas_save">Save</string>
+    <string name="total_consumption">Total Consumption (past 3 mo.)</string>
+    <string name="average_monthly">Avg Consumption/mo.</string>
+    <string name="average_monthly_all">Avg Consumption/mo. (all Users)</string>
+    <string name="total_cons">Total</string>
+    <string name="avg_mon">Avg</string>
+    <string name="avg_mon_all">AvgAll</string>
 </resources>
