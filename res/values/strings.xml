@@ -347,4 +347,7 @@
     <string name="total_cons">Total</string>
     <string name="avg_mon">Avg</string>
     <string name="avg_mon_all">AvgAll</string>
+    <string name="show_date">Date</string>
+    <string name="show_gallons"># of Gallons</string>
+    <string name="show_cost">Total Cost</string>
 </resources>
