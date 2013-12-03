@@ -41,8 +41,7 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
         Float destination = Float.parseFloat(extras.getString("destination"));
         
         Geocoder geocoder = new Geocoder(this,Locale.US);
-        
-        
+
         
 		setupActionBar();
         

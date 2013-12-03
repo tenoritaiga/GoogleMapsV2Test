@@ -24,14 +24,12 @@
             android:layout_height="wrap_content"
             android:text="Starting Point" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/startingPointInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" >
-
-            <requestFocus />
-        </EditText>
+            android:hint="Your Location"
+            android:ems="10" />
 
         <TextView
             android:id="@+id/Destination"
@@ -39,11 +37,13 @@
             android:layout_height="wrap_content"
             android:text="Destination" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/destinationInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10" >
+            <requestFocus />
+        </AutoCompleteTextView>
 
         <TextView
             android:id="@+id/directionsTypeLabel"
