@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class DirectionsInput extends Activity implements OnItemClickListener {
@@ -37,9 +38,16 @@ public class DirectionsInput extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_directions_input);
 		
-		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.destinationInput);
-		autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this, android.R.layout.test_list_item));
-		autoCompView.setOnItemClickListener(this);
+		AutoCompleteTextView destinationInput = (AutoCompleteTextView) findViewById(R.id.destinationInput);
+		AutoCompleteTextView startingPointInput = (AutoCompleteTextView) findViewById(R.id.startingPointInput);
+		
+		startingPointInput.setAdapter(new PlacesAutoCompleteAdapter(this, android.R.layout.test_list_item));
+		startingPointInput.setOnItemClickListener(this);
+		
+		destinationInput.setAdapter(new PlacesAutoCompleteAdapter(this, android.R.layout.test_list_item));
+		destinationInput.setOnItemClickListener(this);
+		
+		
 		
 		 API_KEY = getResources().getText(R.string.MapsAPIKey).toString();
 		 
@@ -99,7 +107,7 @@ public class DirectionsInput extends Activity implements OnItemClickListener {
 	    try {
 	        // Create a JSON object hierarchy from the results
 	        JSONObject jsonObj = new JSONObject(jsonResults.toString());
-	        Log.d("JSON", jsonResults.toString());
+	        //Log.d("JSON", jsonResults.toString());
 	        JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
 
 	        // Extract the Place descriptions from the results
@@ -111,7 +119,7 @@ public class DirectionsInput extends Activity implements OnItemClickListener {
 	        Log.e(LOG_TAG, "Cannot process JSON results", e);
 	    }
 	    
-	    Log.d("RESULTS SIZE",Integer.toString(resultList.size()));
+	    //Log.d("RESULTS SIZE",Integer.toString(resultList.size()));
 	    //Log.d("RESULT 1",resultList.get(0));
 
 	    return resultList;
@@ -130,12 +138,15 @@ public class DirectionsInput extends Activity implements OnItemClickListener {
 		
 		EditText startingPoint = (EditText) findViewById(R.id.startingPointInput);
 		EditText destination = (EditText) findViewById(R.id.destinationInput);
+		Spinner transitSpinner = (Spinner) findViewById(R.id.spn_directions_type);
 		
 		String startingPointText = startingPoint.getText().toString();
 		String destinationText = destination.getText().toString();
+		String transitType = transitSpinner.getSelectedItem().toString();
 		
 		intent.putExtra("startingPoint",startingPointText);
 		intent.putExtra("destination", destinationText);
+		intent.putExtra("transitType",transitType);
 		
 		DirectionsInput.this.startActivity(intent);
 	}

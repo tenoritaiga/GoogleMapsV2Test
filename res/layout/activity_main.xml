@@ -31,12 +31,12 @@
         android:text="@string/directionsButtonText" />
 
     <Button
-        android:id="@+id/profileButton"
+        android:id="@+id/gasButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:drawableLeft="@drawable/person"
-        android:onClick="startProfileActivity"
-        android:text="@string/profileButtonText" />
+        android:drawableLeft="@drawable/gas"
+        android:onClick="startMyGasActivity"
+        android:text="@string/myGasButtonText" />
     <!--  
      <Button
         android:id="@+id/directionsButton"
@@ -56,20 +56,20 @@
         android:text="@string/hoboken311ButtonText" />
 
       <Button
+          android:id="@+id/profileButton"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:drawableLeft="@drawable/person"
+          android:onClick="startProfileActivity"
+          android:text="@string/profileButtonText" />
+
+      <Button
           android:id="@+id/settingsButton"
           android:layout_width="match_parent"
           android:layout_height="60dp"
           android:drawableLeft="@drawable/newgear"
           android:onClick="startSettingsActivity"
           android:text="@string/settingsButtonText" />
-      
-      <Button 
-          android:id="@+id/gasButton"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:drawableLeft="@drawable/newgear"
-          android:onClick="startMyGasActivity"
-          android:text="@string/myGasButtonText"/>
 
       <ImageView
           android:id="@+id/imageView1"

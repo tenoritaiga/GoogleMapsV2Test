@@ -1,14 +1,18 @@
 package com.smartcity.redux;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.annotation.TargetApi;
 import android.graphics.Color;
+import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -20,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.smartcity.redux.route.Routing;
+import com.smartcity.redux.route.Routing.TravelMode;
 import com.smartcity.redux.route.RoutingListener;
 
 public class DirectionsActivity extends FragmentActivity implements RoutingListener
@@ -37,31 +42,73 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
         
         Bundle extras = getIntent().getExtras();
         
-        Float startingPoint = Float.parseFloat(extras.getString("startingPoint"));
-        Float destination = Float.parseFloat(extras.getString("destination"));
+        String startingPoint = extras.getString("startingPoint");
+        String destination = extras.getString("destination");
+        String transitType = extras.getString("transitType");
         
-        Geocoder geocoder = new Geocoder(this,Locale.US);
+        double startLat = 0;
+        double startLong = 0;
+        double destLat = 0;
+        double destLong = 0;
 
         
-		setupActionBar();
-        
-        SupportMapFragment fm = (SupportMapFragment)  getSupportFragmentManager().findFragmentById(R.id.map);
-        map = fm.getMap();
+        Geocoder coder = new Geocoder(this);
+        try {
+            ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
+            ArrayList<Address> destPoints = (ArrayList<Address>) coder.getFromLocationName(destination, 15);
+            for(Address add : startingPoints){
+                //if (statement) {//Controls to ensure it is right address such as country etc.
+                    startLong = add.getLongitude();
+                    startLat = add.getLatitude();
+                //}
+            }
+            
+            for(Address add : destPoints){
+                //if (statement) {//Controls to ensure it is right address such as country etc.
+                    destLong = add.getLongitude();
+                    destLat = add.getLatitude();
+                //}
+            }
 
-        CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(startingPoint, destination));
-        CameraUpdate zoom=  CameraUpdateFactory.zoomTo(15);
+            
+            setupActionBar();
+            
+            SupportMapFragment fm = (SupportMapFragment)  getSupportFragmentManager().findFragmentById(R.id.map);
+            map = fm.getMap();
 
-        map.moveCamera(center);
-        map.animateCamera(zoom);
+            //Hardcode to center of Hoboken for now
+            CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(40.745713,-74.033221));
+            CameraUpdate zoom=  CameraUpdateFactory.zoomTo(15);
 
-        //need to change these values so that we can update them based on the input
-        start = new LatLng(18.015365, -77.499382);
-        end = new LatLng(18.012590, -77.500659);
+            map.moveCamera(center);
+            map.animateCamera(zoom);
+            
+            start = new LatLng(startLat,startLong);
+            end = new LatLng(destLat,destLong);
 
-        //this should be an option --> different travel modes
-        Routing routing = new Routing(Routing.TravelMode.WALKING);
-        routing.registerListener(this);
-        routing.execute(start, end);
+            Log.d("TRANSIT","Transit type is: " + transitType);
+            
+            //Default to driving directions
+            TravelMode tm = Routing.TravelMode.DRIVING;
+            
+            if(transitType == "Walking")
+            	tm = Routing.TravelMode.WALKING;
+            else if(transitType == "Driving")
+            	tm = Routing.TravelMode.DRIVING;
+            else if(transitType == "Biking")
+            	tm = Routing.TravelMode.BIKING;
+            else if(transitType == "Public Transit")
+            	tm = Routing.TravelMode.TRANSIT;
+
+            Routing routing = new Routing(tm);
+            routing.registerListener(this);
+            routing.execute(start, end);
+
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
