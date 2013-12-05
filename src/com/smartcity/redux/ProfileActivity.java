@@ -37,6 +37,8 @@ import android.widget.Spinner;
 
 public class ProfileActivity extends Activity {
 
+	public int userID = 0;
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +108,10 @@ public class ProfileActivity extends Activity {
 				BufferedReader bufRead = new BufferedReader(reader);
 				StringBuilder builder = new StringBuilder();
 				String line;
-				while ((line = bufRead.readLine()) != null)
+				while ((line = bufRead.readLine()) != null) {
 					builder.append(line);
+					System.out.println(line);
+				}
 				String jsonString = builder.toString();
 				JSONObject jsonObject = new JSONObject(jsonString);
 				//System.out.println(new JSONObject(jsonObject.getString("HomeAddress")).getString("NumberAndStreet"));
@@ -130,9 +134,8 @@ public class ProfileActivity extends Activity {
 		protected void onPostExecute(JSONObject jsonObject){
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.edit_userid);
-				editText.setText(jsonObject.getString("UserID"));
-				editText = (EditText) findViewById(R.id.edit_username);
+				userID = Integer.parseInt(jsonObject.getString("UserID"));
+				EditText editText = (EditText) findViewById(R.id.edit_username);
 				editText.setText(jsonObject.getString("Username"));
 				editText = (EditText) findViewById(R.id.edit_password);
 				editText.setText(jsonObject.getString("Password"));
@@ -186,9 +189,8 @@ public class ProfileActivity extends Activity {
 			JSONObject jsonAddress = new JSONObject();
 
 			try {
-				EditText editText = (EditText) findViewById(R.id.edit_userid);
-				json.put("UserID", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_username);
+				json.put("UserID", userID);
+				EditText editText = (EditText) findViewById(R.id.edit_username);
 				json.put("Username", editText.getText().toString());
 				editText = (EditText) findViewById(R.id.edit_password);
 				json.put("Password", editText.getText().toString());
@@ -229,6 +231,7 @@ public class ProfileActivity extends Activity {
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				HttpPut putRequest = new HttpPut("http://50.17.51.160/api/Users");
+				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");
 				se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
