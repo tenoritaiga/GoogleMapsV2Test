@@ -21,8 +21,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.smartcity.redux.adapters.SensorDataAdapter;
 import com.smartcity.redux.route.Routing;
 import com.smartcity.redux.route.Routing.TravelMode;
 import com.smartcity.redux.route.RoutingListener;
@@ -32,6 +34,10 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
     protected GoogleMap map;
     protected LatLng start;
     protected LatLng end;
+    protected int calories;
+    protected int emissions;
+    protected String transit;
+    
     /**
      * This activity loads a map and then displays the route and pushpins on it.
      */
@@ -45,6 +51,8 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
         String startingPoint = extras.getString("startingPoint");
         String destination = extras.getString("destination");
         String transitType = extras.getString("transitType");
+        
+        transit = transitType;
         
         double startLat = 0;
         double startLong = 0;
@@ -92,13 +100,21 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
             TravelMode tm = Routing.TravelMode.DRIVING;
             
             if(transitType == "Walking")
+            {
             	tm = Routing.TravelMode.WALKING;
+            }
             else if(transitType == "Driving")
-            	tm = Routing.TravelMode.DRIVING;
+            {
+            	tm = Routing.TravelMode.DRIVING;            	
+            }
             else if(transitType == "Biking")
+            {
             	tm = Routing.TravelMode.BIKING;
+            }
             else if(transitType == "Public Transit")
+            {
             	tm = Routing.TravelMode.TRANSIT;
+            }
 
             Routing routing = new Routing(tm);
             routing.registerListener(this);
@@ -123,19 +139,53 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
     }
 
     @Override
-    public void onRoutingSuccess(PolylineOptions mPolyOptions) {
-      PolylineOptions polyoptions = new PolylineOptions();
+    public void onRoutingSuccess(PolylineOptions mPolyOptions) {	
+      
+    	calories = 50;
+    	emissions = 50;
+    	    	    	
+    	PolylineOptions polyoptions = new PolylineOptions();
       polyoptions.color(Color.BLUE);
       polyoptions.width(10);
       polyoptions.addAll(mPolyOptions.getPoints());
       map.addPolyline(polyoptions);
+      
 
+      
+      
+
+      
       // Start marker
       MarkerOptions options = new MarkerOptions();
       options.position(start);
       options.icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue));
-      map.addMarker(options);
+      options.title("Test");
+      
+      
+      if(transit.compareTo("Walking") == 0)
+      {
+      	emissions = 0;
+      }
+      else if(transit.compareTo("Driving") == 0)
+      {
+      	calories = 0;           	
+      }
+      else if(transit.compareTo("Biking") == 0)
+      {
+      	emissions = 0;
+      }
+      else if(transit.compareTo("Public Transit") == 0)
+      {
+      	emissions = 0;
+      }
+      
+      String cal = Integer.toString(calories);
+      String emi = Integer.toString(emissions);
+      
+      options.snippet("Calories Burned: " + cal + " Emissions: " + emi + " " + transit);
+      Marker marker = map.addMarker(options);
 
+      
       // End marker
       options = new MarkerOptions();
       options.position(end);
