@@ -104,7 +104,7 @@ public class Hoboken311MapActivity extends Activity {
 		@Override
 		protected Hoboken311SearchResponse doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			String url = "http://pastebin.com/raw.php?i=cS9qdnXd";  // TODO
+			String url = "http://pastebin.com/raw.php?i=nYEf9HQV";  // TODO
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
