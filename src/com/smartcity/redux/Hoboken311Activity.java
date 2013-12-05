@@ -68,11 +68,11 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 			@Override
 			public void onClick(View v) {
 				
-			//	Intent i = new Intent(context, MyCity311Map.class);
+				Intent i = new Intent(context, MyCity311Map.class);
 				
 				if(request != null){
-				//	i.putExtra("REQUEST", request);
-					//startActivity(i);
+					i.putExtra("REQUEST", request);
+					startActivity(i);
 					finish();
 				}else{
 					warning.show();
