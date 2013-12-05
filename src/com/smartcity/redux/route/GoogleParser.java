@@ -16,7 +16,8 @@ import android.util.Log;
 
 public class GoogleParser extends XMLParser implements Parser {
     /** Distance covered. **/
-    private int distance;
+    //private int distance;
+    public int distance;
 
     public GoogleParser(String feedUrl) {
             super(feedUrl);
@@ -80,6 +81,7 @@ public class GoogleParser extends XMLParser implements Parser {
                             route.addPoints(decodePolyLine(step.getJSONObject("polyline").getString("points")));
                             //Push a copy of the segment to the route
                             route.addSegment(segment.copy());
+                            route.setTotalDistance(distance);
                     }
             } catch (JSONException e) {
                 Log.e("Routing Error",e.getMessage());
@@ -159,4 +161,10 @@ public class GoogleParser extends XMLParser implements Parser {
 
             return decoded;
             }
+    
+    public int getDistance()
+    {
+    	return distance;
+    }
+    
 }

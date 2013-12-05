@@ -34,9 +34,11 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
     protected GoogleMap map;
     protected LatLng start;
     protected LatLng end;
+    
     protected int calories;
     protected int emissions;
     protected String transit;
+    protected int dist;
     
     /**
      * This activity loads a map and then displays the route and pushpins on it.
@@ -119,6 +121,8 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
             Routing routing = new Routing(tm);
             routing.registerListener(this);
             routing.execute(start, end);
+            
+            dist = routing.getDistanceAgain();
 
             
         } catch (IOException e) {
@@ -181,10 +185,11 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
       
       String cal = Integer.toString(calories);
       String emi = Integer.toString(emissions);
+      String distanceStr = Integer.toString(dist);
       
-      options.snippet("Calories Burned: " + cal + " Emissions: " + emi + " " + transit);
+      options.snippet("Calories Burned: " + cal + " Emissions: " + emi + " " + distanceStr);
       Marker marker = map.addMarker(options);
-
+      //Log.d("this is my error message ", distanceStr) --> it MIGHT expect a string 
       
       // End marker
       options = new MarkerOptions();

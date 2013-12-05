@@ -15,6 +15,7 @@ public class Route {
     private String country;
     private int length;
     private String polyline;
+    private int totalDistance;
 
     public Route() {
             points = new ArrayList<LatLng>();
@@ -124,6 +125,16 @@ public class Route {
      */
     public String getPolyline() {
             return polyline;
+    }
+    
+    public void setTotalDistance(int dist)
+    {
+    	this.totalDistance = dist;
+    }
+    
+    public int getTotalDistance()
+    {
+    	return totalDistance;
     }
 
 }

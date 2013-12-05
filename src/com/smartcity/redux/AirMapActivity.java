@@ -191,7 +191,9 @@ public class AirMapActivity extends Activity {
 				}
 				googleMap.setInfoWindowAdapter(adapter);
 				
-						// Move the camera to last position with a zoom level
+						
+				//pass into the users current location
+				// Move the camera to last position with a zoom level
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(new LatLng(latitude,
 										longitude)).zoom(15).build();

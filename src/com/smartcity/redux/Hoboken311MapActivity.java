@@ -13,12 +13,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.MapFragment;
 import com.google.gson.Gson;
 import com.smartcity.redux.adapters.ParkingData;
 import com.smartcity.redux.jsonmodel.Hoboken311SearchResponse;
@@ -34,7 +34,6 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 public class Hoboken311MapActivity extends Activity {
@@ -161,7 +160,6 @@ public class Hoboken311MapActivity extends Activity {
 				//Set up custom  info window adapter
 				
 				ParkingData adapter = new ParkingData(getLayoutInflater());
-				ParkingSensor sensor = new ParkingSensor();
 				
 				double latitude = 40.745066;
 				double longitude = -74.024294;
@@ -176,7 +174,7 @@ public class Hoboken311MapActivity extends Activity {
 			        .position(new LatLng(problem.Location.Latitude,problem.Location.Longitude))
 			        .title(problem.ProblemDetails.Name)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
-					adapter.hashMap.put(marker, sensor);
+					//adapter.hashMap.put(marker, sensor);
 				}
 				
 				googleMap.setInfoWindowAdapter(adapter);
@@ -202,8 +200,9 @@ public class Hoboken311MapActivity extends Activity {
 		}
 	}
 	
-	//@Override
-	public boolean onCreateOptionsMenu(MenuItem item) {
+	/*
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			// This ID represents the Home or Up button. In the case of this
@@ -218,5 +217,6 @@ public class Hoboken311MapActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	*/
 
 }

@@ -20,6 +20,10 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
 {
   protected ArrayList<RoutingListener> _aListeners;
   protected TravelMode _mTravelMode;
+  
+  protected GoogleParser gParsed;
+  protected Route finalRoute;
+  protected int routeDistance;
 
   public enum TravelMode {
     BIKING("bicycling"),
@@ -82,7 +86,13 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
 	    if (mPoint == null) return null;
 	  }
 
-    return new GoogleParser(constructURL(aPoints)).parse();
+	  gParsed = new GoogleParser(constructURL(aPoints));
+	  finalRoute = gParsed.parse();
+	  
+	  routeDistance = finalRoute.getTotalDistance();
+	  
+	  return finalRoute; //calls google parser construct URL
+	  //return new GoogleParser(constructURL(aPoints)).parse();
 	}
 
 	protected String constructURL(LatLng... points)
@@ -122,8 +132,14 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
       for (LatLng point : result.getPoints()) {
         mOptions.add(point);
       }
-
+      
       dispatchOnSuccess(mOptions);
     }
-  }//end onPostExecute method	
+  }//end onPostExecute method
+	
+	public int getDistanceAgain()
+	{
+		return routeDistance;
+	}
+	
 }
