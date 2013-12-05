@@ -5,10 +5,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
 import com.smartcity.redux.R;
 
 public class ViewGasConsumptionFragment extends Fragment {
@@ -27,6 +32,23 @@ public class ViewGasConsumptionFragment extends Fragment {
 				.findViewById(R.id.section_label);
 		dummyTextView.setText(Integer.toString(getArguments().getInt(
 				ARG_SECTION_NUMBER)));*/
+		// init example series data
+		GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
+				new GraphViewData(1, 2.0d)
+				, new GraphViewData(2, 1.5d)
+				, new GraphViewData(3, 2.5d)
+				, new GraphViewData(4, 1.0d)
+		}); 
+		GraphView graphView = new LineGraphView(
+				getActivity() // context
+				, "GraphViewDemo" // heading
+		);
+		//GraphView graphView = (GraphView) rootView.findViewById(R.id.graphView);
+		graphView.addSeries(exampleSeries); // data
+		
+		LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.view_cons_results);
+		layout.addView(graphView);
+		
 		TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.gasResultsTable);
 		TableRow tableRow = new TableRow(getActivity());
 		tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));

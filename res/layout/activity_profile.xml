@@ -26,27 +26,7 @@
 	        android:layout_height="1dp"
 	        android:layout_marginTop="10dip"
 	        android:background="#FFFFFF" />
-	    
-	    <LinearLayout 
-	        android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:orientation="horizontal"
-	    	tools:context=".DisplayProfile" >
-	 
-	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/profile_userid_label"
-	            android:textSize="15sp" />
-	        
-	        <EditText android:id="@+id/edit_userid"
-	            android:layout_width="match_parent"
-	        	android:layout_height="wrap_content"
-	        	android:text="@string/profile_userid" 
-	        	android:inputType="text" />        
-	        
-	    </LinearLayout>
-	    
+	       
 	    <LinearLayout 
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
@@ -112,7 +92,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save_password" />
+	        android:text="@string/profile_button_save_password"
+	        android:onClick="saveProfileData" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
@@ -291,7 +272,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save" />
+	        android:text="@string/profile_button_save"
+	        android:onClick="saveProfileData" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
@@ -365,7 +347,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
-	        android:text="@string/profile_button_save_swift911" />
+	        android:text="@string/profile_button_save_swift911"
+	        android:onClick="saveProfileData" />
 	    
 	    <TextView
 	        android:layout_width="wrap_content"
