@@ -22,7 +22,7 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
   protected TravelMode _mTravelMode;
 
   public enum TravelMode {
-    BIKING("biking"),
+    BIKING("bicycling"),
     DRIVING("driving"),
     WALKING("walking"),
     TRANSIT("transit");
