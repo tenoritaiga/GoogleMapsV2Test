@@ -167,31 +167,48 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
       MarkerOptions options = new MarkerOptions();
       options.position(start);
       options.icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue));
-      options.title("Test");
+      options.title("Route Info");
       
+      
+      double routeCalc;
+      routeCalc = 0;
+      int intRoute;
+      
+      if (routeDistance > 0)
+    	  routeCalc = routeDistance / 1000;
+      routeCalc = routeCalc / 1.60934;
+      
+      intRoute = (int) Math.round(routeCalc);
       
       if(transit.compareTo("Walking") == 0)
       {
-      	emissions = 0;
+    	  calories = (int) Math.round(routeCalc * 95);
+    	  emissions = 0;
       }
       else if(transit.compareTo("Driving") == 0)
       {
-      	calories = 0;           	
+      	calories = 0;
+      	emissions = (int) Math.round(routeCalc * .375);
       }
       else if(transit.compareTo("Biking") == 0)
       {
-      	emissions = 0;
+    	  calories = (int) Math.round(routeCalc * 64);
+    	  emissions = 0;
       }
       else if(transit.compareTo("Public Transit") == 0)
       {
       	emissions = 0;
       }
       
+      
+      
+      
       String cal = Integer.toString(calories);
       String emi = Integer.toString(emissions);
-      String distanceStr = Integer.toString(routeDistance);
+      //String distanceStr = Integer.toString(routeDistance);
+      String distanceStr = Integer.toString(intRoute);
       
-      options.snippet("Calories Burned: " + cal + " Emissions: " + emi + " " + distanceStr);
+      options.snippet("Calories Burned: " + cal + " Emissions (kg CO2): " + emi + " " + distanceStr + "miles");
       Marker marker = map.addMarker(options);
       //Log.d("this is my error message ", distanceStr) --> it MIGHT expect a string 
       Log.d(TAG, "THE VALUE OF DISTANCE IS:" + distanceStr);
