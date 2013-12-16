@@ -31,7 +31,9 @@ import com.smartcity.redux.route.RoutingListener;
 
 public class DirectionsActivity extends FragmentActivity implements RoutingListener
 {
-    protected GoogleMap map;
+    private static final String TAG = "DirectionsActivity";
+	
+	protected GoogleMap map;
     protected LatLng start;
     protected LatLng end;
     
@@ -122,7 +124,9 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
             routing.registerListener(this);
             routing.execute(start, end);
             
-            dist = routing.getDistanceAgain();
+            //dist = routing.getDistanceAgain();
+
+            
 
             
         } catch (IOException e) {
@@ -143,7 +147,7 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
     }
 
     @Override
-    public void onRoutingSuccess(PolylineOptions mPolyOptions) {	
+    public void onRoutingSuccess(PolylineOptions mPolyOptions, int routeDistance) {	
       
     	calories = 50;
     	emissions = 50;
@@ -185,11 +189,12 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
       
       String cal = Integer.toString(calories);
       String emi = Integer.toString(emissions);
-      String distanceStr = Integer.toString(dist);
+      String distanceStr = Integer.toString(routeDistance);
       
       options.snippet("Calories Burned: " + cal + " Emissions: " + emi + " " + distanceStr);
       Marker marker = map.addMarker(options);
       //Log.d("this is my error message ", distanceStr) --> it MIGHT expect a string 
+      Log.d(TAG, "THE VALUE OF DISTANCE IS:" + distanceStr);
       
       // End marker
       options = new MarkerOptions();

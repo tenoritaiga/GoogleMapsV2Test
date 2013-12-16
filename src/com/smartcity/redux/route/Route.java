@@ -1,13 +1,17 @@
 package com.smartcity.redux.route;
 //by Haseem Saheed
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Route {
-    private String name;
+    private static final String TAG = "RouteActivity";
+	
+	private String name;
     private final List<LatLng> points;
     private List<Segment> segments;
     private String copyright;
@@ -134,6 +138,7 @@ public class Route {
     
     public int getTotalDistance()
     {
+		Log.d(TAG, "THE VALUE OF DISTANCE IS: " + totalDistance);
     	return totalDistance;
     }
 

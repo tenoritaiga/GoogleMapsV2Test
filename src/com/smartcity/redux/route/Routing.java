@@ -9,6 +9,7 @@ package com.smartcity.redux.route;
  */
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 
 public class Routing extends AsyncTask<LatLng, Void, Route>
 {
+  
+	private static final String TAG = "routingActivity";
+	
   protected ArrayList<RoutingListener> _aListeners;
   protected TravelMode _mTravelMode;
   
@@ -64,11 +68,11 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
     }
   }
 
-  protected void dispatchOnSuccess(PolylineOptions mOptions)
+  protected void dispatchOnSuccess(PolylineOptions mOptions, int rDistance)
   {
     for (RoutingListener mListener: _aListeners)
     {
-      mListener.onRoutingSuccess(mOptions);
+      mListener.onRoutingSuccess(mOptions, rDistance);
     }
   }
 
@@ -89,7 +93,7 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
 	  gParsed = new GoogleParser(constructURL(aPoints));
 	  finalRoute = gParsed.parse();
 	  
-	  routeDistance = finalRoute.getTotalDistance();
+	  //routeDistance = finalRoute.getTotalDistance();
 	  
 	  return finalRoute; //calls google parser construct URL
 	  //return new GoogleParser(constructURL(aPoints)).parse();
@@ -132,14 +136,20 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
       for (LatLng point : result.getPoints()) {
         mOptions.add(point);
       }
-      
-      dispatchOnSuccess(mOptions);
+      routeDistance = result.getTotalDistance();
+	  Log.d(TAG, "OPE: THE VALUE OF DISTANCE IS: " + routeDistance);
+
+      dispatchOnSuccess(mOptions, routeDistance);
     }
   }//end onPostExecute method
 	
+	/**
 	public int getDistanceAgain()
 	{
+		//routeDistance = finalRoute.getTotalDistance();
+		Log.d(TAG, "THE VALUE OF DISTANCE IS: " + routeDistance);
 		return routeDistance;
 	}
+	**/
 	
 }
