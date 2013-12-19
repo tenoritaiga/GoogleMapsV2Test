@@ -61,6 +61,13 @@
     <string name="txt_prob">Choose a Problem</string>
     <string name="title_activity_hoboken311">Hoboken 311 Activity</string>
     <string name="menu_voice">Voice Command</string>
+    <string name="txt_311_comment">Describe problem.</string>
+    <string name="btn_311_send">Send</string>
+    <string name="txtview">TextView</string>
+    <string name="txt_date">Choose Date</string>
+    <string name="txt_time">Choose Time</string>
+     
+    
 
     <string-array name="spn_street">
         <item>Select Street</item>

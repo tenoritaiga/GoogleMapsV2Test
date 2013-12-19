@@ -4,16 +4,25 @@ import com.google.gson.annotations.SerializedName;
 
 public class Problem {
 	
+	@SerializedName("UserID")
+	public int UserID;
+	
+	@SerializedName("UserName")
+	public String UserName;
+	
 	@SerializedName("ProblemID")
 	public String ProblemID;
 	
-	@SerializedName("ProblemDetails") // do we need this? or can ID be matched to name
+	@SerializedName("ProblemDetails") // ?
 	public ProblemDetails ProblemDetails;
 	
 	@SerializedName("Location")
 	public Location Location;
 	
-	@SerializedName("DateTime")
-	public DateTime DateTime;
+	@SerializedName("DateTimeReported")
+	public DateTime DateTimeReported;
+	
+	@SerializedName("DateTimeOccurred")
+	public DateTime DateTimeOccurred;
 }
 

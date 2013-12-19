@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.smartcity.redux.adapters.ParkingData;
+import com.smartcity.redux.adapters.ProblemDataAdapter;
 import com.smartcity.redux.jsonmodel.Hoboken311SearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSensor;
@@ -103,7 +104,7 @@ public class Hoboken311MapActivity extends Activity {
 		@Override
 		protected Hoboken311SearchResponse doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			String url = "http://pastebin.com/raw.php?i=nYEf9HQV";  // TODO
+			String url = "http://pastebin.com/raw.php?i=vTEbTCDT";  // TODO
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -121,7 +122,7 @@ public class Hoboken311MapActivity extends Activity {
 			return null;
 		}
 		
-		//@Override
+		@Override
 		protected void onPostExecute(Hoboken311SearchResponse response){
 
 			
@@ -157,9 +158,9 @@ public class Hoboken311MapActivity extends Activity {
 				
 				googleMap.setTrafficEnabled(true);
 				
-				//Set up custom  info window adapter
+				//Set up custom info window adapter
 				
-				ParkingData adapter = new ParkingData(getLayoutInflater());
+				ProblemDataAdapter adapter = new ProblemDataAdapter(getLayoutInflater());
 				
 				double latitude = 40.745066;
 				double longitude = -74.024294;
@@ -168,13 +169,39 @@ public class Hoboken311MapActivity extends Activity {
 				int resID;
 				
 				for(Problem problem : response.Problems){
-					resID = getResources().getIdentifier("problems_r","drawable",getPackageName());
-					//Log.d("STREAM","We got back: " + response.Sensors);
+				//	System.out.println(problem.ProblemDetails.Category.toString());
+					if(problem.ProblemDetails.Category.toString().equals("Utilities & Flooding") || 
+							problem.ProblemDetails.Category.toString().equals("Signs, Signals & Lights") ||
+							problem.ProblemDetails.Category.toString().equals("Health & Social Services") ||
+							problem.ProblemDetails.Category.toString().equals("Animals"))
+					{
+						resID = getResources().getIdentifier("alert","drawable",getPackageName());
+						// RED
+					}
+					else if(problem.ProblemDetails.Category.toString().equals("Parks & Trees"))
+						// GREEN
+					{
+						resID = getResources().getIdentifier("alert_g","drawable",getPackageName());
+					}
+					else if(problem.ProblemDetails.Category.toString().equals("Business & Construction") ||
+							problem.ProblemDetails.Category.toString().equals("Garbage, Recycling & Graffiti") ||
+							problem.ProblemDetails.Category.toString().equals("Parking") ||
+							problem.ProblemDetails.Category.toString().equals("Transportation, Sidewalks & Streets"))
+					{
+						resID = getResources().getIdentifier("alert_o","drawable",getPackageName());
+						// ORANGE
+					}
+					else
+					{
+						resID = getResources().getIdentifier("alert_y","drawable",getPackageName());
+						// DEFAULT CASE, YELLOW
+					}
+					//Log.d("STREAM","We got back: " + response.Problems);
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(problem.Location.Latitude,problem.Location.Longitude))
 			        .title(problem.ProblemDetails.Name)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
-					//adapter.hashMap.put(marker, sensor);
+					adapter.hashMap.put(marker, problem);
 				}
 				
 				googleMap.setInfoWindowAdapter(adapter);
