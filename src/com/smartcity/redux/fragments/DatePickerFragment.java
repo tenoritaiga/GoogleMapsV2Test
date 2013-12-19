@@ -12,9 +12,19 @@ import android.widget.TextView;
 
 import com.smartcity.redux.R;
 
+/**
+ * Fragment that controls a dialog used for picking a date when entering a new gas 
+ * consumption record in the My Gas Consumption functionality.
+ * @author Class2013
+ *
+ */
 public class DatePickerFragment extends DialogFragment implements
 		OnDateSetListener {
 
+	/**
+	 * Function called when the date picker dialog is created - sets the current date as
+	 * the initial values of the dialog.
+	 */
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		final Calendar c = Calendar.getInstance();
@@ -25,6 +35,11 @@ public class DatePickerFragment extends DialogFragment implements
 		return new DatePickerDialog(getActivity(), this, year, month, day);
 	}
 	
+	/**
+	 * Called when the Set button in the dialog is clicked - sets the chosen date as the 
+	 * value of the date field in the "Enter Tank Refill" tab of the My Gas Consumption component 
+	 * of the app.
+	 */
 	@Override
 	public void onDateSet(DatePicker view, int year, int month, int day) {
 		// TODO Auto-generated method stub
