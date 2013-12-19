@@ -37,17 +37,14 @@ import android.widget.TextView;
 import com.smartcity.redux.adapters.GasPagerAdapter;
 import com.smartcity.redux.fragments.DatePickerFragment;
 
+/**
+ * Main class for controlling the Gas Consumption activity.
+ * @author Class2013
+ *
+ */
 public class MyGasActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
 	GasPagerAdapter mSectionsPagerAdapter;
 
 	/**
@@ -55,6 +52,10 @@ public class MyGasActivity extends FragmentActivity implements
 	 */
 	ViewPager mViewPager;
 
+	/**
+	 * Called when the gas consumption activity is created - sets up the tabbed 
+	 * pages and executes the API call for getting average gas consumption data.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,7 +67,7 @@ public class MyGasActivity extends FragmentActivity implements
 		// Show the Up button in the action bar.
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		// Create the adapter that will return a fragment for each of the three
+		// Create the adapter that will return a fragment for each of the two
 		// primary sections of the app.
 		mSectionsPagerAdapter = new GasPagerAdapter(
 				this, getSupportFragmentManager());
@@ -97,6 +98,7 @@ public class MyGasActivity extends FragmentActivity implements
 					.setTabListener(this));
 		}
 		
+		// Execute the API call for getting average gas consumption data.
 		new JsonGasAvgParser().execute();
 	}
 
@@ -124,6 +126,9 @@ public class MyGasActivity extends FragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * Called when a tab is selected.
+	 */
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
@@ -142,11 +147,23 @@ public class MyGasActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 	}
 	
+	/**
+	 * Called when the Change Date button in the "Enter Tank 
+	 * Refill" tab is clicked - makes the date selector visible.
+	 * @param v
+	 */
 	public void showDatePickerDialog(View v) {
 		DatePickerFragment newFragment = new DatePickerFragment();
 		newFragment.show(getSupportFragmentManager(), "datePicker");
 	}
 	
+	/**
+	 * Performs an HTTP GET request to retrieve an InputStream containing JSON 
+	 * data from the provided URL. If the request is successful, an InputStream 
+	 * is returned.
+	 * @param url
+	 * @return
+	 */
 	private static InputStream retrieveStream(String url) {
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpGet getRequest = new HttpGet(url);
@@ -174,8 +191,18 @@ public class MyGasActivity extends FragmentActivity implements
 		return null;
 	}
 	
+	/**
+	 * Nested class for retrieving average gas consumption data through an API call, and populating 
+	 * the appropriate fields of the "View Consumption Data" tab.
+	 * @author Class2013
+	 *
+	 */
 	private class JsonGasAvgParser extends AsyncTask<Void,Void,JSONObject> {
 		
+		/**
+		 * Makes the API call to retrieve an InputStream from the desired URL, then parses 
+		 * that InputStream to retrieve a JSON object containing average gas consumption data.
+		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			String url = "http://50.17.51.160/api/UserGasConsumptionAverages?user_id=9";
@@ -209,6 +236,11 @@ public class MyGasActivity extends FragmentActivity implements
 			return null;
 		}
 		
+		/**
+		 * Parses the retrieved JSON object and populates the fields of the 
+		 * "View Consumption Data" tab with the contained data on average gas 
+		 * consumption.
+		 */
 		@Override
 		protected void onPostExecute(JSONObject jsonObject) {
 			
@@ -223,6 +255,12 @@ public class MyGasActivity extends FragmentActivity implements
 		}
 	}
 	
+	/**
+	 * Nested class for sending a gas consumption record through an API call - constructs a JSON 
+	 * object with the required data and makes an HTTP POST request to send the data to the server.
+	 * @author Class2013
+	 *
+	 */
 	private class JsonGasSender extends AsyncTask<Void,Void,Void> {
 		
 		@Override
@@ -255,6 +293,11 @@ public class MyGasActivity extends FragmentActivity implements
 		}
 	}
 	
+	/**
+	 * Called when the Save button in the "Enter Tank Refill" tab is clicked - 
+	 * calls the nested class for sending consumption data to the server.
+	 * @param view
+	 */
 	public void saveGasConsumption(View view) {
 		new JsonGasSender().execute();
 	}

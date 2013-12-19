@@ -16,6 +16,11 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 import com.smartcity.redux.R;
 
+/**
+ * Fragment for controlling the View Consumption Data tab of the My Gas Consumption functionality.
+ * @author Class2013
+ *
+ */
 public class ViewGasConsumptionFragment extends Fragment {
 	
 	public static final String ARG_SECTION_NUMBER = "section_number";
@@ -23,15 +28,17 @@ public class ViewGasConsumptionFragment extends Fragment {
 	public ViewGasConsumptionFragment() {
 	}
 
+	/**
+	 * Function that is called when the "View Consumption Data" view is created - it sets the 
+	 * layout for the page. Currently this function is also being used for trying to get the 
+	 * graphing functionality to work - it currently does not.
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_my_gas_result,
 				container, false);
-		/*TextView dummyTextView = (TextView) rootView
-				.findViewById(R.id.section_label);
-		dummyTextView.setText(Integer.toString(getArguments().getInt(
-				ARG_SECTION_NUMBER)));*/
+
 		// init example series data
 		GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
 				new GraphViewData(1, 2.0d)

@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void startDirectionsInputActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DirectionsInput.class);
+		Intent intent = new Intent(MainActivity.this,DirectionsInputActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
 	

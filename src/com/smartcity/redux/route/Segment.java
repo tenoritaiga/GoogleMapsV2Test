@@ -1,6 +1,8 @@
 package com.smartcity.redux.route;
 //by Haseem Saheed
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 
 public class Segment {

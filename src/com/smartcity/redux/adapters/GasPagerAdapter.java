@@ -13,8 +13,7 @@ import com.smartcity.redux.fragments.EnterGasConsumptionFragment;
 import com.smartcity.redux.fragments.ViewGasConsumptionFragment;
 
 /**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
- * one of the sections/tabs/pages.
+ * This adapter class controls the creation of tabs for the My Gas Consumption component of the app.
  */
 public class GasPagerAdapter extends FragmentPagerAdapter {
 
@@ -28,11 +27,12 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 		this.myGasActivity = myGasActivity;
 	}
 
+	/**
+	 * getItem is called to instantiate the fragment for the given page. 
+	 * Return an appropriate fragment object with the page number as its lone argument.
+	 */
 	@Override
 	public Fragment getItem(int position) {
-		// getItem is called to instantiate the fragment for the given page.
-		// Return a DummySectionFragment (defined as a static inner class
-		// below) with the page number as its lone argument.
 		Fragment fragment;
 		if (position == 0)
 			fragment = new EnterGasConsumptionFragment();
@@ -44,12 +44,17 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 		return fragment;
 	}
 
+	/**
+	 * Sets the number of tabs to be shown.
+	 */
 	@Override
 	public int getCount() {
-		// Show 3 total pages.
 		return 2;
 	}
 
+	/**
+	 * Returns the titles for the tabs.
+	 */
 	@Override
 	public CharSequence getPageTitle(int position) {
 		Locale l = Locale.getDefault();

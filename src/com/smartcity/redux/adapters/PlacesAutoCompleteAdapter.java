@@ -2,7 +2,7 @@ package com.smartcity.redux.adapters;
 
 import java.util.ArrayList;
 
-import com.smartcity.redux.DirectionsInput;
+import com.smartcity.redux.DirectionsInputActivity;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
@@ -34,7 +34,7 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null) {
                     // Retrieve the autocomplete results.
-                    resultList = ((DirectionsInput)getContext()).autocomplete(constraint.toString());
+                    resultList = ((DirectionsInputActivity)getContext()).autocomplete(constraint.toString());
 
                     // Assign the data to the FilterResults
                     filterResults.values = resultList;
