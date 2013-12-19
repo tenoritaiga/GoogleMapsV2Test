@@ -200,9 +200,6 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
       	emissions = 0;
       }
       
-      
-      
-      
       String cal = Integer.toString(calories);
       String emi = Integer.toString(emissions);
       //String distanceStr = Integer.toString(routeDistance);
