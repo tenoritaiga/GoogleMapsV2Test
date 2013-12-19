@@ -31,7 +31,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class DirectionsInput extends Activity implements OnItemClickListener {
+public class DirectionsInputActivity extends Activity implements OnItemClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +133,8 @@ public class DirectionsInput extends Activity implements OnItemClickListener {
 		return true;
 	}
 	
-	public void startDirectionsActivity(View view) {
-		Intent intent = new Intent(DirectionsInput.this,DirectionsActivity.class);
+	public void startDirectionsInfoActivity(View view) {
+		Intent intent = new Intent(DirectionsInputActivity.this,DirectionsInfoActivity.class);
 		
 		EditText startingPoint = (EditText) findViewById(R.id.startingPointInput);
 		EditText destination = (EditText) findViewById(R.id.destinationInput);
@@ -148,7 +148,7 @@ public class DirectionsInput extends Activity implements OnItemClickListener {
 		intent.putExtra("destination", destinationText);
 		intent.putExtra("transitType",transitType);
 		
-		DirectionsInput.this.startActivity(intent);
+		DirectionsInputActivity.this.startActivity(intent);
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)

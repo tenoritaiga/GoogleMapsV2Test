@@ -23,6 +23,7 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
 	private static final String TAG = "routingActivity";
 	
   protected ArrayList<RoutingListener> _aListeners;
+  protected ArrayList<String> directions;
   protected TravelMode _mTravelMode;
   
   protected GoogleParser gParsed;
@@ -138,7 +139,7 @@ public class Routing extends AsyncTask<LatLng, Void, Route>
       }
       routeDistance = result.getTotalDistance();
 	  Log.d(TAG, "OPE: THE VALUE OF DISTANCE IS: " + routeDistance);
-
+	  
       dispatchOnSuccess(mOptions, routeDistance);
     }
   }//end onPostExecute method
