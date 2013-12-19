@@ -1,9 +1,12 @@
 package com.smartcity.redux;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +18,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class Hoboken311Activity extends Activity implements OnItemSelectedListener {
@@ -28,6 +35,11 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 	Spinner spn_prob;
 	Spinner spn_prob_spec;
 	Spinner spn_prob_spec2;
+	
+	TextView dateText1;
+	TextView timeText1;
+	
+	EditText commentText;
 	
 	Context context;
 	
@@ -43,10 +55,55 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 				
 		context = this;
 		
-		
 		spn_prob = (Spinner)findViewById(R.id.spn_prob);
 		spn_prob_spec = (Spinner)findViewById(R.id.spn_prob_spec);
 		spn_prob_spec2 = (Spinner)findViewById(R.id.spn_prob_spec2);
+		
+		commentText = (EditText)findViewById(R.id.comment_311_text);
+		
+		dateText1 = (TextView)findViewById(R.id.dateText1);
+		timeText1 = (TextView)findViewById(R.id.timeText1);
+		
+		final DatePickerDialog.OnDateSetListener dateOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
+			@Override
+			public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+				dateText1.setText(new StringBuilder().append(selectedMonth+1).append("/").append(selectedDay).append("/").append(selectedYear));
+			}
+		};
+		
+		dateText1.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Calendar cal = Calendar.getInstance();
+				int year = cal.get(Calendar.YEAR);
+				int monthOfYear = cal.get(Calendar.MONTH);
+				int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+				new DatePickerDialog(context, dateOnDateSetListener, year, monthOfYear, dayOfMonth).show();
+			}
+		});
+		
+		final TimePickerDialog.OnTimeSetListener timeOnTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+		
+			@Override
+			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+				timeText1.setText(new StringBuilder().append(String.format("%02d",hourOfDay)).append(":").append(String.format("%02d",minute)));
+			}
+		};
+		
+		timeText1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Calendar cal = Calendar.getInstance();
+				int hour = cal.get(Calendar.HOUR_OF_DAY);
+				int minute = cal.get(Calendar.MINUTE);
+				new TimePickerDialog(context, timeOnTimeSetListener, hour, minute, true).show();
+			}
+		});
+		
+		commentText.setVisibility(View.GONE);
+		timeText1.setVisibility(View.GONE);
+		dateText1.setVisibility(View.GONE);
 		
 		spn_prob.setOnItemSelectedListener(this);
 		
@@ -55,12 +112,14 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 		
 		spn_prob_spec2.setVisibility(View.GONE);
 		spn_prob_spec2.setOnItemSelectedListener(this);
+	
 		
 		final Toast warning = Toast.makeText(this, "Please Select Your Problem", Toast.LENGTH_SHORT);
 		
 		ArrayAdapter<CharSequence> adapterProb = ArrayAdapter.createFromResource(this, R.array.spn_prob, android.R.layout.simple_spinner_item );
 		adapterProb.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spn_prob.setAdapter(adapterProb);
+	
 		
 		Button btn_map = (Button)findViewById(R.id.btn_311_map);
 		btn_map.setOnClickListener(new View.OnClickListener() {
@@ -70,17 +129,26 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 				
 				Intent i = new Intent(context, Hoboken311MapActivity.class);
 
-				if(request != null){
-					i.putExtra("REQUEST", request);
+				//	i.putExtra("REQUEST", request);
 					startActivity(i);
 					finish();
-				}else{
-					warning.show();
-				}
 				
 			}
 		});
 		
+		Button btn_send = (Button)findViewById(R.id.btn_311_send);
+		btn_send.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(request != null){
+					// TODO - send code to backend. 
+				}else{
+					warning.show();
+				}
+			}
+		});
+
 		
 		tabHash = new HashMap<String, Integer>();
 		
@@ -443,6 +511,13 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 		// TODO Auto-generated method stub
 		ArrayAdapter<CharSequence> adapter;
 		String item = parent.getItemAtPosition(pos).toString();
+		
+		if(!item.equals("Select Problem"))
+		{
+			commentText.setVisibility(View.VISIBLE);
+			timeText1.setVisibility(View.VISIBLE);
+			dateText1.setVisibility(View.VISIBLE);
+		}
 	
 		if(item.equals("Animals")){
 			spn_prob_spec.setVisibility(View.VISIBLE);

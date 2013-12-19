@@ -35,10 +35,19 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+/**
+ * Class for controlling the My Profile activity in the app.
+ * @author Class2013
+ *
+ */
 public class ProfileActivity extends Activity {
 
 	public int userID = 0;
 	
+	/**
+	 * Called when the My Profile activity is created - sets the layout and populates the 
+	 * Age Range dropdown menu with values.
+	 */
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +60,16 @@ public class ProfileActivity extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 		
-		/*String url = "http://pastebin.com/raw.php?i=s4qzrKDF";
-		InputStream stream = retrieveStream(url);
-		
-		try {
-			Gson gson = new Gson();
-			Reader reader = new InputStreamReader(stream);
-			ProfileSearchResponse response = gson.fromJson(reader, ProfileSearchResponse.class);
-			Profile profile = response.profiles.get(0);
-		}
-		catch(NullPointerException npe) {
-			Log.e("ERROR","Warning: Null pointer exception while parsing JSON!",npe);
-		}*/
 		new JsonParser().execute();
 	}
 	
+	/**
+	 * Performs an HTTP GET request to retrieve an InputStream containing JSON 
+	 * data from the provided URL. If the request is successful, an InputStream 
+	 * is returned.
+	 * @param url
+	 * @return
+	 */
 	private static InputStream retrieveStream(String url) {
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpGet getRequest = new HttpGet(url);
@@ -92,8 +96,18 @@ public class ProfileActivity extends Activity {
 		return null;
 	}
 	
+	/**
+	 * Nested class for retrieving profile data through an API call, and populating 
+	 * the appropriate fields of the profile with the data.
+	 * @author Class2013
+	 *
+	 */
 	private class JsonParser extends AsyncTask<Void,Void,JSONObject>{
 
+		/**
+		 * Makes the API call to retrieve an InputStream from the desired URL, then parses 
+		 * that InputStream to retrieve a JSON object containing profile data.
+		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
@@ -129,6 +143,11 @@ public class ProfileActivity extends Activity {
 			
 			return null;
 		}
+		
+		/**
+		 * Parses the retrieved JSON object and populates the fields of the 
+		 * profile with the contained profile data.
+		 */
 		@SuppressWarnings("unchecked")
 		@Override
 		protected void onPostExecute(JSONObject jsonObject){
@@ -180,6 +199,12 @@ public class ProfileActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Nested class for sending an updated profile record through an API call - constructs a JSON 
+	 * object with the required data and makes an HTTP PUT request to send the data to the server.
+	 * @author Class2013
+	 *
+	 */
 	private class JsonSender extends AsyncTask<Void,Void,Void> {
 		
 		
@@ -274,6 +299,13 @@ public class ProfileActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * Called when any of the save buttons in the profile are clicked. If the values of the 
+	 * Password and Confirm Password fields do not match, an alert dialog will pop up prompting 
+	 * the user to correct the problem. Otherwise the nested JsonSender class will be invoked 
+	 * to send the updated profile data to the server.
+	 * @param view
+	 */
 	public void saveProfileData(View view) {
 		EditText password1 = (EditText) findViewById(R.id.edit_password);
 		EditText password2 = (EditText) findViewById(R.id.edit_password_confirm);
@@ -292,61 +324,6 @@ public class ProfileActivity extends Activity {
 			builder.show();
 		}
 		else {
-			/*JSONObject json = new JSONObject();
-			JSONObject jsonAddress = new JSONObject();
-
-			try {
-				EditText editText = (EditText) findViewById(R.id.edit_userid);
-				json.put("UserID", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_username);
-				json.put("Username", editText.getText().toString());
-				json.put("Password", password1.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_firstname);
-				json.put("FirstName", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_lastname);
-				json.put("LastName", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_home_address);
-				jsonAddress.put("NumberAndStreet", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_home_zip);
-				jsonAddress.put("ZipCode", editText.getText().toString());
-				json.put("HomeAddress", jsonAddress);
-				jsonAddress = new JSONObject();
-				editText = (EditText) findViewById(R.id.edit_work_address);
-				jsonAddress.put("NumberAndStreet", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_work_zip);
-				jsonAddress.put("ZipCode", editText.getText().toString());
-				json.put("WorkAddress", jsonAddress);
-				editText = (EditText) findViewById(R.id.edit_gender);
-				json.put("Gender", editText.getText().toString());
-				Spinner spinner = (Spinner) findViewById(R.id.age_spinner);
-				json.put("AgeRange", spinner.getSelectedItem().toString());
-				CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox_swift911);
-				if (checkBox.isChecked() == true)
-					json.put("SignupSwift", true);
-				else
-					json.put("SignupSwift", false);
-				//System.out.println(profile.signup_swift);
-				editText = (EditText) findViewById(R.id.edit_phone);
-				json.put("PhoneNumber", editText.getText().toString());
-				editText = (EditText) findViewById(R.id.edit_email);
-				json.put("EmailAddress", editText.getText().toString());
-				checkBox = (CheckBox) findViewById(R.id.checkbox_submit_gps);
-				if (checkBox.isChecked() == true)
-					json.put("SubmitGPSLocation", true);
-				else
-					json.put("SubmitGPSLocation", false);
-				
-				DefaultHttpClient client = new DefaultHttpClient();
-				HttpPut putRequest = new HttpPut("http://50.17.51.160/api/Users");
-				StringEntity se = new StringEntity(json.toString());
-				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-				putRequest.setEntity(se);
-				HttpResponse response = client.execute(putRequest);
-				System.out.println(response.getStatusLine().getStatusCode());
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-			}*/
 			new JsonSender().execute();
 		}
 	}

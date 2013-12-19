@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:text="@string/button_gas_save" />
+        android:text="@string/button_gas_save"
+        android:onClick="saveGasConsumption" />
 
 </LinearLayout>
