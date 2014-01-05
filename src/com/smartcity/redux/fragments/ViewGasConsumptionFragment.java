@@ -31,8 +31,8 @@ public class ViewGasConsumptionFragment extends Fragment {
 
 	/**
 	 * Function that is called when the "View Consumption Data" view is created - it sets the 
-	 * layout for the page. Currently this function is also being used for trying to get the 
-	 * graphing functionality to work - it currently does not.
+	 * layout for the page. Currently this function is also being used setting up the bar graph that will 
+	 * eventually be used for displaying average consumption data.
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
