@@ -52,7 +52,7 @@ public class ViewGasConsumptionFragment extends Fragment {
 				, "GraphViewDemo" // heading
 		);
 		graphView.setDrawValuesOnTop(true);
-		//GraphView graphView = (GraphView) rootView.findViewById(R.id.graphView);
+		
 		graphView.addSeries(exampleSeries); // data
 		
 		LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.graph1);
