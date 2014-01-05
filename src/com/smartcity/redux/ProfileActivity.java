@@ -77,6 +77,7 @@ public class ProfileActivity extends Activity {
 		try{
 			HttpResponse getResponse = client.execute(getRequest);
 			final int statusCode = getResponse.getStatusLine().getStatusCode();
+			System.out.println(statusCode);
 			
 			if(statusCode != HttpStatus.SC_OK){
 				//Log.w(getClass().getSimpleName(),

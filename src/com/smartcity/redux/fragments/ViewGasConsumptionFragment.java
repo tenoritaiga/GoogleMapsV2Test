@@ -10,6 +10,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
@@ -46,14 +47,15 @@ public class ViewGasConsumptionFragment extends Fragment {
 				, new GraphViewData(3, 2.5d)
 				, new GraphViewData(4, 1.0d)
 		}); 
-		GraphView graphView = new LineGraphView(
+		BarGraphView graphView = new BarGraphView(
 				getActivity() // context
 				, "GraphViewDemo" // heading
 		);
+		graphView.setDrawValuesOnTop(true);
 		//GraphView graphView = (GraphView) rootView.findViewById(R.id.graphView);
 		graphView.addSeries(exampleSeries); // data
 		
-		LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.view_cons_results);
+		LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.graph1);
 		layout.addView(graphView);
 		
 		TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.gasResultsTable);
