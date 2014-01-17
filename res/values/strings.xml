@@ -57,6 +57,8 @@
     <string name="directionsButtonText">Directions</string>
     <string name="hoboken311ButtonText">Hoboken 311</string>
     <string name="myGasButtonText">My Gas</string>
+    <string name="myEnergyButtonText">My Energy</string>
+    <string name="myWaterButtonText">My Water</string>
     <string name="btn_311_map">Hoboken 311 Map</string>
     <string name="txt_prob">Choose a Problem</string>
     <string name="title_activity_hoboken311">Hoboken 311 Activity</string>
@@ -66,8 +68,6 @@
     <string name="txtview">TextView</string>
     <string name="txt_date">Choose Date</string>
     <string name="txt_time">Choose Time</string>
-     
-    
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -334,10 +334,11 @@
     <string name="title_section1">Enter Tank Refill</string>
     <string name="title_section2">View Consumption Data</string>
     <string name="title_activity_directions_input">Transit Information</string>
+
     <string-array name="spn_directions_type">
-        <item >Driving</item>
-        <item >Public Transit</item>
-        <item >Walking</item>
+        <item>Driving</item>
+        <item>Public Transit</item>
+        <item>Walking</item>
         <item>Biking</item>
     </string-array>
 
@@ -358,4 +359,7 @@
     <string name="show_gallons"># of Gallons</string>
     <string name="show_cost">Total Cost</string>
     <string name="title_activity_directions_info">DirectionsInfoActivity</string>
+    <string name="title_activity_my_energy">MyEnergyActivity</string>
+    <string name="title_section3">Section 3</string>
+
 </resources>

@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/airmapButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:drawableLeft="@drawable/cloud"
         android:onClick="startAirmapActivity"
         android:text="@string/airmapButtonText" />
@@ -17,7 +17,7 @@
     <Button
         android:id="@+id/trafficButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:drawableLeft="@drawable/navigate"
         android:onClick="startTrafficActivity"
         android:text="@string/trafficButtonText" />
@@ -25,7 +25,7 @@
     <Button
         android:id="@+id/directionsButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:drawableLeft="@drawable/location"
         android:onClick="startDirectionsInputActivity"
         android:text="@string/directionsButtonText" />
@@ -33,24 +33,23 @@
     <Button
         android:id="@+id/gasButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:drawableLeft="@drawable/gas"
         android:onClick="startMyGasActivity"
         android:text="@string/myGasButtonText" />
-    <!--  
-     <Button
-        android:id="@+id/directionsButton"
+
+    <Button
+        android:id="@+id/energyButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:drawableLeft="@drawable/directions"
-        android:onClick="startDirectionsActivity"
-        android:text="@string/directionsButtonText" />
-        -->
-     
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/gas"
+        android:onClick="startMyEnergyActivity"
+        android:text="@string/myEnergyButtonText" />
+    
       <Button
         android:id="@+id/hoboken311Button"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:drawableLeft="@drawable/flag"
         android:onClick="startHoboken311Activity"
         android:text="@string/hoboken311ButtonText" />
@@ -58,7 +57,7 @@
       <Button
           android:id="@+id/profileButton"
           android:layout_width="match_parent"
-          android:layout_height="60dp"
+          android:layout_height="50dp"
           android:drawableLeft="@drawable/person"
           android:onClick="startProfileActivity"
           android:text="@string/profileButtonText" />
@@ -66,7 +65,7 @@
       <Button
           android:id="@+id/settingsButton"
           android:layout_width="match_parent"
-          android:layout_height="60dp"
+          android:layout_height="50dp"
           android:drawableLeft="@drawable/newgear"
           android:onClick="startSettingsActivity"
           android:text="@string/settingsButtonText" />
