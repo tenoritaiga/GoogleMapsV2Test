@@ -72,4 +72,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,MyEnergyActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startMyWaterActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MyWaterActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }

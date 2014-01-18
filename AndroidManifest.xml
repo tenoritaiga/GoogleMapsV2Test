@@ -59,7 +59,7 @@
             android:parentActivityName="com.smartcity.redux.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.smartcity.redux.MainActivity" />
+                android:value="com.smartcity.redux.MainActivity" />
             -->
         </activity>
         <activity
@@ -110,7 +110,7 @@
             <!--
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.smartcity.redux.MainActivity" />
+                android:value="com.smartcity.redux.MainActivity" />
             -->
         </activity>
         <activity
@@ -136,6 +136,14 @@
         <activity
             android:name="com.smartcity.redux.MyEnergyActivity"
             android:label="@string/title_activity_my_energy"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.MyWaterActivity"
+            android:label="@string/title_activity_my_water"
             android:parentActivityName="com.smartcity.redux.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

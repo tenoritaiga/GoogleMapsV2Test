@@ -361,5 +361,6 @@
     <string name="title_activity_directions_info">DirectionsInfoActivity</string>
     <string name="title_activity_my_energy">MyEnergyActivity</string>
     <string name="title_section3">Section 3</string>
+    <string name="title_activity_my_water">MyWaterActivity</string>
 
 </resources>
