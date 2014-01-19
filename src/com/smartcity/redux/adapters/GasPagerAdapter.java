@@ -60,9 +60,9 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return this.myGasActivity.getString(R.string.title_section1).toUpperCase(l);
+			return this.myGasActivity.getString(R.string.title_section1_gas).toUpperCase(l);
 		case 1:
-			return this.myGasActivity.getString(R.string.title_section2).toUpperCase(l);
+			return this.myGasActivity.getString(R.string.title_section2_gas).toUpperCase(l);
 		}
 		return null;
 	}

@@ -1,6 +1,8 @@
 package com.smartcity.redux;
 
 import com.smartcity.redux.adapters.EnergyPagerAdapter;
+import com.smartcity.redux.fragments.DatePickerFragment;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MyEnergyActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -111,6 +114,16 @@ public class MyEnergyActivity extends FragmentActivity implements
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+	}
+	
+	/**
+	 * Called when the Change Date button in the "Enter Tank 
+	 * Refill" tab is clicked - makes the date selector visible.
+	 * @param v
+	 */
+	public void showDatePickerDialog(View v) {
+		DatePickerFragment newFragment = new DatePickerFragment();
+		newFragment.show(getSupportFragmentManager(), "datePicker");
 	}
 
 }

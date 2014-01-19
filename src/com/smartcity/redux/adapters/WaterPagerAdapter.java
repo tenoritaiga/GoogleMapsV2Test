@@ -4,7 +4,8 @@ import java.util.Locale;
 
 import com.smartcity.redux.MyWaterActivity;
 import com.smartcity.redux.R;
-import com.smartcity.redux.fragments.EnterWaterSectionFragment;
+import com.smartcity.redux.fragments.EnterWaterConsumptionFragment;
+import com.smartcity.redux.fragments.ViewWaterConsumptionFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,9 +30,13 @@ public class WaterPagerAdapter extends FragmentPagerAdapter {
 		// getItem is called to instantiate the fragment for the given page.
 		// Return a DummySectionFragment (defined as a static inner class
 		// below) with the page number as its lone argument.
-		Fragment fragment = new EnterWaterSectionFragment();
+		Fragment fragment;
+		if (position == 0)
+			fragment = new EnterWaterConsumptionFragment();
+		else
+			fragment = new ViewWaterConsumptionFragment();
 		Bundle args = new Bundle();
-		args.putInt(EnterWaterSectionFragment.ARG_SECTION_NUMBER, position + 1);
+		args.putInt(EnterWaterConsumptionFragment.ARG_SECTION_NUMBER, position + 1);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -47,9 +52,9 @@ public class WaterPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return this.myWaterActivity.getString(R.string.title_section1).toUpperCase(l);
+			return this.myWaterActivity.getString(R.string.title_section1_water).toUpperCase(l);
 		case 1:
-			return this.myWaterActivity.getString(R.string.title_section2).toUpperCase(l);
+			return this.myWaterActivity.getString(R.string.title_section2_water).toUpperCase(l);
 		}
 		return null;
 	}
