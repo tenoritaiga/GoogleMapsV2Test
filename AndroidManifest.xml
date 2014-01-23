@@ -149,6 +149,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smartcity.redux.MainActivity" />
         </activity>
+        <activity
+            android:name="com.smartcity.redux.AirQualityActivity"
+            android:label="@string/title_activity_air_quality" 
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

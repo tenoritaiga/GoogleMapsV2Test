@@ -187,8 +187,15 @@ public class AirMapActivity extends Activity {
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
+					
 					adapter.hashMap.put(marker, sensor);
+					
+					//marker.setVisible(false);
+					
 				}
+				
+				
+				
 				googleMap.setInfoWindowAdapter(adapter);
 				
 						

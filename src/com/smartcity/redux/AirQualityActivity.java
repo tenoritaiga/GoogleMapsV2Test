@@ -28,9 +28,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.gson.Gson;
-import com.smartcity.redux.adapters.ParkingData;
-import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
+import com.smartcity.redux.adapters.AirQualityAdapter;
+import com.smartcity.redux.jsonmodel.AirQualitySearchResponse;
 import com.smartcity.redux.jsonmodel.Sensor;
+import com.smartcity.redux.jsonmodel.AirSensor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,18 +52,20 @@ import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSensor;
 import com.smartcity.redux.R;
 
-public class TrafficMapActivity extends Activity {
-
+public class AirQualityActivity extends Activity {
+	
 	private GoogleMap googleMap;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_traffic_map);
+		setContentView(R.layout.activity_air_quality);
 		
 		setupActionBar();
 		
 		new JsonParser().execute();
+
 	}
 	
 	@Override
@@ -70,7 +73,7 @@ public class TrafficMapActivity extends Activity {
 		super.onResume();
 		initilizeMap();
 	}
-
+	
 	/**
 	 * function to load map If map is not created it will create it for you
 	 * */
@@ -87,7 +90,7 @@ public class TrafficMapActivity extends Activity {
 			}
 		}
 	}
-
+	
 	private static InputStream retrieveStream(String url) {
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpGet getRequest = new HttpGet(url);
@@ -113,12 +116,13 @@ public class TrafficMapActivity extends Activity {
 		return null;
 	}
 	
-	private class JsonParser extends AsyncTask<Void,Void,ParkingSearchResponse>{
+	private class JsonParser extends AsyncTask<Void,Void,AirQualitySearchResponse>{
 
 		@Override
-		protected ParkingSearchResponse doInBackground(Void... params) {
+		protected AirQualitySearchResponse doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			String url = "http://pastebin.com/raw.php?i=cS9qdnXd";
+			//String url = "http://pastebin.com/raw.php?i=ikLGcHbY";
+			String url = "http://pastebin.com/raw.php?i=R18q6rPy";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -126,7 +130,7 @@ public class TrafficMapActivity extends Activity {
 			try{
 				Gson gson = new Gson();
 				Reader reader = new InputStreamReader(stream);
-				ParkingSearchResponse response = gson.fromJson(reader,ParkingSearchResponse.class);
+				AirQualitySearchResponse response = gson.fromJson(reader,AirQualitySearchResponse.class);
 				return response;
 			}
 			catch(NullPointerException npe){
@@ -136,7 +140,7 @@ public class TrafficMapActivity extends Activity {
 			return null;
 		}
 		@Override
-		protected void onPostExecute(ParkingSearchResponse response){
+		protected void onPostExecute(AirQualitySearchResponse response){
 
 			
 			try {
@@ -169,14 +173,11 @@ public class TrafficMapActivity extends Activity {
 				// Enable / Disable zooming functionality
 				googleMap.getUiSettings().setZoomGesturesEnabled(true);
 				
-				googleMap.setTrafficEnabled(true);
-				
 				//sets the padding over to allow for a left side menu
-				googleMap.setPadding(0, 0, 100, 0);
+				//googleMap.setPadding(0, 0, 100, 0);
 				
 				//Set up custom  info window adapter
-				
-				ParkingData adapter = new ParkingData(getLayoutInflater());
+				AirQualityAdapter adapter = new AirQualityAdapter(getLayoutInflater());
 				
 				double latitude = 40.745066;
 				double longitude = -74.024294;
@@ -184,9 +185,18 @@ public class TrafficMapActivity extends Activity {
 				String res = "markercolor";
 				int resID;
 				
-				for(ParkingSensor sensor : response.ParkingSensors){
-					resID = getResources().getIdentifier("parking_r","drawable",getPackageName());
-					//Log.d("STREAM","We got back: " + response.Sensors);
+				for(AirSensor sensor : response.AirSensors){
+					
+					if(Float.parseFloat(sensor.Readings.CO2) <= 10)
+						resID = getResources().getIdentifier("airsensor_g","drawable",getPackageName());
+					else if(Float.parseFloat(sensor.Readings.CO2) > 10 && Float.parseFloat(sensor.Readings.CO2) < 20)
+						resID = getResources().getIdentifier("airsensor_y","drawable",getPackageName());
+					else
+						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+					
+					Log.d("STREAM","We got back: " + response.AirSensors);
+					
+					
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
@@ -195,11 +205,16 @@ public class TrafficMapActivity extends Activity {
 					adapter.hashMap.put(marker, sensor);
 					
 					//marker.setVisible(false);
+					
 				}
+				
+				
 				
 				googleMap.setInfoWindowAdapter(adapter);
 				
-						// Move the camera to last position with a zoom level
+						
+				//pass into the users current location
+				// Move the camera to last position with a zoom level
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(new LatLng(latitude,
 										longitude)).zoom(15).build();
@@ -211,13 +226,25 @@ public class TrafficMapActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
+		
 	}
+	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
+	
+
+	/**@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.air_quality, menu);
+		return true;
+	}
+	**/
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -233,5 +260,7 @@ public class TrafficMapActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+		
 	}
+
 }

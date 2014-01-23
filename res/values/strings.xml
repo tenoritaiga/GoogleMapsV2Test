@@ -54,6 +54,7 @@
     <string name="settingsButtonText">Settings</string>
     <string name="profileButtonText">Set Up Profile</string>
     <string name="trafficButtonText">Traffic Maps</string>
+    <string name="airQualityButtonText">Air Quality Maps</string>
     <string name="directionsButtonText">Directions</string>
     <string name="hoboken311ButtonText">Hoboken 311</string>
     <string name="myGasButtonText">My Gas</string>
@@ -375,5 +376,6 @@
     <string name="title_activity_directions_info">DirectionsInfoActivity</string>
     <string name="title_activity_my_energy">My Energy</string>
     <string name="title_activity_my_water">My Water</string>
+    <string name="title_activity_air_quality">AirQualityActivity</string>
 
 </resources>

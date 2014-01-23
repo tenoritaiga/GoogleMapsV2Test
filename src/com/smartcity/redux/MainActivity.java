@@ -42,6 +42,11 @@ public class MainActivity extends Activity {
 		MainActivity.this.startActivity(intent);
 	}
 	
+	public void startAirQualityActivity(View view){
+		Intent intent = new Intent(MainActivity.this,AirQualityActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
 	public void startProfileActivity(View view) {
 		Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
 		MainActivity.this.startActivity(intent);

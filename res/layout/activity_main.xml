@@ -21,6 +21,14 @@
         android:drawableLeft="@drawable/navigate"
         android:onClick="startTrafficActivity"
         android:text="@string/trafficButtonText" />
+    
+    <Button
+        android:id="@+id/airqualitymapButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:drawableLeft="@drawable/cloud"
+        android:onClick="startAirQualityActivity"
+        android:text="@string/airQualityButtonText" />
 
     <Button
         android:id="@+id/directionsButton"
