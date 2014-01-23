@@ -205,7 +205,7 @@ public class MyGasActivity extends FragmentActivity implements
 		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
-			String url = "http://50.17.51.160/api/UserGasConsumptionAverages?user_id=9";
+			String url = "http://54.204.89.238:82/api/UserGasConsumptionAverages?user_id=9";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -277,7 +277,7 @@ public class MyGasActivity extends FragmentActivity implements
 				json.put("Cost", Double.parseDouble(editText.getText().toString()));
 				
 				DefaultHttpClient client = new DefaultHttpClient();
-				HttpPost postRequest  = new HttpPost("http://50.17.51.160/api/GasConsumption");
+				HttpPost postRequest  = new HttpPost("http://54.204.89.238:82/api/GasConsumption");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");
