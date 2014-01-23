@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Google Maps V2</string>
+    <string name="app_name">Smart City 2.0</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
@@ -375,5 +375,32 @@
     <string name="title_activity_directions_info">DirectionsInfoActivity</string>
     <string name="title_activity_my_energy">My Energy</string>
     <string name="title_activity_my_water">My Water</string>
+    <string name="welcomeText"></string>
+    <string name="guestLoginButton">Use as Guest</string>
+    
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+     
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >My City</item>
+        <item >Maps</item>
+        <item >Utilities</item>
+        <item >Hoboken 311</item>
+        <item >Profile</item>
+    </string-array>
+     
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/mycity</item>
+        <item>@drawable/location</item>
+        <item>@drawable/leaf</item>
+        <item>@drawable/flag</item>
+        <item>@drawable/person</item>
+    </array>
+     
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
 
 </resources>

@@ -1,87 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gridLayout"
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="fill_horizontal"
-    android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/airmapButton"
+    android:layout_height="match_parent">
+ 
+    <!-- Framelayout to display Fragments -->
+    <FrameLayout
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/cloud"
-        android:onClick="startAirmapActivity"
-        android:text="@string/airmapButtonText" />
-
-    <Button
-        android:id="@+id/trafficButton"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/navigate"
-        android:onClick="startTrafficActivity"
-        android:text="@string/trafficButtonText" />
-
-    <Button
-        android:id="@+id/directionsButton"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/location"
-        android:onClick="startDirectionsInputActivity"
-        android:text="@string/directionsButtonText" />
-
-    <Button
-        android:id="@+id/gasButton"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/gas"
-        android:onClick="startMyGasActivity"
-        android:text="@string/myGasButtonText" />
-
-    <Button
-        android:id="@+id/energyButton"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/gas"
-        android:onClick="startMyEnergyActivity"
-        android:text="@string/myEnergyButtonText" />
-    
-    <Button
-        android:id="@+id/waterButton"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/gas"
-        android:onClick="startMyWaterActivity"
-        android:text="@string/myWaterButtonText" />
-    
-      <Button
-        android:id="@+id/hoboken311Button"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:drawableLeft="@drawable/flag"
-        android:onClick="startHoboken311Activity"
-        android:text="@string/hoboken311ButtonText" />
-
-      <Button
-          android:id="@+id/profileButton"
-          android:layout_width="match_parent"
-          android:layout_height="45dp"
-          android:drawableLeft="@drawable/person"
-          android:onClick="startProfileActivity"
-          android:text="@string/profileButtonText" />
-
-      <Button
-          android:id="@+id/settingsButton"
-          android:layout_width="match_parent"
-          android:layout_height="45dp"
-          android:drawableLeft="@drawable/newgear"
-          android:onClick="startSettingsActivity"
-          android:text="@string/settingsButtonText" />
-
-      <ImageView
-          android:id="@+id/imageView1"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:src="@drawable/scitylogowhite" />
-
-</LinearLayout>
+        android:layout_height="match_parent" />
+ 
+    <!-- Listview to display slider menu -->
+    <ListView
+        android:id="@+id/list_slidermenu"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@color/list_divider"
+        android:dividerHeight="1dp"       
+        android:listSelector="@drawable/list_selector"
+        android:background="@color/list_background"/>
+</android.support.v4.widget.DrawerLayout>
