@@ -113,9 +113,8 @@ public class ProfileActivity extends Activity {
 		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
-			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			//String url = "http://pastebin.com/raw.php?i=s4qzrKDF";
-			String url = "http://54.204.89.238:82/api/Users?user_name=dschuler";
+			String url = "http://pastebin.com/raw.php?i=s4qzrKDF";
+			//String url = "http://54.204.89.238:82/api/Users?user_name=dschuler";
 			
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -258,7 +257,8 @@ public class ProfileActivity extends Activity {
 					json.put("SubmitGPSLocation", false);
 				
 				DefaultHttpClient client = new DefaultHttpClient();
-				HttpPut putRequest = new HttpPut("http://54.204.89.238:82/api/Users");
+				HttpPut putRequest = new HttpPut("http://pastebin.com/raw.php?i=s4qzrKDF");
+				//HttpPut putRequest = new HttpPut("http://54.204.89.238:82/api/Users");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");
