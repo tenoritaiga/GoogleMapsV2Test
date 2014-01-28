@@ -14,4 +14,9 @@
           android:onClick="startSettingsActivity"
           android:text="@string/settingsButtonText" />
 
+      <Button
+          android:id="@+id/testNotificationsButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Test Notifications" />
 </LinearLayout>

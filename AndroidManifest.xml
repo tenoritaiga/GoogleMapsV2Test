@@ -11,7 +11,7 @@
     <uses-permission android:name="com.smartcity.redux.permission.MAPS_RECEIVE" />
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="16"
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
