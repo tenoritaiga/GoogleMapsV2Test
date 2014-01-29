@@ -2,6 +2,8 @@ package com.smartcity.redux;
 
 import java.util.ArrayList;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.MapView;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
 import com.smartcity.redux.fragments.Hoboken311Fragment;
@@ -57,14 +59,19 @@ public class MainActivity extends Activity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private SlidingMenuAdapter adapter;
     
-
-
+    //For Google Play Services
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//Check for Google Play Services
 		
+		if(checkPlayServices()) {
+			
+		}
 
 		mTitle = mDrawerTitle = getTitle();
 
@@ -247,9 +254,32 @@ public class MainActivity extends Activity {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		// Pass any configuration change to the drawer toggls
+		// Pass any configuration change to the drawer toggles
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+	
+	//Another check for Google Play Services here
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	    checkPlayServices();
+	}
+	
+	private boolean checkPlayServices() {
+	    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+	    if (resultCode != ConnectionResult.SUCCESS) {
+	        if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+	            GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+	                    PLAY_SERVICES_RESOLUTION_REQUEST).show();
+	        } else {
+	            Log.i("PLAY_SVCS_NOT_SUPPORTED", "This device is not supported.");
+	            finish();
+	        }
+	        return false;
+	    }
+	    return true;
+	}
+
 	
 	public void startAirmapActivity(View view){
 		Intent intent = new Intent(MainActivity.this,AirMapActivity.class);
