@@ -13,6 +13,7 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -52,9 +53,22 @@ import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSensor;
 import com.smartcity.redux.R;
 
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+
 public class AirQualityActivity extends Activity {
 	
 	private GoogleMap googleMap;
+	
+    private CheckBox mPollutionCheckbox;
+
 
 	
 	@Override
@@ -64,7 +78,10 @@ public class AirQualityActivity extends Activity {
 		
 		setupActionBar();
 		
+		
 		new JsonParser().execute();
+		
+		//mPollutionCheckbox = (Checkbox) findViewById(R.id.noisePollution);
 
 	}
 	
@@ -72,6 +89,10 @@ public class AirQualityActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		initilizeMap();
+		
+		//update noise pollution
+		//update greenhouse gas levels
+		//update air quality
 	}
 	
 	/**
@@ -174,7 +195,7 @@ public class AirQualityActivity extends Activity {
 				googleMap.getUiSettings().setZoomGesturesEnabled(true);
 				
 				//sets the padding over to allow for a left side menu
-				//googleMap.setPadding(0, 0, 100, 0);
+				googleMap.setPadding(0, 0, 220, 0);
 				
 				//Set up custom  info window adapter
 				AirQualityAdapter adapter = new AirQualityAdapter(getLayoutInflater());
@@ -194,7 +215,7 @@ public class AirQualityActivity extends Activity {
 					else
 						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
 					
-					Log.d("STREAM","We got back: " + response.AirSensors);
+					//Log.d("STREAM","We got back: " + response.AirSensors);
 					
 					
 					Marker marker = googleMap.addMarker(new MarkerOptions()

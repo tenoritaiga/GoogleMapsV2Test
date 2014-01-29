@@ -17,4 +17,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentTop="true"
+             android:background="#D000"
+             android:orientation="vertical"
+             android:padding="6dp" >
+
+             <CheckBox
+                 android:id="@+id/noisePollution"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/noisePollution" />
+             <!--android:onClick="onNoisePollutionToggled"-->
+             
+
+             <CheckBox
+                 android:id="@+id/greenhouseGas"
+                 android:layout_width="130dp"
+                 android:layout_height="wrap_content"
+                 android:text="@string/greenhouseGas" />
+
+             <CheckBox
+                 android:id="@+id/airQuality"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/airQuality" />
+         </LinearLayout>
+        
 </RelativeLayout>

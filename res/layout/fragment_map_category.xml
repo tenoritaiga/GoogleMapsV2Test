@@ -29,5 +29,14 @@
         android:drawableLeft="@drawable/location"
         android:onClick="startDirectionsInputActivity"
         android:text="@string/directionsButtonText" />
+    
+      <Button
+        android:id="@+id/airqualitymapButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:drawableLeft="@drawable/cloud"
+        android:onClick="startAirQualityActivity"
+        android:text="@string/airQualityButtonText" />
+    
 
 </LinearLayout>

@@ -12,6 +12,7 @@
     <string name="title_activity_profile">Set Up Profile</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_traffic_map">Traffic Map</string>
+    <string name="title_activity_air_quality">Pollution Map</string>
     <string name="profile_title">My Profile</string>
     <string name="profile_personal">Personal Info</string>
     <string name="profile_login">Login Credentials</string>
@@ -51,6 +52,7 @@
     <string name="profile_password_mismatch_message">Password and Confirm Password do not match!</string>
     <string name="profile_button_OK">OK</string>
     <string name="airmapButtonText">Air Quality Map</string>
+    <string name="airQualityButtonText">Pollution Map</string>
     <string name="settingsButtonText">Settings</string>
     <string name="profileButtonText">Set Up Profile</string>
     <string name="trafficButtonText">Traffic Maps</string>
@@ -68,6 +70,10 @@
     <string name="txtview">TextView</string>
     <string name="txt_date">Choose Date</string>
     <string name="txt_time">Choose Time</string>
+    
+    <string name="noisePollution">Noise Pollution</string>
+    <string name="greenhouseGas">Greenhouse Gas Levels</string>
+    <string name="airQuality">Air Quality</string>
 
     <string-array name="spn_street">
         <item>Select Street</item>
