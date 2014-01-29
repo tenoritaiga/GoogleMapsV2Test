@@ -17,10 +17,12 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,8 +34,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.BarGraphView;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.smartcity.redux.adapters.GasPagerAdapter;
 import com.smartcity.redux.fragments.DatePickerFragment;
 
@@ -51,6 +59,8 @@ public class MyGasActivity extends FragmentActivity implements
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	
+	Activity activity;
 
 	/**
 	 * Called when the gas consumption activity is created - sets up the tabbed 
@@ -98,8 +108,11 @@ public class MyGasActivity extends FragmentActivity implements
 					.setTabListener(this));
 		}
 		
+		activity = this;
+		
 		// Execute the API call for getting average gas consumption data.
 		new JsonGasAvgParser().execute();
+		new JsonGasRecordParser().execute();
 	}
 
 	@Override
@@ -205,8 +218,8 @@ public class MyGasActivity extends FragmentActivity implements
 		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
-			String url = "http://pastebin.com/raw.php?i=QiXs9eZU";
-			//String url = "http://54.204.89.238:82/api/UserGasConsumptionAverages?user_id=9";
+			//String url = "http://pastebin.com/raw.php?i=QiXs9eZU";
+			String url = "http://schoboken.cloudapp.net:82/api/UserGasConsumptionAverages?user_id=9";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -250,6 +263,109 @@ public class MyGasActivity extends FragmentActivity implements
 				editText.setText(jsonObject.getString("UserAverage30Day"));
 				editText = (EditText) findViewById(R.id.cons_avg_all);
 				editText.setText(jsonObject.getString("CityAverage30Day"));
+				
+				// init example series data
+				GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
+						new GraphViewData(1, Double.parseDouble(jsonObject.getString("UserAverage30Day")))
+						, new GraphViewData(2, Double.parseDouble(jsonObject.getString("CityAverage30Day")))
+				}); 
+				BarGraphView graphView = new BarGraphView(
+						 activity// context
+						, "GraphViewDemo" // heading
+				);
+				graphView.setDrawValuesOnTop(true);
+				
+				graphView.addSeries(exampleSeries); // data
+				
+				LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
+				layout.addView(graphView);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private class JsonGasRecordParser extends AsyncTask<Void,Void,JSONArray> {
+		
+		@Override
+		protected JSONArray doInBackground(Void... params) {
+			String url = "http://pastebin.com/raw.php?i=up92S6EE";
+			//String url = "http://schoboken.cloudapp.net:82/api/UserGasConsumptionAverages?user_id=9/api/UserGasConsumptionAverages?user_id=9";
+			InputStream stream = retrieveStream(url);
+			Log.d("STREAM", (stream == null) + "");
+			
+			try{
+				Reader reader = new InputStreamReader(stream);
+				BufferedReader bufRead = new BufferedReader(reader);
+				StringBuilder builder = new StringBuilder();
+				String line;
+				while ((line = bufRead.readLine()) != null) {
+					builder.append(line);
+					System.out.println(line);
+				}
+				String jsonString = builder.toString();
+				JSONArray jsonArray = new JSONArray(jsonString);
+				//System.out.println(new JSONObject(jsonObject.getString("HomeAddress")).getString("NumberAndStreet"));
+				return jsonArray;
+			}
+			catch(NullPointerException npe){
+				Log.e("ERROR","Warning: Null pointer exception while parsing JSON!",npe);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(JSONArray jsonArray) {
+			
+			try {
+				System.out.println(jsonArray.length());
+				System.out.println(jsonArray.getJSONObject(0).getString("GasConsumptionID"));
+				
+				TableLayout tableLayout;
+				TableRow tableRow;
+				TextView text1;
+				TextView text2;
+				TextView text3;
+				Double total = 0.0;
+				
+				for (int i=0; i<jsonArray.length(); i++) {
+					tableLayout = (TableLayout) findViewById(R.id.gasResultsTable);
+					tableRow = new TableRow(activity);
+					tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+					
+					text1 = new TextView(activity);
+					text1.setText(jsonArray.getJSONObject(i).getString("Date"));
+					text1.setPadding(15, 0, 15, 0);
+					text1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+					
+					text2 = new TextView(activity);
+					text2.setText(jsonArray.getJSONObject(i).getString("Gallons"));
+					text2.setPadding(15, 0, 15, 0);
+					text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+					
+					text3 = new TextView(activity);
+					text3.setText(jsonArray.getJSONObject(i).getString("Cost"));
+					text3.setPadding(15, 0, 15, 0);
+					text3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+					
+					tableRow.addView(text1);
+					tableRow.addView(text2);
+					tableRow.addView(text3);
+					
+					tableLayout.addView(tableRow);
+					
+					total += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Gallons")));
+				}
+				
+				EditText gasTotal = (EditText) findViewById(R.id.cons_total);
+				gasTotal.setText(total.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

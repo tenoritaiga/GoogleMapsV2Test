@@ -1,8 +1,5 @@
 package com.smartcity.redux.fragments;
 
-import com.jjoe64.graphview.BarGraphView;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.smartcity.redux.R;
 
 import android.os.Bundle;
@@ -10,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,7 +23,7 @@ public class ViewWaterConsumptionFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_my_water_result, container, false);
 		
-		// init example series data
+		/*// init example series data
 		GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
 				new GraphViewData(1, 2.0d)
 				, new GraphViewData(2, 1.5d)
@@ -43,9 +39,9 @@ public class ViewWaterConsumptionFragment extends Fragment {
 		graphView.addSeries(exampleSeries); // data
 		
 		LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.graph_water);
-		layout.addView(graphView);
+		layout.addView(graphView);*/
 		
-		TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.waterResultsTable);
+		/*TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.waterResultsTable);
 		TableRow tableRow = new TableRow(getActivity());
 		tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
 		
@@ -62,7 +58,7 @@ public class ViewWaterConsumptionFragment extends Fragment {
 		tableRow.addView(text1);
 		tableRow.addView(text2);
 		
-		tableLayout.addView(tableRow);
+		tableLayout.addView(tableRow);*/
 		
 		return rootView;
 	}

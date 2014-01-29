@@ -172,7 +172,7 @@ public class TrafficMapActivity extends Activity {
 				googleMap.setTrafficEnabled(true);
 				
 				//sets the padding over to allow for a left side menu
-				googleMap.setPadding(0, 0, 100, 0);
+				//googleMap.setPadding(0, 0, 100, 0);
 				
 				//Set up custom  info window adapter
 				
