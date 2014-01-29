@@ -113,8 +113,8 @@ public class ProfileActivity extends Activity {
 		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
-			String url = "http://pastebin.com/raw.php?i=s4qzrKDF";
-			//String url = "http://54.204.89.238:82/api/Users?user_name=dschuler";
+			//String url = "http://pastebin.com/raw.php?i=s4qzrKDF";
+			String url = "http://schoboken.cloudapp.net:82/api/Users?user_name=dschuler";
 			
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
