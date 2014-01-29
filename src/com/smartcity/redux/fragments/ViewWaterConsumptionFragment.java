@@ -38,7 +38,7 @@ public class ViewWaterConsumptionFragment extends Fragment {
 				getActivity() // context
 				, "GraphViewDemo" // heading
 		);
-		//graphView.setDrawValuesOnTop(true);
+		graphView.setDrawValuesOnTop(true);
 		
 		graphView.addSeries(exampleSeries); // data
 		
