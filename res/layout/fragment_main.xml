@@ -19,4 +19,23 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="Test Notifications" />
+
+      <TextView
+          android:id="@+id/gcmTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="TextView" />
+
+      <Button
+          android:id="@+id/sendGCMButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Send GCM" />
+
+      <Button
+          android:id="@+id/clearGCMButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Clear GCM" />
+
 </LinearLayout>

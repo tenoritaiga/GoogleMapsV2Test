@@ -80,7 +80,7 @@
                 android:text="@string/action_sign_in_register" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/sendGCMButton"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
