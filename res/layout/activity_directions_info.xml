@@ -23,12 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/startDirectionsMapButton"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1" >
+        android:layout_below="@+id/gcmTextView" >
 
     </ListView>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/gcmTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/directionsList"
@@ -47,7 +47,7 @@
         android:id="@+id/imageView1"
         android:layout_width="50px"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/gcmTextView"
         android:layout_below="@+id/totalDistanceTextView"
         android:src="@drawable/heart" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
         android:layout_marginBottom="14dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/gcmTextView"
         android:text="TextView" />
 
     <ImageView
