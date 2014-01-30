@@ -107,6 +107,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 		
 		activity = this;
 		
+		new JsonEnergyTotalParser().execute();
 		new JsonEnergyAvgParser().execute();
 		new JsonEnergyRecordParser().execute();
 	}
@@ -211,8 +212,8 @@ public class MyEnergyActivity extends FragmentActivity implements
 		 */
 		@Override
 		protected JSONObject doInBackground(Void... params) {
-			String url = "http://pastebin.com/raw.php?i=hizxN4XD";
-			//String url = "http://54.204.89.238:82/api/UserGasConsumptionAverages?user_id=9";
+			//String url = "http://pastebin.com/raw.php?i=hizxN4XD";
+			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -287,8 +288,8 @@ public class MyEnergyActivity extends FragmentActivity implements
 		
 		@Override
 		protected JSONArray doInBackground(Void... params) {
-			String url = "http://pastebin.com/raw.php?i=iarB92kH";
-			//String url = "http://54.204.89.238:82/api/UserGasConsumptionAverages?user_id=9";
+			//String url = "http://pastebin.com/raw.php?i=iarB92kH";
+			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionData?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -331,8 +332,8 @@ public class MyEnergyActivity extends FragmentActivity implements
 				TextView text1;
 				TextView text2;
 				TextView text3;
-				Double total = 0.0;
-				Double total2 = 0.0;
+				//Double total = 0.0;
+				//Double total2 = 0.0;
 				
 				for (int i=0; i<jsonArray.length(); i++) {
 					tableLayout = (TableLayout) findViewById(R.id.energyResultsTable);
@@ -360,14 +361,78 @@ public class MyEnergyActivity extends FragmentActivity implements
 					
 					tableLayout.addView(tableRow);
 					
-					total += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Gas")));
-					total2 += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Electricity")));
+					//total += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Gas")));
+					//total2 += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Electricity")));
 				}
 				
-				EditText gasTotal = (EditText) findViewById(R.id.gas_cons_total);
-				gasTotal.setText(total.toString());
-				EditText electTotal = (EditText) findViewById(R.id.elect_cons_total);
-				electTotal.setText(total2.toString());
+				//EditText gasTotal = (EditText) findViewById(R.id.gas_cons_total);
+				//gasTotal.setText(total.toString());
+				//EditText electTotal = (EditText) findViewById(R.id.elect_cons_total);
+				//electTotal.setText(total2.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * Nested class for retrieving total energy usage data through an API call, and populating 
+	 * the appropriate fields of the "View Usage Data" tab.
+	 * @author Class2013
+	 *
+	 */
+	private class JsonEnergyTotalParser extends AsyncTask<Void,Void,JSONObject> {
+		
+		/**
+		 * Makes the API call to retrieve an InputStream from the desired URL, then parses 
+		 * that InputStream to retrieve a JSON object containing average energy usage data.
+		 */
+		@Override
+		protected JSONObject doInBackground(Void... params) {
+			//String url = "http://pastebin.com/raw.php?i=hizxN4XD";
+			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionTotals?user_id=1";
+			InputStream stream = retrieveStream(url);
+			Log.d("STREAM", (stream == null) + "");
+			
+			try{
+				Reader reader = new InputStreamReader(stream);
+				BufferedReader bufRead = new BufferedReader(reader);
+				StringBuilder builder = new StringBuilder();
+				String line;
+				while ((line = bufRead.readLine()) != null) {
+					builder.append(line);
+					System.out.println(line);
+				}
+				String jsonString = builder.toString();
+				JSONObject jsonObject = new JSONObject(jsonString);
+				//System.out.println(new JSONObject(jsonObject.getString("HomeAddress")).getString("NumberAndStreet"));
+				return jsonObject;
+			}
+			catch(NullPointerException npe){
+				Log.e("ERROR","Warning: Null pointer exception while parsing JSON!",npe);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		/**
+		 * Parses the retrieved JSON object and populates the fields of the 
+		 * "View Usage Data" tab with the contained data on total energy usage.
+		 */
+		@Override
+		protected void onPostExecute(JSONObject jsonObject) {
+			
+			try {
+				EditText editText = (EditText) findViewById(R.id.gas_cons_total);
+				editText.setText(jsonObject.getString("TotalGas"));
+				editText = (EditText) findViewById(R.id.elect_cons_total);
+				editText.setText(jsonObject.getString("TotalElectricity"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -387,7 +452,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 			JSONObject json = new JSONObject();
 			
 			try {
-				json.put("UserID", 9);
+				json.put("UserID", 1);
 				TextView textView = (TextView) findViewById(R.id.view_date);
 				json.put("Date", textView.getText().toString());
 				EditText editText = (EditText) findViewById(R.id.edit_gas_therms);
@@ -396,8 +461,8 @@ public class MyEnergyActivity extends FragmentActivity implements
 				json.put("Electricity", Double.parseDouble(editText.getText().toString()));
 				
 				DefaultHttpClient client = new DefaultHttpClient();
-				HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
-				//HttpPost postRequest  = new HttpPost("http://54.204.89.238:82/api/GasConsumption");
+				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
+				HttpPost postRequest  = new HttpPost("http://schoboken.cloudapp.net:82/api/EnergyConsumption");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");
