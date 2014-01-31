@@ -548,4 +548,14 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,CityEventsActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startDiningActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,DiningActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startShoppingActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,ShoppingActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }

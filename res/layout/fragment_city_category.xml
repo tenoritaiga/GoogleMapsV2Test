@@ -13,5 +13,19 @@
         android:layout_height="wrap_content"
         android:onClick="startCityEventsActivity"
         android:text="@string/cityEventsButtonText" />
+
+    <Button
+        android:id="@+id/dining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startDiningActivity"
+        android:text="@string/diningButtonText" />
+    
+    <Button
+        android:id="@+id/shopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startShoppingActivity"
+        android:text="@string/shoppingButtonText" />
     
    </LinearLayout>

@@ -191,11 +191,35 @@
         </activity>
         <activity
             android:name="com.smartcity.redux.EnergyCalculatorActivity"
-            android:label="@string/title_activity_energy_calculator" >
+            android:label="@string/title_activity_energy_calculator"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
         </activity>
         <activity
             android:name="com.smartcity.redux.CityEventsActivity"
-            android:label="@string/title_activity_city_events" >
+            android:label="@string/title_activity_city_events"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.DiningActivity"
+            android:label="@string/title_activity_dining"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.ShoppingActivity"
+            android:label="@string/title_activity_shopping"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
         </activity>
     </application>
 
