@@ -193,6 +193,10 @@
             android:name="com.smartcity.redux.EnergyCalculatorActivity"
             android:label="@string/title_activity_energy_calculator" >
         </activity>
+        <activity
+            android:name="com.smartcity.redux.CityEventsActivity"
+            android:label="@string/title_activity_city_events" >
+        </activity>
     </application>
 
 </manifest>

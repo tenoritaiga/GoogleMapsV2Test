@@ -543,4 +543,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,EnergyCalculatorActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startCityEventsActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,CityEventsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }
