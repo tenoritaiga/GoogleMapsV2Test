@@ -73,6 +73,7 @@
     <string name="noisePollution">Noise Pollution</string>
     <string name="greenhouseGas">Greenhouse Gas Levels</string>
     <string name="airQuality">Air Quality</string>
+    <string name="energyCalcButtonText">Energy Calculator</string>
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -408,5 +409,6 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_energy_calculator">EnergyCalculatorActivity</string>
 
 </resources>

@@ -27,6 +27,12 @@
         android:drawableLeft="@drawable/gas"
         android:onClick="startMyWaterActivity"
         android:text="@string/myWaterButtonText" />
-    
+
+    <Button
+        android:id="@+id/energyCalcButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startEnergyCalculatorActivity"
+        android:text="@string/energyCalcButtonText" />
 
 </LinearLayout>
