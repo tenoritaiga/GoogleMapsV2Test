@@ -390,6 +390,7 @@
         <item>My City</item>
         <item>Maps</item>
         <item>Utilities</item>
+        <item>City Info</item>
         <item>Hoboken 311</item>
         <item>Profile</item>
     </string-array>
@@ -400,6 +401,7 @@
         <item>@drawable/mycity</item>
         <item>@drawable/location</item>
         <item>@drawable/leaf</item>
+        <item>@drawable/mycity</item>
         <item>@drawable/flag</item>
         <item>@drawable/person</item>
     </array>

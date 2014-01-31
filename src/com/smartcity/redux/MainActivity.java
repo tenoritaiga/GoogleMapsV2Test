@@ -15,6 +15,7 @@ import com.smartcity.redux.fragments.MapCategoryFragment;
 import com.smartcity.redux.fragments.ProfileFragment;
 import com.smartcity.redux.fragments.UtilityCategoryFragment;
 import com.smartcity.redux.slidingmenu.NavDrawerItem;
+import com.smartcity.redux.fragments.CityCategoryFragment;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -134,10 +135,12 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
 		// Utilities
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+		//City Information
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));
 		// Hoboken 311
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		// Profile
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+		// Profile
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		
 
 		// Recycle the typed array
@@ -403,9 +406,12 @@ public class MainActivity extends Activity {
 			fragment = new UtilityCategoryFragment();
 			break;
 		case 3:
-			fragment = new Hoboken311Fragment();
+			fragment = new CityCategoryFragment();
 			break;
 		case 4:
+			fragment = new Hoboken311Fragment();
+			break;
+		case 5:
 			fragment = new ProfileFragment();
 			break;
 			
