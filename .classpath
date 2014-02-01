@@ -5,6 +5,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/Users/class2017/Documents/Development/android-sdk-macosx/extras/google/google_play_services/libproject/google-play-services_lib/bin/google-play-services_lib.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/bin/google-play-services_lib.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -398,7 +398,7 @@
     <string-array name="nav_drawer_items">
         <item>My City</item>
         <item>Maps</item>
-        <item>Utilities</item>
+        <item>Sustainability</item>
         <item>City Info</item>
         <item>Hoboken 311</item>
         <item>Profile</item>
@@ -417,9 +417,6 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
-    <string name="title_activity_energy_calculator">EnergyCalculatorActivity</string>
-    <string name="title_activity_city_events">CityEventsActivity</string>
-    <string name="title_activity_dining">DiningActivity</string>
-    <string name="title_activity_shopping">ShoppingActivity</string>
+
 
 </resources>
