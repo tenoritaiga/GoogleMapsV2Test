@@ -393,6 +393,9 @@
     <string name="guestLoginButton">Use as Guest</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
+    <string name="sust_gas">Gas</string>
+    <string name="sust_energy">Energy</string>
+    <string name="sust_water">Water</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">

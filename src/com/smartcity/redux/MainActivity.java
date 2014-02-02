@@ -13,7 +13,7 @@ import com.smartcity.redux.fragments.Hoboken311Fragment;
 import com.smartcity.redux.fragments.MainFragment;
 import com.smartcity.redux.fragments.MapCategoryFragment;
 import com.smartcity.redux.fragments.ProfileFragment;
-import com.smartcity.redux.fragments.UtilityCategoryFragment;
+import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
 import com.smartcity.redux.slidingmenu.NavDrawerItem;
 import com.smartcity.redux.fragments.CityCategoryFragment;
 
@@ -403,7 +403,7 @@ public class MainActivity extends Activity {
 			fragment = new MapCategoryFragment();
 			break;
 		case 2:
-			fragment = new UtilityCategoryFragment();
+			fragment = new SustainabilityCategoryFragment();
 			break;
 		case 3:
 			fragment = new CityCategoryFragment();
