@@ -81,7 +81,6 @@
     <string name="cityEventsButtonText">City Events</string>
     <string name="diningButtonText">Dining</string>
     <string name="shoppingButtonText">Shopping</string>
-    
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -400,6 +399,7 @@
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item>My City</item>
+        <item>Inbox</item>
         <item>Maps</item>
         <item>Sustainability</item>
         <item>City Info</item>
@@ -411,6 +411,7 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/mycity</item>
+        <item>@drawable/inbox</item>
         <item>@drawable/location</item>
         <item>@drawable/leaf</item>
         <item>@drawable/mycity</item>
@@ -420,6 +421,6 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
-
+    <string name="title_activity_inbox">InboxActivity</string>
 
 </resources>

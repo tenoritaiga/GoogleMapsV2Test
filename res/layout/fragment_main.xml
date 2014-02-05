@@ -1,41 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gridLayout"
+<FrameLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="fill_horizontal"
-    android:orientation="vertical" >
-
-      <Button
-          android:id="@+id/settingsButton"
-          android:layout_width="match_parent"
-          android:layout_height="45dp"
-          android:drawableLeft="@drawable/newgear"
-          android:onClick="startSettingsActivity"
-          android:text="@string/settingsButtonText" />
-
-      <Button
-          android:id="@+id/testNotificationsButton"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Test Notifications" />
-
-      <TextView
-          android:id="@+id/gcmTextView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="TextView" />
-
-      <Button
-          android:id="@+id/sendGCMButton"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Send GCM" />
-
-      <Button
-          android:id="@+id/clearGCMButton"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Clear GCM" />
-
-</LinearLayout>
+    >
+    <GridView
+        android:id="@+id/squareimagegrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="0dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="2" 
+        />
+</FrameLayout>

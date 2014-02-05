@@ -1,5 +1,8 @@
 package com.smartcity.redux.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Fragment;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,7 +14,10 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.smartcity.redux.AirMapActivity;
 import com.smartcity.redux.MainActivity;
@@ -32,13 +38,13 @@ public class MainFragment extends Fragment {
 		//setContentView(R.layout.activity_main);
 		View root = inflater.inflate(R.layout.fragment_main, null);
 		
-		Button testBtn = (Button)root.findViewById(R.id.testNotificationsButton);
+/*		Button testBtn = (Button)root.findViewById(R.id.testNotificationsButton);
 		testBtn.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				displayNotification();
 			}
-		});
+		});*/
 		
 		return root;
 	}

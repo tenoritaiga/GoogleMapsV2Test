@@ -221,6 +221,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smartcity.redux.MainActivity" />
         </activity>
+        <activity
+            android:name="com.smartcity.redux.InboxActivity"
+            android:label="@string/title_activity_inbox" >
+        </activity>
     </application>
 
 </manifest>

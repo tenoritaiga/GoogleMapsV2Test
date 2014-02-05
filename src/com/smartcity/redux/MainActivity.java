@@ -2,6 +2,7 @@ package com.smartcity.redux;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -10,6 +11,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.maps.MapView;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
 import com.smartcity.redux.fragments.Hoboken311Fragment;
+import com.smartcity.redux.fragments.InboxFragment;
 import com.smartcity.redux.fragments.MainFragment;
 import com.smartcity.redux.fragments.MapCategoryFragment;
 import com.smartcity.redux.fragments.ProfileFragment;
@@ -32,8 +34,10 @@ import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,9 +47,11 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
@@ -88,7 +94,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		String isEmpty = "false";
 		
 		mDisplay = (TextView) findViewById(R.id.gcmTextView);
@@ -99,6 +105,9 @@ public class MainActivity extends Activity {
 		Log.d("GCM_T_V",isEmpty);
 		
 		context = getApplicationContext();
+
+		GridView gridView = (GridView)findViewById(R.id.squareimagegrid);
+		gridView.setAdapter(new SquareImageAdapter(this));
 		
 		//Check for Google Play Services
 		
@@ -180,6 +189,71 @@ public class MainActivity extends Activity {
 			// on first time display view for first nav item
 			displayView(0);
 		}
+	}
+	
+	private class SquareImageAdapter extends BaseAdapter {
+	    private List<Item> items = new ArrayList<Item>();
+	    private LayoutInflater inflater;
+
+	    public SquareImageAdapter(Context context) {
+	        inflater = LayoutInflater.from(context);
+
+	        items.add(new Item("Item 1",       R.drawable.hoboken3));
+	        items.add(new Item("Item 2",   R.drawable.hoboken2));
+	        items.add(new Item("Item 3", R.drawable.hoboken1));
+	        items.add(new Item("Item 4",      R.drawable.hoboken1));
+	        items.add(new Item("Item 5",     R.drawable.hoboken1));
+	        items.add(new Item("Item 6",      R.drawable.hoboken1));
+	        items.add(new Item("Item 7",      R.drawable.hoboken1));
+	    }
+
+	    @Override
+	    public int getCount() {
+	        return items.size();
+	    }
+
+	    @Override
+	    public Object getItem(int i) {
+	        return items.get(i);
+	    }
+
+	    @Override
+	    public long getItemId(int i) {
+	        return items.get(i).drawableId;
+	    }
+
+	    @Override
+	    public View getView(int i, View view, ViewGroup viewGroup) {
+	        View v = view;
+	        ImageView picture;
+	        TextView name;
+
+	        if(v == null) {
+	            v = inflater.inflate(R.layout.square_image_item, viewGroup, false);
+	            v.setTag(R.id.picture, v.findViewById(R.id.picture));
+	            v.setTag(R.id.text, v.findViewById(R.id.text));
+	        }
+
+	        picture = (ImageView)v.getTag(R.id.picture);
+	        name = (TextView)v.getTag(R.id.text);
+
+	        Item item = (Item)getItem(i);
+
+	        picture.setImageResource(item.drawableId);
+	        name.setText(item.name);
+
+	        return v;
+	    }
+
+	    private class Item {
+	        final String name;
+	        final int drawableId;
+
+	        Item(String name, int drawableId) {
+	            this.name = name;
+	            this.drawableId = drawableId;
+	        }
+	    }
 	}
 	
 	
@@ -345,7 +419,7 @@ public class MainActivity extends Activity {
 	    editor.commit();
 	}
 	
-	public void onClick(final View view) {
+/*	public void onClick(final View view) {
 	    if (view == findViewById(R.id.sendGCMButton)) {
 	        new AsyncTask<Void,Void,String>() {
 	            @Override
@@ -373,7 +447,7 @@ public class MainActivity extends Activity {
 	    } else if (view == findViewById(R.id.clearGCMButton)) {
 	        mDisplay.setText("");
 	    }
-	}
+	}*/
 	
 	
 
@@ -400,18 +474,21 @@ public class MainActivity extends Activity {
 			fragment = new MainFragment();
 			break;
 		case 1:
-			fragment = new MapCategoryFragment();
+			fragment = new InboxFragment();
 			break;
 		case 2:
-			fragment = new SustainabilityCategoryFragment();
+			fragment = new MapCategoryFragment();
 			break;
 		case 3:
-			fragment = new CityCategoryFragment();
+			fragment = new SustainabilityCategoryFragment();
 			break;
 		case 4:
-			fragment = new Hoboken311Fragment();
+			fragment = new CityCategoryFragment();
 			break;
 		case 5:
+			fragment = new Hoboken311Fragment();
+			break;
+		case 6:
 			fragment = new ProfileFragment();
 			break;
 			
