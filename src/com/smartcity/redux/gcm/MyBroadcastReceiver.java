@@ -31,6 +31,10 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 	                    intent.getExtras().toString());
 	        } else {
 	            sendNotification("Received: " + intent.getExtras().toString());
+	            
+	            //EXPERIMENTAL: Write received message to SQLite database
+	            DatabaseHelper db = new DatabaseHelper(context);
+	            db.insertMsg(intent.getExtras().toString());
 	        }
 	        setResultCode(Activity.RESULT_OK);
 	}
