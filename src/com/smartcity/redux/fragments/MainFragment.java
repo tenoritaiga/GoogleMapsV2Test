@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,9 @@ public class MainFragment extends Fragment {
 		//super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
 		View root = inflater.inflate(R.layout.fragment_main, null);
+		
+		GridView gridView = (GridView)root.findViewById(R.id.squareimagegrid);
+		gridView.setAdapter(new SquareImageAdapter(getActivity()));
 		
 /*		Button testBtn = (Button)root.findViewById(R.id.testNotificationsButton);
 		testBtn.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +119,71 @@ protected void displayNotification(){
 		
 		mNotificationManager.notify(notificationID,mBuilder.build());
 		
+	}
+	
+	private class SquareImageAdapter extends BaseAdapter {
+	    private List<Item> items = new ArrayList<Item>();
+	    private LayoutInflater inflater;
+
+	    public SquareImageAdapter(Context context) {
+	        inflater = LayoutInflater.from(context);
+
+	        items.add(new Item("Item 1",       R.drawable.hoboken3));
+	        items.add(new Item("Item 2",   R.drawable.hoboken2));
+	        items.add(new Item("Item 3", R.drawable.hoboken1));
+	        items.add(new Item("Item 4",      R.drawable.hoboken1));
+	        items.add(new Item("Item 5",     R.drawable.hoboken1));
+	        items.add(new Item("Item 6",      R.drawable.hoboken1));
+	        items.add(new Item("Item 7",      R.drawable.hoboken1));
+	    }
+
+	    @Override
+	    public int getCount() {
+	        return items.size();
+	    }
+
+	    @Override
+	    public Object getItem(int i) {
+	        return items.get(i);
+	    }
+
+	    @Override
+	    public long getItemId(int i) {
+	        return items.get(i).drawableId;
+	    }
+
+	    @Override
+	    public View getView(int i, View view, ViewGroup viewGroup) {
+	        View v = view;
+	        ImageView picture;
+	        TextView name;
+
+	        if(v == null) {
+	            v = inflater.inflate(R.layout.square_image_item, viewGroup, false);
+	            v.setTag(R.id.picture, v.findViewById(R.id.picture));
+	            v.setTag(R.id.text, v.findViewById(R.id.text));
+	        }
+
+	        picture = (ImageView)v.getTag(R.id.picture);
+	        name = (TextView)v.getTag(R.id.text);
+
+	        Item item = (Item)getItem(i);
+
+	        picture.setImageResource(item.drawableId);
+	        name.setText(item.name);
+
+	        return v;
+	    }
+
+	    private class Item {
+	        final String name;
+	        final int drawableId;
+
+	        Item(String name, int drawableId) {
+	            this.name = name;
+	            this.drawableId = drawableId;
+	        }
+	    }
 	}
 	
 	public void startMapActivity(View view){
