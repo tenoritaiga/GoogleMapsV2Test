@@ -9,6 +9,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.maps.MapView;
+import com.microsoft.windowsazure.messaging.NotificationHub;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
 import com.smartcity.redux.fragments.Hoboken311Fragment;
 import com.smartcity.redux.fragments.InboxFragment;
@@ -69,7 +70,6 @@ public class MainActivity extends Activity {
     // slide menu items
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
- 
     private ArrayList<NavDrawerItem> navDrawerItems;
     private SlidingMenuAdapter adapter;
     
@@ -78,7 +78,6 @@ public class MainActivity extends Activity {
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    
     TextView mDisplay;
     GoogleCloudMessaging gcm;
     AtomicInteger msgId = new AtomicInteger();
@@ -88,31 +87,26 @@ public class MainActivity extends Activity {
     
     //Google Console Sender ID   
     String SENDER_ID = "442837429748";
+    
+    //Windows Azure GCM integration
+    private NotificationHub hub;
 
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		String isEmpty = "false";
 		
 		mDisplay = (TextView) findViewById(R.id.gcmTextView);
-		
-		if(mDisplay == null) {
-			isEmpty = "true";
-		}
-		Log.d("GCM_T_V",isEmpty);
-		
 		context = getApplicationContext();
 
-		
-		
 		//Check for Google Play Services
 		
 		if(checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(this);
-			regid = getRegistrationId(context);
+			//Now setting regid in registerWithNotificationHubs()
+			//regid = getRegistrationId(context);
+			
 			
 			if(regid.isEmpty()) {
 				registerInBackground();
@@ -120,6 +114,10 @@ public class MainActivity extends Activity {
 		} else {
 			Log.i("PLAY_SVCS_NOT_SUPPORTED", "No valid Google Play Services APK found.");
 		}
+		
+		//Setup for Azure GCM
+		String connectionString = "your_listen_access_connection_string";
+		hub = new NotificationHub("your_notification_hub_name",connectionString,this);
 
 		mTitle = mDrawerTitle = getTitle();
 
@@ -230,6 +228,23 @@ public class MainActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	//Windows Azure GCM registration
+	@SuppressWarnings("unchecked")
+	private void registerWithNotificationHubs() {
+	   new AsyncTask() {
+	      @Override
+	      protected Object doInBackground(Object... params) {
+	         try {
+	            String regid = gcm.register(SENDER_ID);
+	            hub.register(regid);
+	         } catch (Exception e) {
+	            return e;
+	         }
+	         return null;
+	     }
+	   }.execute(null, null, null);
 	}
 	
 	/**
