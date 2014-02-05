@@ -104,10 +104,9 @@ public class MainActivity extends Activity {
 		
 		if(checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(this);
-			//Now setting regid in registerWithNotificationHubs()
-			//regid = getRegistrationId(context);
-			
-			
+			//Resetting regid in registerWithNotificationHubs(), but we need it defined here first
+			regid = getRegistrationId(context);
+
 			if(regid.isEmpty()) {
 				registerInBackground();
 			}
