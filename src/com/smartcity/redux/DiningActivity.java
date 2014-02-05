@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class DiningActivity extends Activity {
 
@@ -16,6 +17,15 @@ public class DiningActivity extends Activity {
 		setContentView(R.layout.activity_dining);
 		
 		setupActionBar();
+		
+		 WebView webview = new WebView(this);
+		 setContentView(webview);
+		 
+		 webview.getSettings().setBuiltInZoomControls(true);
+		 
+		 webview.loadUrl("http://www.hobokennj.org/visit/where-to-dine/");
+		
+		//http://www.hobokennj.org/visit/where-to-dine/
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)

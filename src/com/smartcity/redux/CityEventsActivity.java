@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class CityEventsActivity extends Activity {
@@ -20,6 +21,9 @@ public class CityEventsActivity extends Activity {
 		
 		 WebView webview = new WebView(this);
 		 setContentView(webview);
+		 
+		 webview.getSettings().setBuiltInZoomControls(true);
+		 webview.getSettings().setJavaScriptEnabled(true);
 		 
 		 webview.loadUrl("http://www.hobokennj.org/calendar/");
 	}

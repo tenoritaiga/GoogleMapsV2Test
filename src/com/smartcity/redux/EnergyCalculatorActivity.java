@@ -21,6 +21,9 @@ public class EnergyCalculatorActivity extends Activity {
 		 WebView webview = new WebView(this);
 		 setContentView(webview);
 		 
+		 webview.getSettings().setBuiltInZoomControls(true);
+		 webview.getSettings().setJavaScriptEnabled(true);
+		 
 		 webview.loadUrl("http://c03.apogee.net/calcs/rescalc5x/Profile.aspx");
 	}
 	

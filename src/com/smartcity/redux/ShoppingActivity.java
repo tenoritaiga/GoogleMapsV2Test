@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class ShoppingActivity extends Activity {
 
@@ -15,6 +16,15 @@ public class ShoppingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shopping);
 		setupActionBar();
+		
+		 WebView webview = new WebView(this);
+		 setContentView(webview);
+		 
+		 webview.getSettings().setBuiltInZoomControls(true);
+		 
+		 webview.loadUrl("http://www.yelp.com/search?cflt=shopping&find_loc=Hoboken%2C+NJ%2C+USA");
+		
+		//http://www.yelp.com/search?cflt=shopping&find_loc=Hoboken%2C+NJ%2C+USA
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
