@@ -267,7 +267,6 @@ public class AirQualityActivity extends Activity {
 					
 					//Log.d("STREAM","We got back: " + response.AirSensors);
 					
-					
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
