@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
 
@@ -52,7 +53,6 @@ import com.smartcity.redux.adapters.SensorDataAdapter;
 import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSensor;
 import com.smartcity.redux.R;
-
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -69,8 +69,10 @@ public class AirQualityActivity extends Activity {
 	
     private CheckBox mPollutionCheckbox;
 
-
-	
+    private int flag;
+        
+    private List<Marker> markers = new ArrayList<Marker>();
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,22 +80,69 @@ public class AirQualityActivity extends Activity {
 		
 		setupActionBar();
 		
-		
 		new JsonParser().execute();
 		
-		//mPollutionCheckbox = (Checkbox) findViewById(R.id.noisePollution);
-
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
 		initilizeMap();
-		
-		//update noise pollution
-		//update greenhouse gas levels
-		//update air quality
 	}
+	
+	public void onNoisePollutionToggled(View view) {
+	        // Is the view now checked?
+	        boolean checked = ((CheckBox) view).isChecked();
+	        int i;
+	        
+	        i = 0;
+	        
+	        // Check which checkbox was clicked
+	        switch(view.getId()) {
+	            case R.id.noisePollution:
+	                if (checked)
+	                {
+	                	flag = 1;
+	                	while(i < markers.size())
+	                	{
+	                		markers.get(i).setVisible(true);
+	                		i++;
+	                	}
+	                }
+	                else
+	                {
+	                	flag = 0;
+	                	while(i < markers.size())
+	                	{
+	                		markers.get(i).setVisible(false);
+	                		i++;
+	                	}
+	                }
+	                break;
+	            case R.id.greenhouseGas:
+	                if (checked)
+	                {
+	                	//markers for greenhouse gas
+	                }
+	                else
+	                {
+	                }
+	                break;
+	            case R.id.airQuality:
+	                if (checked)
+	                {
+	                	//markers for air quality
+	                }
+	                else
+	                {
+	                }
+	                break;
+	        }
+	    }
+	
+	//public void showMarkers(Marker marker)
+	//{
+	//}
 	
 	/**
 	 * function to load map If map is not created it will create it for you
@@ -206,7 +255,8 @@ public class AirQualityActivity extends Activity {
 				String res = "markercolor";
 				int resID;
 				
-				for(AirSensor sensor : response.AirSensors){
+				for(AirSensor sensor : response.AirSensors)
+				{
 					
 					if(Float.parseFloat(sensor.Readings.CO2) <= 10)
 						resID = getResources().getIdentifier("airsensor_g","drawable",getPackageName());
@@ -223,9 +273,9 @@ public class AirQualityActivity extends Activity {
 			        .title(sensor.SensorName)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
 					
-					adapter.hashMap.put(marker, sensor);
+					markers.add(marker);
 					
-					//marker.setVisible(false);
+					adapter.hashMap.put(marker, sensor);
 					
 				}
 				
