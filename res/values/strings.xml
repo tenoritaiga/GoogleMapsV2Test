@@ -350,6 +350,8 @@
     <string name="title_section2_energy">View Usage Data</string>
     <string name="title_section1_water">Enter Water Usage</string>
     <string name="title_section2_water">View Usage Data</string>
+    <string name="title_section1_inbox">Received Messages</string>
+    <string name="title_section2_inbox">Sent Messages</string>
     <string name="title_activity_directions_input">Transit Information</string>
 
     <string-array name="spn_directions_type">
