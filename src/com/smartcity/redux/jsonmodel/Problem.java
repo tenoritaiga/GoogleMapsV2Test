@@ -13,7 +13,7 @@ public class Problem {
 	@SerializedName("ProblemID")
 	public String ProblemID;
 	
-	@SerializedName("ProblemDetails") // ?
+	@SerializedName("ProblemDetails") // GET RID OF THIS
 	public ProblemDetails ProblemDetails;
 	
 	@SerializedName("Location")
