@@ -1,0 +1,354 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    tools:context=".EmergencyReport" >
+
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="39dp"
+        android:layout_toRightOf="@+id/txt_charge"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group"
+        android:layout_below="@id/rad_report_group"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group1"
+        android:layout_below="@id/rad_report_group1"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group2"
+        android:layout_below="@id/rad_report_group2"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group3"
+        android:layout_below="@id/rad_report_group3"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group4"
+        android:layout_below="@id/rad_report_group4"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group5"
+        android:layout_below="@id/rad_report_group5"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group6"
+        android:layout_below="@id/rad_report_group6"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group7"
+        android:layout_below="@id/rad_report_group7"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_report_group9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_report_group8"
+        android:layout_below="@id/rad_report_group8"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_yes9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_no9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+     <TextView
+        android:id="@+id/txt_med_emergency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/rad_report_group"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_med_emergency"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/txt_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_med_emergency"
+        android:layout_alignTop="@id/rad_report_group1"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_food"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_water"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_food"
+        android:layout_alignTop="@id/rad_report_group2"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_water"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_water"
+        android:layout_alignTop="@id/rad_report_group3"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_power"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_medication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_power"
+        android:layout_alignTop="@id/rad_report_group4"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_medication"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_heat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_medication"
+        android:layout_alignTop="@id/rad_report_group5"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_heat"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_charge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_heat"
+        android:layout_alignTop="@id/rad_report_group6"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_charge"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/txt_lodge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_charge"
+        android:layout_alignTop="@id/rad_report_group7"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_lodge"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/txt_internet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_charge"
+        android:layout_alignTop="@id/rad_report_group8"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_internet"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/txt_nat_gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_charge"
+        android:layout_alignTop="@id/rad_report_group9"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_nat_gas"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rad_report_group9"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_submit" />
+
+</RelativeLayout>
+</ScrollView>

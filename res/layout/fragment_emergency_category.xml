@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <Button
+        android:id="@+id/swift911"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/swift911ButtonText" />
+
+    <Button
+        android:id="@+id/emerReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startEmergencyReportActivity"
+        android:text="@string/emerReportButtonText" />
+    
+    <Button
+        android:id="@+id/emerNeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startEmergencyNeedActivity"
+        android:text="@string/emerNeedButtonText" />
+    
+    <Button
+        android:id="@+id/emerOffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startEmergencyOfferActivity"
+        android:text="@string/emerOfferButtonText" />
+    
+
+</LinearLayout>

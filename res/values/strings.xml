@@ -81,6 +81,10 @@
     <string name="cityEventsButtonText">City Events</string>
     <string name="diningButtonText">Dining</string>
     <string name="shoppingButtonText">Shopping</string>
+    <string name="swift911ButtonText">Swift 911</string>
+    <string name="emerReportButtonText">Emergency Report</string>
+    <string name="emerNeedButtonText">Emergency Need</string>
+    <string name="emerOfferButtonText">Emergency Offer</string>
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -397,6 +401,28 @@
     <string name="sust_gas">Gas</string>
     <string name="sust_energy">Energy</string>
     <string name="sust_water">Water</string>
+    <string name="radio_yes">Yes</string>
+    <string name="radio_no">No</string>
+    <string name="txt_power">Power</string>
+    <string name="txt_food">Food For 24 Hours</string>
+    <string name="txt_water">Running Water</string>
+    <string name="txt_med_emergency">Medical Emergency</string>
+    <string name="txt_medication">Medication For 24 Hours</string>
+    <string name="txt_heat">Heating</string>
+    <string name="txt_charge">Cellphone Charging Station</string>
+    <string name="txt_lodge">Lodging Usable</string>
+    <string name="txt_internet">Internet</string>
+    <string name="txt_nat_gas">Natural Gas</string>
+    <string name="btn_submit">Submit Report</string>
+    <string name="def_offer">0</string>
+    <string name="txt_offer_shower">Shower Available</string>
+    <string name="txt_offer_food">Food</string>
+    <string name="txt_offer_room">Room/Couch</string>
+    <string name="txt_offer_charge">Charge</string>
+    <string name="txt_offer_expert">Doctor/Medic</string>
+    <string name="txt_offer_trans">Transportation</string>
+    <string name="btn_offer_submit">Submit Offer</string>
+    <string name="btn_need_submit">Submit Needs</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -407,6 +433,7 @@
         <item>City Info</item>
         <item>Hoboken 311</item>
         <item>Profile</item>
+        <item>Emergencies</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -419,10 +446,14 @@
         <item>@drawable/mycity</item>
         <item>@drawable/flag</item>
         <item>@drawable/person</item>
+        <item>@drawable/mycity</item>
     </array>
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_inbox">InboxActivity</string>
+    <string name="title_activity_emergency_report">Emergency Report</string>
+    <string name="title_activity_emergency_need">Emergency Need</string>
+    <string name="title_activity_emergency_offer">Emergency Offer</string>
 
 </resources>

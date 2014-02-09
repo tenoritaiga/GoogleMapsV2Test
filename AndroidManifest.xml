@@ -18,7 +18,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-perm1ission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- Google Cloud Messaging (GCM) permissions -->
@@ -81,7 +83,7 @@
             android:parentActivityName="com.smartcity.redux.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.smartcity.redux.MainActivity" />
+                android:value="com.smartcity.redux.MainActivity" />
             -->
         </activity>
         <activity
@@ -132,7 +134,7 @@
             <!--
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.smartcity.redux.MainActivity" />
+                android:value="com.smartcity.redux.MainActivity" />
             -->
         </activity>
         <activity
@@ -224,6 +226,30 @@
         <activity
             android:name="com.smartcity.redux.InboxActivity"
             android:label="@string/title_activity_inbox" >
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.EmergencyReportActivity"
+            android:label="@string/title_activity_emergency_report"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.EmergencyNeedActivity"
+            android:label="@string/title_activity_emergency_need"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.EmergencyOfferActivity"
+            android:label="@string/title_activity_emergency_offer"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
         </activity>
     </application>
 
