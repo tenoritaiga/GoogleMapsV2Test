@@ -104,7 +104,8 @@ public class Hoboken311MapActivity extends Activity {
 		@Override
 		protected Hoboken311SearchResponse doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			String url = "http://pastebin.com/raw.php?i=vTEbTCDT";  // TODO
+			String url = "http://pastebin.com/raw.php?i=vTEbTCDT";  // TODO URL (and activity.java)
+			// http://schoboken.cloudapp.net:82/api/GetProblems?
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -161,7 +162,7 @@ public class Hoboken311MapActivity extends Activity {
 				//Set up custom info window adapter
 				
 				ProblemDataAdapter adapter = new ProblemDataAdapter(getLayoutInflater());
-				
+				// TODO this is where sub-classes are used (below, and in the adapter)
 				double latitude = 40.745066;
 				double longitude = -74.024294;
 				

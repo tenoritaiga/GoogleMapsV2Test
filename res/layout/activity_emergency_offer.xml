@@ -1,0 +1,255 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmergencyOffer" >
+    
+    <RadioGroup
+        android:id="@+id/rad_offer_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="84dp"
+        android:layout_toRightOf="@+id/txt_offer_shower"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_offer_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_offer_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_offer_group1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_offer_group"
+        android:layout_below="@id/rad_offer_group"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_offer_yes1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_offer_no1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_offer_group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_offer_group1"
+        android:layout_below="@id/rad_offer_group1"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_offer_yes2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_offer_no2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    
+    <RadioGroup
+        android:id="@+id/rad_offer_group3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_offer_group2"
+        android:layout_below="@id/rad_offer_group2"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_offer_yes3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_offer_no3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_offer_group4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_offer_group3"
+        android:layout_below="@id/rad_offer_group3"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_offer_yes4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_offer_no4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+    
+    <RadioGroup
+        android:id="@+id/rad_offer_group5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rad_offer_group4"
+        android:layout_below="@id/rad_offer_group4"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rad_offer_yes5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_yes" />
+
+        <RadioButton
+            android:id="@+id/rad_offer_no5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radio_no" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txt_offer_shower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/rad_offer_group"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_offer_shower"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/txt_offer_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_offer_shower"
+        android:layout_alignTop="@id/rad_offer_group1"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_offer_food"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_offer_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_offer_food"
+        android:layout_alignTop="@id/rad_offer_group2"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_offer_room"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_offer_charge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_offer_room"
+        android:layout_alignTop="@id/rad_offer_group3"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_offer_charge"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_offer_expert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_offer_charge"
+        android:layout_alignTop="@id/rad_offer_group4"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_offer_expert"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/txt_offer_trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_offer_expert"
+        android:layout_alignTop="@id/rad_offer_group5"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:text="@string/txt_offer_trans"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btn_offer_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp"
+        android:text="@string/btn_offer_submit" />
+
+    <EditText
+        android:id="@+id/edit_room_offer"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_food_offer"
+        android:layout_alignTop="@+id/rad_offer_group2"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="1"
+        android:text="@string/def_offer" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_food_offer"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_trans_offer"
+        android:layout_alignTop="@+id/rad_offer_group1"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="1"
+        android:text="@string/def_offer" />
+
+    <EditText
+        android:id="@+id/edit_trans_offer"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rad_offer_group5"
+        android:layout_marginRight="15dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="1"
+        android:text="@string/def_offer" />
+
+</RelativeLayout>

@@ -11,6 +11,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.maps.MapView;
 import com.microsoft.windowsazure.messaging.NotificationHub;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
+import com.smartcity.redux.fragments.EmergencyCategoryFragment;
 import com.smartcity.redux.fragments.Hoboken311Fragment;
 import com.smartcity.redux.fragments.InboxFragment;
 import com.smartcity.redux.fragments.MainFragment;
@@ -148,7 +149,8 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		// Profile
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		
+		// Emergencies
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -442,7 +444,8 @@ public class MainActivity extends Activity {
 		case 6:
 			fragment = new ProfileFragment();
 			break;
-			
+		case 7:
+			fragment = new EmergencyCategoryFragment();
 		default:
 			break;
 		}
@@ -584,6 +587,21 @@ public class MainActivity extends Activity {
 	
 	public void startShoppingActivity(View view) {
 		Intent intent = new Intent(MainActivity.this,ShoppingActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEmergencyReportActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EmergencyReportActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEmergencyNeedActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EmergencyNeedActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEmergencyOfferActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EmergencyOfferActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
 }

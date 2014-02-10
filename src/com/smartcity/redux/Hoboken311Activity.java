@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.Menu;
@@ -18,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -64,6 +74,9 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 		dateText1 = (TextView)findViewById(R.id.dateText1);
 		timeText1 = (TextView)findViewById(R.id.timeText1);
 		
+		final String time_reported = null;
+		final String date_reported = null;
+		
 		final DatePickerDialog.OnDateSetListener dateOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
 			@Override
 			public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
@@ -79,6 +92,7 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 				int year = cal.get(Calendar.YEAR);
 				int monthOfYear = cal.get(Calendar.MONTH);
 				int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+				date_reported = new StringBuilder().append(monthOfYear+1).append("/").append(dayOfMonth).append("/").append(year).toString();
 				new DatePickerDialog(context, dateOnDateSetListener, year, monthOfYear, dayOfMonth).show();
 			}
 		});
@@ -97,6 +111,7 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 				Calendar cal = Calendar.getInstance();
 				int hour = cal.get(Calendar.HOUR_OF_DAY);
 				int minute = cal.get(Calendar.MINUTE);
+				time_reported = new StringBuilder().append(String.format("%02d",hour)).append(":").append(String.format("%02d",minute)).toString();
 				new TimePickerDialog(context, timeOnTimeSetListener, hour, minute, true).show();
 			}
 		});
@@ -140,9 +155,48 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 		btn_send.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) { // if all fields are set?
 				if(request != null){
-					// TODO - send code to backend. 
+					JSONObject json = new JSONObject();
+					JSONObject jsonDetails = new JSONObject();
+
+					int userID = 2;
+					String option;
+
+					try {
+					json.put("UserID", userID);
+					jsonDetails.put("Comment", commentText.toString());
+					jsonDetails.put("Category", spn_prob.toString());
+					option = spn_prob_spec2.VISIBLE > 0 ? spn_prob_spec.toString() : spn_prob_spec2.toString();
+					jsonDetails.put("Name", option);
+					json.put("ProblemDetails", jsonDetails);
+					jsonDetails = new JSONObject(); 
+					jsonDetails.put("Latitude", 40.777777); // NEED CURRENT LOCATION
+					jsonDetails.put("Longitude", -74.777777); // NEED CURRENT LOCATION
+					json.put("Location", jsonDetails);
+					jsonDetails = new JSONObject();
+					jsonDetails.put("Date", date_reported);
+					jsonDetails.put("Time", time_reported);
+					json.put("DateTimeReported", jsonDetails);
+					jsonDetails = new JSONObject();
+					jsonDetails.put("Date", dateText1.toString());
+					jsonDetails.put("Time", timeText1.toString());
+					json.put("DateTimeOccurred", jsonDetails);
+					
+					DefaultHttpClient client = new DefaultHttpClient();
+					HttpPut putRequest = new HttpPut("http://schoboken.cloudapp.net:82/api/"); // /PutProblems?
+					System.out.println(json.toString());
+					StringEntity se = new StringEntity(json.toString());
+					se.setContentType("application/json");
+					se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+					putRequest.setEntity(se);
+					HttpResponse response = client.execute(putRequest);
+					System.out.println(response.getStatusLine().getStatusCode());
+					}
+					catch (Exception e) {
+					e.printStackTrace();
+					}
+					 				
 				}else{
 					warning.show();
 				}
@@ -1136,3 +1190,15 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 
 
 }
+/*
+ class JsonSender extends AsyncTask<Void,Void,Void> { // TODO put directly into above call
+	
+	@Override
+	protected Void doInBackground(Void... params) {
+		
+
+
+
+	}
+	
+}*/
