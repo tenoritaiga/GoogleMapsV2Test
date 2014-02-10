@@ -6,6 +6,9 @@ public class AirSensor {
 	@SerializedName("SensorName")
 	public String SensorName;
 	
+	@SerializedName("SensorType")
+	public String SensorType;
+	
 	@SerializedName("Readings")
 	public Readings Readings;
 	

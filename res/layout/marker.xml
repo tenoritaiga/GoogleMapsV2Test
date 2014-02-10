@@ -17,6 +17,14 @@
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
+    
+        <TextView
+        android:id="@+id/textViewType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/PM10"

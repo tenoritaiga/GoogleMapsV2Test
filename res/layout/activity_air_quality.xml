@@ -38,13 +38,15 @@
                  android:id="@+id/greenhouseGas"
                  android:layout_width="130dp"
                  android:layout_height="wrap_content"
-                 android:text="@string/greenhouseGas" />
+                 android:text="@string/greenhouseGas" 
+                 android:onClick="onNoisePollutionToggled"/>
 
              <CheckBox
                  android:id="@+id/airQuality"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:text="@string/airQuality" />
+                 android:text="@string/airQuality" 
+                 android:onClick="onNoisePollutionToggled"/>
          </LinearLayout>
         
 </RelativeLayout>

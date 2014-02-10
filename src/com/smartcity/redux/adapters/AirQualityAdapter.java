@@ -16,6 +16,7 @@ import com.smartcity.redux.jsonmodel.AirSensor;
 public class AirQualityAdapter implements InfoWindowAdapter{
 	LayoutInflater inflater = null;
 	private TextView textViewTitle;
+	private TextView textViewType;
 	public Map <Marker, AirSensor> hashMap = new HashMap <Marker, AirSensor>();
 
 	public AirQualityAdapter(LayoutInflater inflater) {
@@ -36,7 +37,10 @@ public class AirQualityAdapter implements InfoWindowAdapter{
 			
 			textViewTitle = (TextView) v.findViewById(R.id.textViewTitle);
 			textViewTitle.setText(marker.getTitle());
-
+			
+			textViewType = (TextView) v.findViewById(R.id.textViewType);
+			textViewType.setText("Sensor Type: " + marker.getSnippet());
+			
 			TextView PM10 = (TextView) v.findViewById(R.id.PM10);
 			PM10.setText("PM10: " + sensor.Readings.PM10);
 			
@@ -51,6 +55,7 @@ public class AirQualityAdapter implements InfoWindowAdapter{
 			
 			TextView Noise = (TextView) v.findViewById(R.id.Noise);
 			Noise.setText("Noise: " + sensor.Readings.Noise);
+		
 
 			TextView DateTime = (TextView) v.findViewById(R.id.DateTime);
 			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");

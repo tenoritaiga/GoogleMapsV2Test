@@ -71,7 +71,10 @@ public class AirQualityActivity extends Activity {
 
     private int flag;
         
-    private List<Marker> markers = new ArrayList<Marker>();
+    
+    private List<Marker> air_markers = new ArrayList<Marker>();
+    private List<Marker> noise_markers = new ArrayList<Marker>();
+    private List<Marker> greenhouse_markers = new ArrayList<Marker>();
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,38 +106,64 @@ public class AirQualityActivity extends Activity {
 	                if (checked)
 	                {
 	                	flag = 1;
-	                	while(i < markers.size())
+	                	while(i < noise_markers.size())
 	                	{
-	                		markers.get(i).setVisible(true);
+	                		noise_markers.get(i).setVisible(true);
 	                		i++;
 	                	}
+	   
 	                }
 	                else
 	                {
 	                	flag = 0;
-	                	while(i < markers.size())
+	                	while(i < noise_markers.size())
 	                	{
-	                		markers.get(i).setVisible(false);
+	                		noise_markers.get(i).setVisible(false);
 	                		i++;
 	                	}
+	 
 	                }
 	                break;
 	            case R.id.greenhouseGas:
 	                if (checked)
 	                {
 	                	//markers for greenhouse gas
+	                	flag = 1;
+	                	while(i < greenhouse_markers.size())
+	                	{
+	                		greenhouse_markers.get(i).setVisible(true);
+	                		i++;
+	                	}
 	                }
 	                else
 	                {
+	                	flag = 0;
+	                	while(i < greenhouse_markers.size())
+	                	{
+	                		greenhouse_markers.get(i).setVisible(false);
+	                		i++;
+	                	}
 	                }
 	                break;
 	            case R.id.airQuality:
 	                if (checked)
 	                {
 	                	//markers for air quality
+	                	flag = 1;
+	                	while(i < air_markers.size())
+	                	{
+	                		air_markers.get(i).setVisible(true);
+	                		i++;
+	                	}
 	                }
 	                else
 	                {
+	                	flag = 0;
+	                	while(i < air_markers.size())
+	                	{
+	                		air_markers.get(i).setVisible(false);
+	                		i++;
+	                	}
 	                }
 	                break;
 	        }
@@ -192,7 +221,9 @@ public class AirQualityActivity extends Activity {
 		protected AirQualitySearchResponse doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
 			//String url = "http://pastebin.com/raw.php?i=ikLGcHbY";
-			String url = "http://pastebin.com/raw.php?i=R18q6rPy";
+			//String url = "http://pastebin.com/raw.php?i=R18q6rPy";
+			//String url = "http://pastebin.com/raw.php?i=tY3u23TF";
+			String url = "http://pastebin.com/raw.php?i=Hej6LrLA";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -257,22 +288,39 @@ public class AirQualityActivity extends Activity {
 				
 				for(AirSensor sensor : response.AirSensors)
 				{
-					
+					/**
 					if(Float.parseFloat(sensor.Readings.CO2) <= 10)
 						resID = getResources().getIdentifier("airsensor_g","drawable",getPackageName());
 					else if(Float.parseFloat(sensor.Readings.CO2) > 10 && Float.parseFloat(sensor.Readings.CO2) < 20)
 						resID = getResources().getIdentifier("airsensor_y","drawable",getPackageName());
 					else
 						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+						**/
+					resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
 					
 					//Log.d("STREAM","We got back: " + response.AirSensors);
 					
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
+			        .snippet(sensor.SensorType)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
 					
-					markers.add(marker);
+					
+					
+					if (sensor.SensorType.equals("Air"))
+					{
+						air_markers.add(marker);
+					}
+					else if (sensor.SensorType.equals("Noise"))
+					{
+						noise_markers.add(marker);
+					}
+					else if (sensor.SensorType.equals("Greenhouse"))
+					{
+						greenhouse_markers.add(marker);
+					}
+					
 					
 					adapter.hashMap.put(marker, sensor);
 					
