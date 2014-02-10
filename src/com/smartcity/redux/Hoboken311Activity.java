@@ -92,7 +92,7 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 				int year = cal.get(Calendar.YEAR);
 				int monthOfYear = cal.get(Calendar.MONTH);
 				int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
-				date_reported = new StringBuilder().append(monthOfYear+1).append("/").append(dayOfMonth).append("/").append(year).toString();
+				String date_reported = new StringBuilder().append(monthOfYear+1).append("/").append(dayOfMonth).append("/").append(year).toString();
 				new DatePickerDialog(context, dateOnDateSetListener, year, monthOfYear, dayOfMonth).show();
 			}
 		});
@@ -111,7 +111,7 @@ public class Hoboken311Activity extends Activity implements OnItemSelectedListen
 				Calendar cal = Calendar.getInstance();
 				int hour = cal.get(Calendar.HOUR_OF_DAY);
 				int minute = cal.get(Calendar.MINUTE);
-				time_reported = new StringBuilder().append(String.format("%02d",hour)).append(":").append(String.format("%02d",minute)).toString();
+				String time_reported = new StringBuilder().append(String.format("%02d",hour)).append(":").append(String.format("%02d",minute)).toString();
 				new TimePickerDialog(context, timeOnTimeSetListener, hour, minute, true).show();
 			}
 		});
