@@ -296,7 +296,26 @@ public class AirQualityActivity extends Activity {
 					else
 						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
 						**/
-					resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+					//resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+					
+					if (sensor.SensorType.equals("Air"))
+					{
+						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+					}
+					else if (sensor.SensorType.equals("Noise"))
+					{
+						resID = getResources().getIdentifier("noisesensor","drawable",getPackageName());
+					}
+					else if (sensor.SensorType.equals("Greenhouse"))
+					{
+						resID = getResources().getIdentifier("greenhousesensor","drawable",getPackageName());
+					}
+					else
+					{
+						resID = getResources().getIdentifier("airsensor_y","drawable",getPackageName());
+					}
+					
+					
 					
 					//Log.d("STREAM","We got back: " + response.AirSensors);
 					
