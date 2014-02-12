@@ -1,4 +1,4 @@
-package com.smartcity.redux;
+package com.smartcity.redux.fragments;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +11,19 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.annotation.TargetApi;
+import android.app.Fragment;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -20,60 +33,51 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
+import com.smartcity.redux.R;
 import com.smartcity.redux.adapters.ParkingData;
-import com.smartcity.redux.adapters.ProblemDataAdapter;
-import com.smartcity.redux.jsonmodel.Hoboken311SearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
 import com.smartcity.redux.jsonmodel.ParkingSensor;
-import com.smartcity.redux.jsonmodel.Problem;
 
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.support.v4.app.NavUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.widget.Toast;
-
-public class Hoboken311MapActivity extends Activity {
+public class TrafficMapFragment extends Fragment {
 	
-	private GoogleMap googleMap;
-
+private GoogleMap googleMap;
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_hoboken311_map);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		//super.onCreate(savedInstanceState);
+		//setContentView(R.layout.activity_traffic_map);
+		View root = inflater.inflate(R.layout.activity_traffic_map, null);
 		
 		setupActionBar();
 		
 		new JsonParser().execute();
+		
+		return root;
 	}
 	
 	@Override
-	protected void onResume() {
-			super.onResume();
-			initilizeMap();
+	public void onResume() {
+		super.onResume();
+		initializeMap();
 	}
 
 	/**
 	 * function to load map If map is not created it will create it for you
 	 * */
-	private void initilizeMap() {
+	private void initializeMap() {
 		if (googleMap == null) {
 			googleMap = ((MapFragment) getFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
 
 			// check if map is created successfully or not
 			if (googleMap == null) {
-				Toast.makeText(getApplicationContext(),
+				Toast.makeText(getActivity().getApplicationContext(),
 						"Sorry! unable to create maps", Toast.LENGTH_SHORT)
 						.show();
 			}
 		}
 	}
-	
+
 	private static InputStream retrieveStream(String url) {
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpGet getRequest = new HttpGet(url);
@@ -99,13 +103,12 @@ public class Hoboken311MapActivity extends Activity {
 		return null;
 	}
 	
-	private class JsonParser extends AsyncTask<Void,Void,Hoboken311SearchResponse>{
+	private class JsonParser extends AsyncTask<Void,Void,ParkingSearchResponse>{
 
 		@Override
-		protected Hoboken311SearchResponse doInBackground(Void... params) {
+		protected ParkingSearchResponse doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			String url = "http://pastebin.com/raw.php?i=vTEbTCDT";  // TODO URL (and activity.java)
-			// http://schoboken.cloudapp.net:82/api/GetProblems?
+			String url = "http://pastebin.com/raw.php?i=cS9qdnXd";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -113,7 +116,7 @@ public class Hoboken311MapActivity extends Activity {
 			try{
 				Gson gson = new Gson();
 				Reader reader = new InputStreamReader(stream);
-				Hoboken311SearchResponse response = gson.fromJson(reader,Hoboken311SearchResponse.class);
+				ParkingSearchResponse response = gson.fromJson(reader,ParkingSearchResponse.class);
 				return response;
 			}
 			catch(NullPointerException npe){
@@ -122,15 +125,14 @@ public class Hoboken311MapActivity extends Activity {
 			
 			return null;
 		}
-		
 		@Override
-		protected void onPostExecute(Hoboken311SearchResponse response){
+		protected void onPostExecute(ParkingSearchResponse response){
 
 			
 			try {
 
 				// Loading map
-				initilizeMap();
+				initializeMap();
 
 				// Changing map type
 				googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -159,50 +161,30 @@ public class Hoboken311MapActivity extends Activity {
 				
 				googleMap.setTrafficEnabled(true);
 				
-				//Set up custom info window adapter
+				//sets the padding over to allow for a left side menu
+				//googleMap.setPadding(0, 0, 100, 0);
 				
-				ProblemDataAdapter adapter = new ProblemDataAdapter(getLayoutInflater());
-				// TODO this is where sub-classes are used (below, and in the adapter)
+				//Set up custom  info window adapter
+				
+				ParkingData adapter = new ParkingData(getActivity().getLayoutInflater());
+				
 				double latitude = 40.745066;
 				double longitude = -74.024294;
 				
 				String res = "markercolor";
 				int resID;
 				
-				for(Problem problem : response.Problems){
-				//	System.out.println(problem.ProblemDetails.Category.toString());
-					if(problem.ProblemDetails.Category.toString().equals("Utilities & Flooding") || 
-							problem.ProblemDetails.Category.toString().equals("Signs, Signals & Lights") ||
-							problem.ProblemDetails.Category.toString().equals("Health & Social Services") ||
-							problem.ProblemDetails.Category.toString().equals("Animals"))
-					{
-						resID = getResources().getIdentifier("alert","drawable",getPackageName());
-						// RED
-					}
-					else if(problem.ProblemDetails.Category.toString().equals("Parks & Trees"))
-						// GREEN
-					{
-						resID = getResources().getIdentifier("alert_g","drawable",getPackageName());
-					}
-					else if(problem.ProblemDetails.Category.toString().equals("Business & Construction") ||
-							problem.ProblemDetails.Category.toString().equals("Garbage, Recycling & Graffiti") ||
-							problem.ProblemDetails.Category.toString().equals("Parking") ||
-							problem.ProblemDetails.Category.toString().equals("Transportation, Sidewalks & Streets"))
-					{
-						resID = getResources().getIdentifier("alert_o","drawable",getPackageName());
-						// ORANGE
-					}
-					else
-					{
-						resID = getResources().getIdentifier("alert_y","drawable",getPackageName());
-						// DEFAULT CASE, YELLOW
-					}
-					//Log.d("STREAM","We got back: " + response.Problems);
+				for(ParkingSensor sensor : response.ParkingSensors){
+					resID = getResources().getIdentifier("parking_r","drawable",getActivity().getPackageName());
+					//Log.d("STREAM","We got back: " + response.Sensors);
 					Marker marker = googleMap.addMarker(new MarkerOptions()
-			        .position(new LatLng(problem.Location.Latitude,problem.Location.Longitude))
-			        .title(problem.ProblemDetails.Name)
+			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
+			        .title(sensor.SensorName)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
-					adapter.hashMap.put(marker, problem);
+					
+					adapter.hashMap.put(marker, sensor);
+					
+					//marker.setVisible(false);
 				}
 				
 				googleMap.setInfoWindowAdapter(adapter);
@@ -220,17 +202,14 @@ public class Hoboken311MapActivity extends Activity {
 			}
 		}
 	}
-	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
-	
-	/*
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			// This ID represents the Home or Up button. In the case of this
@@ -240,11 +219,10 @@ public class Hoboken311MapActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	*/
 
 }

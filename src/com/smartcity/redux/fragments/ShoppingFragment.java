@@ -1,36 +1,44 @@
-package com.smartcity.redux;
+package com.smartcity.redux.fragments;
 
+import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 
-public class ShoppingActivity extends Activity {
+import com.smartcity.redux.R;
 
+public class ShoppingFragment extends Fragment {
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_shopping);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		//super.onCreate(savedInstanceState);
+		//setContentView(R.layout.activity_shopping);
+		View root = inflater.inflate(R.layout.activity_shopping, null);
+		
 		setupActionBar();
 		
-		 WebView webview = new WebView(this);
-		 setContentView(webview);
+		 WebView webview = new WebView(getActivity());
+		 getActivity().setContentView(webview);
 		 
 		 webview.getSettings().setBuiltInZoomControls(true);
 		 
 		 webview.loadUrl("http://www.yelp.com/search?cflt=shopping&find_loc=Hoboken%2C+NJ%2C+USA");
 		
 		//http://www.yelp.com/search?cflt=shopping&find_loc=Hoboken%2C+NJ%2C+USA
+		 
+		 return root;
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
 	
@@ -45,7 +53,7 @@ public class ShoppingActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

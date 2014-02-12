@@ -2,30 +2,10 @@ package com.smartcity.redux;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.maps.MapView;
-import com.microsoft.windowsazure.messaging.NotificationHub;
-import com.smartcity.redux.adapters.SlidingMenuAdapter;
-import com.smartcity.redux.fragments.EmergencyCategoryFragment;
-import com.smartcity.redux.fragments.Hoboken311Fragment;
-import com.smartcity.redux.fragments.InboxFragment;
-import com.smartcity.redux.fragments.MainFragment;
-import com.smartcity.redux.fragments.MapCategoryFragment;
-import com.smartcity.redux.fragments.ProfileFragment;
-import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
-import com.smartcity.redux.slidingmenu.NavDrawerItem;
-import com.smartcity.redux.fragments.CityCategoryFragment;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,26 +15,45 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.microsoft.windowsazure.messaging.NotificationHub;
+import com.smartcity.redux.adapters.SlidingMenuAdapter;
+import com.smartcity.redux.fragments.AirMapFragment;
+import com.smartcity.redux.fragments.AirQualityFragment;
+import com.smartcity.redux.fragments.CityCategoryFragment;
+import com.smartcity.redux.fragments.CityEventsFragment;
+import com.smartcity.redux.fragments.DiningFragment;
+import com.smartcity.redux.fragments.DirectionsFragment;
+import com.smartcity.redux.fragments.DirectionsInputFragment;
+import com.smartcity.redux.fragments.EmergencyCategoryFragment;
+import com.smartcity.redux.fragments.EmergencyNeedFragment;
+import com.smartcity.redux.fragments.EmergencyOfferFragment;
+import com.smartcity.redux.fragments.EmergencyReportFragment;
+import com.smartcity.redux.fragments.EnergyCalculatorFragment;
+import com.smartcity.redux.fragments.Hoboken311Fragment;
+import com.smartcity.redux.fragments.MainFragment;
+import com.smartcity.redux.fragments.MapCategoryFragment;
+import com.smartcity.redux.fragments.MyEnergyFragment;
+import com.smartcity.redux.fragments.MyGasFragment;
+import com.smartcity.redux.fragments.MyWaterFragment;
+import com.smartcity.redux.fragments.ProfileFragment;
+import com.smartcity.redux.fragments.SettingsFragment;
+import com.smartcity.redux.fragments.ShoppingFragment;
+import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
+import com.smartcity.redux.fragments.TrafficMapFragment;
+import com.smartcity.redux.slidingmenu.NavDrawerItem;
 
 public class MainActivity extends Activity {
 	
@@ -223,7 +222,7 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
 			Intent intent = new Intent(this, MainActivity.class);
-			intent = new Intent(this, SettingsActivity.class);
+			intent = new Intent(this, SettingsFragment.class);
 			startActivity(intent);
 			return true;
 		default:
@@ -427,7 +426,8 @@ public class MainActivity extends Activity {
 			fragment = new MainFragment();
 			break;
 		case 1:
-			fragment = new InboxFragment();
+			//should be InboxFragment, change this back
+			fragment = new MainFragment();
 			break;
 		case 2:
 			fragment = new MapCategoryFragment();
@@ -515,93 +515,93 @@ public class MainActivity extends Activity {
 
 	
 	public void startAirmapActivity(View view){
-		Intent intent = new Intent(MainActivity.this,AirMapActivity.class);
+		Intent intent = new Intent(MainActivity.this,AirMapFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startSettingsActivity(View view){
-		Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+		Intent intent = new Intent(MainActivity.this,SettingsFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startTrafficActivity(View view){
-		Intent intent = new Intent(MainActivity.this,TrafficMapActivity.class);
+		Intent intent = new Intent(MainActivity.this,TrafficMapFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startAirQualityActivity(View view){
-		Intent intent = new Intent(MainActivity.this,AirQualityActivity.class);
+		Intent intent = new Intent(MainActivity.this,AirQualityFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startProfileActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+		Intent intent = new Intent(MainActivity.this,ProfileFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startDirectionsActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DirectionsActivity.class);
+		Intent intent = new Intent(MainActivity.this,DirectionsFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startDirectionsInputActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DirectionsInputActivity.class);
+		Intent intent = new Intent(MainActivity.this,DirectionsInputFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	
 	public void startHoboken311Activity(View view) {
-		Intent intent = new Intent(MainActivity.this,Hoboken311Activity.class);
+		Intent intent = new Intent(MainActivity.this,Hoboken311Fragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startMyGasActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,MyGasActivity.class);
+		Intent intent = new Intent(MainActivity.this,MyGasFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startMyEnergyActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,MyEnergyActivity.class);
+		Intent intent = new Intent(MainActivity.this,MyEnergyFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startMyWaterActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,MyWaterActivity.class);
+		Intent intent = new Intent(MainActivity.this,MyWaterFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startEnergyCalculatorActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EnergyCalculatorActivity.class);
+		Intent intent = new Intent(MainActivity.this,EnergyCalculatorFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startCityEventsActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,CityEventsActivity.class);
+		Intent intent = new Intent(MainActivity.this,CityEventsFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startDiningActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DiningActivity.class);
+		Intent intent = new Intent(MainActivity.this,DiningFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startShoppingActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,ShoppingActivity.class);
+		Intent intent = new Intent(MainActivity.this,ShoppingFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startEmergencyReportActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EmergencyReportActivity.class);
+		Intent intent = new Intent(MainActivity.this,EmergencyReportFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startEmergencyNeedActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EmergencyNeedActivity.class);
+		Intent intent = new Intent(MainActivity.this,EmergencyNeedFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 	
 	public void startEmergencyOfferActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EmergencyOfferActivity.class);
+		Intent intent = new Intent(MainActivity.this,EmergencyOfferFragment.class);
 		MainActivity.this.startActivity(intent);
 	}
 }

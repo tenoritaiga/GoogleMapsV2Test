@@ -2,9 +2,9 @@ package com.smartcity.redux.fragments;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,20 +16,20 @@ import android.view.ViewGroup;
 import com.smartcity.redux.R;
 import com.smartcity.redux.adapters.InboxPagerAdapter;
 
-public class InboxFragment extends Fragment implements ActionBar.TabListener {
+public class InboxFragment extends FragmentActivity implements ActionBar.TabListener {
 	
 	InboxPagerAdapter mInboxPagerAdapter;
 	ViewPager mViewPager;
 	Activity activity;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		//super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_inbox);
-		View root = inflater.inflate(R.layout.activity_inbox, null);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_inbox);
+		//View root = inflater.inflate(R.layout.activity_inbox, null);
 		
 		// Set up the action bar.
-				final ActionBar actionBar = getActivity().getActionBar();
+				final ActionBar actionBar = getActionBar();
 				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 				// Show the Up button in the action bar.
 				actionBar.setDisplayHomeAsUpEnabled(true);
@@ -40,7 +40,7 @@ public class InboxFragment extends Fragment implements ActionBar.TabListener {
 						this, getSupportFragmentManager());
 
 				// Set up the ViewPager with the sections adapter.
-				mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
+				mViewPager = (ViewPager) findViewById(R.id.pager);
 				mViewPager.setAdapter(mInboxPagerAdapter);
 
 				// When swiping between different sections, select the corresponding
@@ -66,16 +66,18 @@ public class InboxFragment extends Fragment implements ActionBar.TabListener {
 							.setTabListener(this));
 				}
 				
-				activity = getActivity();
+				activity = this;
 		
 		
-		return root;
+		//return root;
 	}
 
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		inflater.inflate(R.menu.inbox, menu);
+		getMenuInflater().inflate(R.menu.inbox, menu);
+		
+		return true;
 	}
 	
 	/**

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.smartcity.redux.InboxActivity;
+import com.smartcity.redux.fragments.InboxFragment;
 import com.smartcity.redux.R;
 import com.smartcity.redux.fragments.ReceivedMessagesFragment;
 import com.smartcity.redux.fragments.SentMessagesFragment;
@@ -18,11 +18,11 @@ public class InboxPagerAdapter extends FragmentPagerAdapter {
 	/**
 	 * 
 	 */
-	private InboxActivity myInboxActivity;
+	private InboxFragment myInboxFragment;
 
-	public InboxPagerAdapter(InboxActivity myInboxActivity, FragmentManager fm) {
+	public InboxPagerAdapter(InboxFragment myInboxFragment, FragmentManager fm) {
 		super(fm);
-		this.myInboxActivity = myInboxActivity;
+		this.myInboxFragment = myInboxFragment;
 	}
 
 	/**
@@ -58,9 +58,9 @@ public class InboxPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return this.myInboxActivity.getString(R.string.title_section1_inbox).toUpperCase(l);
+			return this.myInboxFragment.getString(R.string.title_section1_inbox).toUpperCase(l);
 		case 1:
-			return this.myInboxActivity.getString(R.string.title_section2_inbox).toUpperCase(l);
+			return this.myInboxFragment.getString(R.string.title_section2_inbox).toUpperCase(l);
 		}
 		return null;
 	}

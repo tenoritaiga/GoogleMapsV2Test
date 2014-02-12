@@ -1,26 +1,28 @@
-package com.smartcity.redux;
+package com.smartcity.redux.fragments;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-/**
- * Activity which displays a login screen to the user, offering registration as
- * well.
- */
-public class LoginActivity extends Activity {
+import com.smartcity.redux.R;
+//import com.smartcity.redux.LoginActivity.UserLoginTask;
+
+public class LoginFragment extends Fragment {
+	
 	/**
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
@@ -50,17 +52,17 @@ public class LoginActivity extends Activity {
 	private TextView mLoginStatusMessageView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.activity_login);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		//super.onCreate(savedInstanceState);
+		//setContentView(R.layout.activity_login);
+		View root = inflater.inflate(R.layout.activity_login, null);
 
 		// Set up the login form.
-		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
-		mEmailView = (EditText) findViewById(R.id.email);
+		mEmail = getActivity().getIntent().getStringExtra(EXTRA_EMAIL);
+		mEmailView = (EditText) getActivity().findViewById(R.id.email);
 		mEmailView.setText(mEmail);
 
-		mPasswordView = (EditText) findViewById(R.id.password);
+		mPasswordView = (EditText) getActivity().findViewById(R.id.password);
 		mPasswordView
 				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 					@Override
@@ -74,30 +76,31 @@ public class LoginActivity extends Activity {
 					}
 				});
 
-		mLoginFormView = findViewById(R.id.login_form);
-		mLoginStatusView = findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
+		mLoginFormView = getActivity().findViewById(R.id.login_form);
+		mLoginStatusView = getActivity().findViewById(R.id.login_status);
+		mLoginStatusMessageView = (TextView) getActivity().findViewById(R.id.login_status_message);
 
-		findViewById(R.id.sign_in_button).setOnClickListener(
+		getActivity().findViewById(R.id.sign_in_button).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
 						attemptLogin();
 					}
 				});
+		
+		return root;
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		//super.onCreateOptionsMenu(menu);
+		inflater.inflate(R.menu.login, menu);
 	}
 	
-	public void startMainActivity(View view){
-		Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-		LoginActivity.this.startActivity(intent);
-	}
+//	public void startMainActivity(View view){
+//		Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//		LoginActivity.this.startActivity(intent);
+//	}
 
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
@@ -231,7 +234,9 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
-				finish();
+				//finish();
+				
+				//TODO: Fix this
 			} else {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));
@@ -245,4 +250,5 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 		}
 	}
+
 }

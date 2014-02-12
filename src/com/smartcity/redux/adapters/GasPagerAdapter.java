@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.smartcity.redux.MyGasActivity;
+import com.smartcity.redux.fragments.MyGasFragment;
 import com.smartcity.redux.R;
 import com.smartcity.redux.fragments.EnterGasConsumptionFragment;
 import com.smartcity.redux.fragments.ViewGasConsumptionFragment;
@@ -20,11 +20,11 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 	/**
 	 * 
 	 */
-	private MyGasActivity myGasActivity;
+	private MyGasFragment MyGasFragment;
 
-	public GasPagerAdapter(MyGasActivity myGasActivity, FragmentManager fm) {
+	public GasPagerAdapter(MyGasFragment MyGasFragment, FragmentManager fm) {
 		super(fm);
-		this.myGasActivity = myGasActivity;
+		this.MyGasFragment = MyGasFragment;
 	}
 
 	/**
@@ -60,9 +60,9 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return this.myGasActivity.getString(R.string.title_section1_gas).toUpperCase(l);
+			return this.MyGasFragment.getString(R.string.title_section1_gas).toUpperCase(l);
 		case 1:
-			return this.myGasActivity.getString(R.string.title_section2_gas).toUpperCase(l);
+			return this.MyGasFragment.getString(R.string.title_section2_gas).toUpperCase(l);
 		}
 		return null;
 	}

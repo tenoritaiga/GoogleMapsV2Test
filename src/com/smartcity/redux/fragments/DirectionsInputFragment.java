@@ -1,4 +1,4 @@
-package com.smartcity.redux;
+package com.smartcity.redux.fragments;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,13 +12,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.smartcity.redux.adapters.PlacesAutoCompleteAdapter;
-
+import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -31,8 +29,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class DirectionsInputActivity extends Activity implements OnItemClickListener {
+import com.smartcity.redux.R;
+import com.smartcity.redux.adapters.PlacesAutoCompleteAdapter;
 
+public class DirectionsInputFragment extends FragmentActivity implements OnItemClickListener {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -134,7 +135,7 @@ public class DirectionsInputActivity extends Activity implements OnItemClickList
 	}
 	
 	public void startDirectionsInfoActivity(View view) {
-		Intent intent = new Intent(DirectionsInputActivity.this,DirectionsInfoActivity.class);
+		Intent intent = new Intent(DirectionsInputFragment.this,DirectionsInfoFragment.class);
 		
 		EditText startingPoint = (EditText) findViewById(R.id.startingPointInput);
 		EditText destination = (EditText) findViewById(R.id.destinationInput);
@@ -148,7 +149,7 @@ public class DirectionsInputActivity extends Activity implements OnItemClickList
 		intent.putExtra("destination", destinationText);
 		intent.putExtra("transitType",transitType);
 		
-		DirectionsInputActivity.this.startActivity(intent);
+		DirectionsInputFragment.this.startActivity(intent);
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)

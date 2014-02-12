@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.smartcity.redux.MyEnergyActivity;
+import com.smartcity.redux.fragments.MyEnergyFragment;
 import com.smartcity.redux.R;
 import com.smartcity.redux.fragments.EnterEnergyConsumptionFragment;
 import com.smartcity.redux.fragments.ViewEnergyConsumptionFragment;
@@ -18,11 +18,11 @@ import com.smartcity.redux.fragments.ViewEnergyConsumptionFragment;
  */
 public class EnergyPagerAdapter extends FragmentPagerAdapter {
 
-	private MyEnergyActivity myEnergyActivity;
+	private MyEnergyFragment MyEnergyFragment;
 	
-	public EnergyPagerAdapter(MyEnergyActivity myEnergyActivity, FragmentManager fm) {
+	public EnergyPagerAdapter(MyEnergyFragment MyEnergyFragment, FragmentManager fm) {
 		super(fm);
-		this.myEnergyActivity = myEnergyActivity;
+		this.MyEnergyFragment = MyEnergyFragment;
 	}
 
 	@Override
@@ -52,9 +52,9 @@ public class EnergyPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return this.myEnergyActivity.getString(R.string.title_section1_energy).toUpperCase(l);
+			return this.MyEnergyFragment.getString(R.string.title_section1_energy).toUpperCase(l);
 		case 1:
-			return this.myEnergyActivity.getString(R.string.title_section2_energy).toUpperCase(l);
+			return this.MyEnergyFragment.getString(R.string.title_section2_energy).toUpperCase(l);
 		}
 		return null;
 	}

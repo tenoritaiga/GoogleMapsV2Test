@@ -2,15 +2,15 @@ package com.smartcity.redux.adapters;
 
 import java.util.Locale;
 
-import com.smartcity.redux.MyWaterActivity;
-import com.smartcity.redux.R;
-import com.smartcity.redux.fragments.EnterWaterConsumptionFragment;
-import com.smartcity.redux.fragments.ViewWaterConsumptionFragment;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.smartcity.redux.R;
+import com.smartcity.redux.fragments.EnterWaterConsumptionFragment;
+import com.smartcity.redux.fragments.MyWaterFragment;
+import com.smartcity.redux.fragments.ViewWaterConsumptionFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -18,11 +18,11 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class WaterPagerAdapter extends FragmentPagerAdapter {
 
-	private MyWaterActivity myWaterActivity;
+	private MyWaterFragment MyWaterFragment;
 	
-	public WaterPagerAdapter(MyWaterActivity myWaterActivity, FragmentManager fm) {
+	public WaterPagerAdapter(MyWaterFragment MyWaterFragment, FragmentManager fm) {
 		super(fm);
-		this.myWaterActivity = myWaterActivity;
+		this.MyWaterFragment = MyWaterFragment;
 	}
 
 	@Override
@@ -52,9 +52,9 @@ public class WaterPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return this.myWaterActivity.getString(R.string.title_section1_water).toUpperCase(l);
+			return this.MyWaterFragment.getString(R.string.title_section1_water).toUpperCase(l);
 		case 1:
-			return this.myWaterActivity.getString(R.string.title_section2_water).toUpperCase(l);
+			return this.MyWaterFragment.getString(R.string.title_section2_water).toUpperCase(l);
 		}
 		return null;
 	}

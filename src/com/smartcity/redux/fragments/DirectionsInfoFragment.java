@@ -3,16 +3,6 @@ package com.smartcity.redux.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.smartcity.redux.DirectionsActivity;
-import com.smartcity.redux.DirectionsInfoActivity;
-import com.smartcity.redux.R;
-import com.smartcity.redux.route.Route;
-import com.smartcity.redux.route.Routing;
-import com.smartcity.redux.route.Segment;
-import com.smartcity.redux.route.Routing.TravelMode;
-
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Intent;
@@ -31,6 +21,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.smartcity.redux.R;
+import com.smartcity.redux.route.Route;
+import com.smartcity.redux.route.Routing;
+import com.smartcity.redux.route.Routing.TravelMode;
+import com.smartcity.redux.route.Segment;
 
 public class DirectionsInfoFragment extends Fragment {
 	
@@ -198,7 +196,7 @@ private static final String TAG = "DirectionsInfoActivity";
     
     
 	public void startDirectionsActivity(View view) {
-		Intent intent = new Intent(getActivity(),DirectionsActivity.class);
+		Intent intent = new Intent(getActivity(),DirectionsFragment.class);
 		
 		intent.putExtra("startingPoint",startingPoint);
 		intent.putExtra("destination", destination);

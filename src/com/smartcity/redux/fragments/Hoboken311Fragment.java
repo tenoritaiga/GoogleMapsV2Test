@@ -26,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,9 +35,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
-import com.smartcity.redux.Hoboken311MapActivity;
 import com.smartcity.redux.R;
 
 public class Hoboken311Fragment extends Fragment implements OnItemSelectedListener {
@@ -47,7 +46,7 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
 	}
 	
 	public void startHoboken311MapActivity(View view){
-		Intent intent = new Intent(getActivity(),Hoboken311MapActivity.class);
+		Intent intent = new Intent(getActivity(),Hoboken311MapFragment.class);
 		getActivity().startActivity(intent);
 	}
 	

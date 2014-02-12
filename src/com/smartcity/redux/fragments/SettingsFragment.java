@@ -1,29 +1,36 @@
-package com.smartcity.redux;
+package com.smartcity.redux.fragments;
 
+import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.support.v4.app.NavUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class SettingsActivity extends Activity {
+import com.smartcity.redux.R;
 
+public class SettingsFragment extends Fragment {
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_settings);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		//super.onCreate(savedInstanceState);
+		//setContentView(R.layout.activity_settings);
+		View root = inflater.inflate(R.layout.activity_settings, null);
 		
 		setupActionBar();
-
+		
+		return root;
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings, menu);
-		return true;
+		inflater.inflate(R.menu.settings, menu);
 	}
 	/**
 	 * Set up the {@link android.app.ActionBar}.
@@ -31,7 +38,7 @@ public class SettingsActivity extends Activity {
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
 
@@ -46,7 +53,7 @@ public class SettingsActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
