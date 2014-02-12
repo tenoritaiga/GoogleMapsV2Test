@@ -219,7 +219,7 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		// Handle action bar actions click
-		switch (item.getItemId()) {
+		switch (item.getItemId()) {	
 		case R.id.action_settings:
 			Intent intent = new Intent(this, MainActivity.class);
 			intent = new Intent(this, SettingsFragment.class);

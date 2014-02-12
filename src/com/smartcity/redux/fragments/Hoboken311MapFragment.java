@@ -56,13 +56,13 @@ public class Hoboken311MapFragment extends Fragment {
 	@Override
 	public void onResume() {
 			super.onResume();
-			initilizeMap();
+			initializeMap();
 	}
 
 	/**
 	 * function to load map If map is not created it will create it for you
 	 * */
-	private void initilizeMap() {
+	private void initializeMap() {
 		if (googleMap == null) {
 			googleMap = ((MapFragment) getFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
@@ -132,7 +132,7 @@ public class Hoboken311MapFragment extends Fragment {
 			try {
 
 				// Loading map
-				initilizeMap();
+				initializeMap();
 
 				// Changing map type
 				googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
