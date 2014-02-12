@@ -31,7 +31,8 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/noisePollution"
-             	android:onClick="onNoisePollutionToggled"/>
+             	android:onClick="onNoisePollutionToggled"
+             	android:checked="true"/>
              
 
              <CheckBox
@@ -39,14 +40,16 @@
                  android:layout_width="130dp"
                  android:layout_height="wrap_content"
                  android:text="@string/greenhouseGas" 
-                 android:onClick="onNoisePollutionToggled"/>
+                 android:onClick="onNoisePollutionToggled"
+                 android:checked="true"/>
 
              <CheckBox
                  android:id="@+id/airQuality"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/airQuality" 
-                 android:onClick="onNoisePollutionToggled"/>
+                 android:onClick="onNoisePollutionToggled"
+                 android:checked="true"/>
          </LinearLayout>
         
 </RelativeLayout>
