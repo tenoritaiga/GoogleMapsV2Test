@@ -43,22 +43,17 @@ import com.smartcity.redux.jsonmodel.AirSensor;
 
 public class AirQualityFragment extends Fragment {
 	
-private GoogleMap googleMap;
-	
-    private CheckBox mPollutionCheckbox;
-
-    private int flag;
-
-    private List<Marker> air_markers = new ArrayList<Marker>();
-    private List<Marker> noise_markers = new ArrayList<Marker>();
-    private List<Marker> greenhouse_markers = new ArrayList<Marker>();
+	private GoogleMap googleMap;
+	private CheckBox mPollutionCheckbox;
+	private List<Marker> air_markers = new ArrayList<Marker>();
+	private List<Marker> noise_markers = new ArrayList<Marker>();
+	private List<Marker> greenhouse_markers = new ArrayList<Marker>();
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		//super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_air_quality);
 		View root = inflater.inflate(R.layout.activity_air_quality, null);
-		
 		setupActionBar();
 		
 		new JsonParser().execute();
@@ -75,9 +70,8 @@ private GoogleMap googleMap;
 	public void onNoisePollutionToggled(View view) {
 	        // Is the view now checked?
 	        boolean checked = ((CheckBox) view).isChecked();
-	        int i;
-	        
-	        i = 0;
+	        int i = 0;
+	        int flag;
 	        
 	        // Check which checkbox was clicked
 	        switch(view.getId()) {
@@ -148,13 +142,7 @@ private GoogleMap googleMap;
 	        }
 	    }
 	
-	//public void showMarkers(Marker marker)
-	//{
-	//}
-	
-	/**
-	 * function to load map If map is not created it will create it for you
-	 * */
+	//Load map, creating it if it does not exist
 	private void initializeMap() {
 		if (googleMap == null) {
 			googleMap = ((MapFragment) getFragmentManager()
@@ -221,10 +209,7 @@ private GoogleMap googleMap;
 		}
 		@Override
 		protected void onPostExecute(AirQualitySearchResponse response){
-
-			
 			try {
-
 				// Loading map
 				initializeMap();
 
@@ -259,6 +244,7 @@ private GoogleMap googleMap;
 				//Set up custom  info window adapter
 				AirQualityAdapter adapter = new AirQualityAdapter(getActivity().getLayoutInflater());
 				
+				//Center to Hoboken, NJ
 				double latitude = 40.745066;
 				double longitude = -74.024294;
 				
@@ -274,8 +260,9 @@ private GoogleMap googleMap;
 						resID = getResources().getIdentifier("airsensor_y","drawable",getPackageName());
 					else
 						resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
-						**/
-					//resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+						
+					resID = getResources().getIdentifier("airsensor_r","drawable",getPackageName());
+					**/
 					
 					if (sensor.SensorType.equals("Air"))
 					{
@@ -294,8 +281,6 @@ private GoogleMap googleMap;
 						resID = getResources().getIdentifier("airsensor_y","drawable",getActivity().getPackageName());
 					}
 					
-					
-					
 					//Log.d("STREAM","We got back: " + response.AirSensors);
 					
 					Marker marker = googleMap.addMarker(new MarkerOptions()
@@ -303,9 +288,7 @@ private GoogleMap googleMap;
 			        .title(sensor.SensorName)
 			        .snippet(sensor.SensorType)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
-					
-					
-					
+
 					if (sensor.SensorType.equals("Air"))
 					{
 						air_markers.add(marker);
@@ -318,25 +301,21 @@ private GoogleMap googleMap;
 					{
 						greenhouse_markers.add(marker);
 					}
-					
-					
+
 					adapter.hashMap.put(marker, sensor);
 					
 				}
-				
-				
-				
+
 				googleMap.setInfoWindowAdapter(adapter);
-				
-						
+
 				//pass into the users current location
 				// Move the camera to last position with a zoom level
-						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(new LatLng(latitude,
-										longitude)).zoom(15).build();
-
-						googleMap.animateCamera(CameraUpdateFactory
-								.newCameraPosition(cameraPosition));
+				CameraPosition cameraPosition = new CameraPosition.Builder()
+						.target(new LatLng(latitude,
+								longitude)).zoom(15).build();
+				
+				googleMap.animateCamera(CameraUpdateFactory
+						.newCameraPosition(cameraPosition));
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -356,13 +335,6 @@ private GoogleMap googleMap;
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
 			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}

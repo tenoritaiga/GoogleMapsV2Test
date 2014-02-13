@@ -6,8 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -30,29 +30,14 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.microsoft.windowsazure.messaging.NotificationHub;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
-import com.smartcity.redux.fragments.AirMapFragment;
-import com.smartcity.redux.fragments.AirQualityFragment;
 import com.smartcity.redux.fragments.CityCategoryFragment;
-import com.smartcity.redux.fragments.CityEventsFragment;
-import com.smartcity.redux.fragments.DiningFragment;
-import com.smartcity.redux.fragments.DirectionsFragment;
-import com.smartcity.redux.fragments.DirectionsInputFragment;
 import com.smartcity.redux.fragments.EmergencyCategoryFragment;
-import com.smartcity.redux.fragments.EmergencyNeedFragment;
-import com.smartcity.redux.fragments.EmergencyOfferFragment;
-import com.smartcity.redux.fragments.EmergencyReportFragment;
-import com.smartcity.redux.fragments.EnergyCalculatorFragment;
 import com.smartcity.redux.fragments.Hoboken311Fragment;
 import com.smartcity.redux.fragments.MainFragment;
 import com.smartcity.redux.fragments.MapCategoryFragment;
-import com.smartcity.redux.fragments.MyEnergyFragment;
-import com.smartcity.redux.fragments.MyGasFragment;
-import com.smartcity.redux.fragments.MyWaterFragment;
 import com.smartcity.redux.fragments.ProfileFragment;
 import com.smartcity.redux.fragments.SettingsFragment;
-import com.smartcity.redux.fragments.ShoppingFragment;
 import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
-import com.smartcity.redux.fragments.TrafficMapFragment;
 import com.smartcity.redux.slidingmenu.NavDrawerItem;
 
 public class MainActivity extends Activity {
@@ -221,10 +206,14 @@ public class MainActivity extends Activity {
 		// Handle action bar actions click
 		switch (item.getItemId()) {	
 		case R.id.action_settings:
-			Intent intent = new Intent(this, MainActivity.class);
-			intent = new Intent(this, SettingsFragment.class);
-			startActivity(intent);
-			return true;
+            Fragment frag = new SettingsFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.frame_container, frag);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(null);
+            ft.commit();
+            return true;
+         
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -514,94 +503,94 @@ public class MainActivity extends Activity {
 	}
 
 	
-	public void startAirmapActivity(View view){
-		Intent intent = new Intent(MainActivity.this,AirMapFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startSettingsActivity(View view){
-		Intent intent = new Intent(MainActivity.this,SettingsFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startTrafficActivity(View view){
-		Intent intent = new Intent(MainActivity.this,TrafficMapFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startAirQualityActivity(View view){
-		Intent intent = new Intent(MainActivity.this,AirQualityFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startProfileActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,ProfileFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startDirectionsActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DirectionsFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startDirectionsInputActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DirectionsInputFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	
-	public void startHoboken311Activity(View view) {
-		Intent intent = new Intent(MainActivity.this,Hoboken311Fragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startMyGasActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,MyGasFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startMyEnergyActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,MyEnergyFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startMyWaterActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,MyWaterFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startEnergyCalculatorActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EnergyCalculatorFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startCityEventsActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,CityEventsFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startDiningActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,DiningFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startShoppingActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,ShoppingFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startEmergencyReportActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EmergencyReportFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startEmergencyNeedActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EmergencyNeedFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
-	
-	public void startEmergencyOfferActivity(View view) {
-		Intent intent = new Intent(MainActivity.this,EmergencyOfferFragment.class);
-		MainActivity.this.startActivity(intent);
-	}
+//	public void startAirmapActivity(View view){
+//		Intent intent = new Intent(MainActivity.this,AirMapFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startSettingsActivity(View view){
+//		Intent intent = new Intent(MainActivity.this,SettingsFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startTrafficActivity(View view){
+//		Intent intent = new Intent(MainActivity.this,TrafficMapFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startAirQualityActivity(View view){
+//		Intent intent = new Intent(MainActivity.this,AirQualityFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startProfileActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,ProfileFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startDirectionsActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,DirectionsFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startDirectionsInputActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,DirectionsInputFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	
+//	public void startHoboken311Activity(View view) {
+//		Intent intent = new Intent(MainActivity.this,Hoboken311Fragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startMyGasActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,MyGasFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startMyEnergyActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,MyEnergyFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startMyWaterActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,MyWaterFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startEnergyCalculatorActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,EnergyCalculatorFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startCityEventsActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,CityEventsFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startDiningActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,DiningFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startShoppingActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,ShoppingFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startEmergencyReportActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,EmergencyReportFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startEmergencyNeedActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,EmergencyNeedFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
+//	
+//	public void startEmergencyOfferActivity(View view) {
+//		Intent intent = new Intent(MainActivity.this,EmergencyOfferFragment.class);
+//		MainActivity.this.startActivity(intent);
+//	}
 }

@@ -47,15 +47,12 @@ public class DirectionsInputFragment extends FragmentActivity implements OnItemC
 		
 		destinationInput.setAdapter(new PlacesAutoCompleteAdapter(this, android.R.layout.test_list_item));
 		destinationInput.setOnItemClickListener(this);
-		
-		
-		
+
 		 API_KEY = getResources().getText(R.string.MapsAPIKey).toString();
 		 
 		 Log.d("APIKEY",API_KEY);
 		
 		setupActionBar();
-
 	}
 	
 	public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -162,13 +159,6 @@ public class DirectionsInputFragment extends FragmentActivity implements OnItemC
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}

@@ -123,13 +123,13 @@ protected void displayNotification(){
 	    public SquareImageAdapter(Context context) {
 	        inflater = LayoutInflater.from(context);
 
-	        items.add(new Item("Item 1",       R.drawable.hoboken3));
-	        items.add(new Item("Item 2",   R.drawable.hoboken2));
-	        items.add(new Item("Item 3", R.drawable.hoboken1));
-	        items.add(new Item("Item 4",      R.drawable.hoboken1));
-	        items.add(new Item("Item 5",     R.drawable.hoboken1));
-	        items.add(new Item("Item 6",      R.drawable.hoboken1));
-	        items.add(new Item("Item 7",      R.drawable.hoboken1));
+	        items.add(new Item("Item 1",	R.drawable.blue));
+	        items.add(new Item("Item 2",	R.drawable.cyan));
+	        items.add(new Item("Item 3",	R.drawable.yellow));
+	        items.add(new Item("Item 4",	R.drawable.orange));
+	        items.add(new Item("Item 5",	R.drawable.magenta));
+	        items.add(new Item("Item 6",	R.drawable.green));
+	        items.add(new Item("Item 7",	R.drawable.violet));
 	    }
 
 	    @Override

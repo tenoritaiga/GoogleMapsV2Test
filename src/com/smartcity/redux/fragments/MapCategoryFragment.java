@@ -22,9 +22,7 @@ public class MapCategoryFragment extends Fragment {
 		button.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
 
-		                            Fragment frag = new AirMapFragment();
-
-
+		                    Fragment frag = new AirMapFragment();
 		                    FragmentTransaction ft = getFragmentManager().beginTransaction();
 		                    ft.replace(R.id.frame_container, frag);
 		                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);

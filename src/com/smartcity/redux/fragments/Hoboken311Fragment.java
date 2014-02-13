@@ -58,13 +58,10 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
 	Spinner spn_prob;
 	Spinner spn_prob_spec;
 	Spinner spn_prob_spec2;
-	
 	TextView dateText1;
 	TextView timeText1;
-	
 	EditText commentText;
-	
-	
+
 	ArrayAdapter<CharSequence> currentAdapter;
 	ArrayAdapter<CharSequence> currentAdapter2;
 	
@@ -77,9 +74,7 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
 		spn_prob = (Spinner)root.findViewById(R.id.spn_prob);
 		spn_prob_spec = (Spinner)root.findViewById(R.id.spn_prob_spec);
 		spn_prob_spec2 = (Spinner)root.findViewById(R.id.spn_prob_spec2);
-		
 		commentText = (EditText)root.findViewById(R.id.comment_311_text);
-		
 		dateText1 = (TextView)root.findViewById(R.id.dateText1);
 		timeText1 = (TextView)root.findViewById(R.id.timeText1);
 		
@@ -143,8 +138,7 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
 		ArrayAdapter<CharSequence> adapterProb = ArrayAdapter.createFromResource(getActivity(), R.array.spn_prob, android.R.layout.simple_spinner_item );
 		adapterProb.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spn_prob.setAdapter(adapterProb);
-	
-		
+
 		Button btn_map = (Button)root.findViewById(R.id.btn_311_map);
 		btn_map.setOnClickListener(new View.OnClickListener() {
 			
@@ -215,6 +209,7 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
 		});
 
 		
+		//XXX: Hardcoding these values is horrible, pull them from database instead
 		tabHash = new HashMap<String, Integer>();
 		
 		tabHash.put("cable", 0);
@@ -535,10 +530,8 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
     					Toast.LENGTH_SHORT);
     			t.show();
     		}
-    		
     		return true;
     	}
-    	
     	return false;
     }
 	
@@ -568,11 +561,12 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
     			
     			System.out.println("this is the text " + text.get(0) );
     		}
-    		
-    		
+
     }
     
 
+	
+	//XXX: This entire .equals set of checks needs to be nuked as well
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
@@ -1189,29 +1183,21 @@ public class Hoboken311Fragment extends Fragment implements OnItemSelectedListen
 			//spn_prob_spec2.setVisibility(View.GONE);
 			request = item;
 		}
-		
-		
-		
+
 		System.out.println("THIS IS THE REQUEST!!!!! REQUEST =  " + request);
-		
-		
+
 	}
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }
 /*
  class JsonSender extends AsyncTask<Void,Void,Void> { // TODO put directly into above call
 	
 	@Override
 	protected Void doInBackground(Void... params) {
-		
-
-
 
 	}
 	

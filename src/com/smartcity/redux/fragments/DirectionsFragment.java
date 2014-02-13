@@ -38,7 +38,6 @@ private static final String TAG = "DirectionsActivity";
 	protected GoogleMap map;
     protected LatLng start;
     protected LatLng end;
-    
     protected int calories;
     protected int emissions;
     protected String transit;
@@ -49,8 +48,6 @@ private static final String TAG = "DirectionsActivity";
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_directions);
     	View root = inflater.inflate(R.layout.activity_directions, null);
     	
         Bundle extras = getActivity().getIntent().getExtras();
@@ -58,7 +55,6 @@ private static final String TAG = "DirectionsActivity";
         String startingPoint = extras.getString("startingPoint");
         String destination = extras.getString("destination");
         String transitType = extras.getString("transitType");
-        
         transit = transitType;
         
         double startLat = 0;
@@ -66,7 +62,6 @@ private static final String TAG = "DirectionsActivity";
         double destLat = 0;
         double destLong = 0;
 
-        
         Geocoder coder = new Geocoder(getActivity());
         try {
             ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
@@ -85,7 +80,6 @@ private static final String TAG = "DirectionsActivity";
                 //}
             }
 
-            
             setupActionBar();
             
             MapFragment fm = (MapFragment)  getFragmentManager().findFragmentById(R.id.map);
@@ -126,12 +120,8 @@ private static final String TAG = "DirectionsActivity";
             Routing routing = new Routing(tm);
             routing.registerListener(this);
             routing.execute(start, end);
-            
             //dist = routing.getDistanceAgain();
 
-            
-
-            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,27 +143,21 @@ private static final String TAG = "DirectionsActivity";
     @Override
     public void onRoutingSuccess(PolylineOptions mPolyOptions, int routeDistance) {	
       
-    	calories = 50;
-    	emissions = 50;
+	  calories = 50;
+	  emissions = 50;
     	    	    	
-    	PolylineOptions polyoptions = new PolylineOptions();
+      PolylineOptions polyoptions = new PolylineOptions();
       polyoptions.color(Color.BLUE);
       polyoptions.width(10);
       polyoptions.addAll(mPolyOptions.getPoints());
       map.addPolyline(polyoptions);
-      
 
-      
-      
-
-      
       // Start marker
       MarkerOptions options = new MarkerOptions();
       options.position(start);
       options.icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue));
       options.title("Route Info");
-      
-      
+
       double routeCalc;
       routeCalc = 0;
       int intRoute;
@@ -235,13 +219,6 @@ private static final String TAG = "DirectionsActivity";
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
 			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}
