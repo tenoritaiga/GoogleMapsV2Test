@@ -28,4 +28,18 @@
         android:onClick="startShoppingActivity"
         android:text="@string/shoppingButtonText" />
     
+    <Button
+        android:id="@+id/newsletter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startNewsletterActivity"
+        android:text="@string/newsletterButtonText" />
+    
+    <Button
+        android:id="@+id/guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startGuideActivity"
+        android:text="@string/guideButtonText" />
+    
    </LinearLayout>

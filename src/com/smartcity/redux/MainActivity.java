@@ -590,6 +590,16 @@ public class MainActivity extends Activity {
 		MainActivity.this.startActivity(intent);
 	}
 	
+	public void startNewsletterActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,NewsletterActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startGuideActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,GuideActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
 	public void startEmergencyReportActivity(View view) {
 		Intent intent = new Intent(MainActivity.this,EmergencyReportActivity.class);
 		MainActivity.this.startActivity(intent);
