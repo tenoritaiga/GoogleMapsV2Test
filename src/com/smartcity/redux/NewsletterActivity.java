@@ -24,7 +24,9 @@ public class NewsletterActivity extends Activity {
 		 webview.getSettings().setBuiltInZoomControls(true);
 		 webview.getSettings().setJavaScriptEnabled(true);
 		 
-		 webview.loadUrl("http://www.hobokennj.org/docs/newsletter/Newsletter-Fall-2013.pdf");
+		 String pdf = "http://www.hobokennj.org/docs/newsletter/Newsletter-Fall-2013.pdf";
+		 
+		 webview.loadUrl("http://docs.google.com/gview?embedded=true&url=" + pdf);
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
