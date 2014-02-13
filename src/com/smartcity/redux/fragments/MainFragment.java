@@ -9,12 +9,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.smartcity.redux.MainActivity;
@@ -29,13 +32,11 @@ public class MainFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-		//super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_main);
 		View root = inflater.inflate(R.layout.fragment_main, null);
 		
 		GridView gridView = (GridView)root.findViewById(R.id.squareimagegrid);
 		gridView.setAdapter(new SquareImageAdapter(getActivity()));
+		gridView.setOnItemClickListener(new GridClickListener());
 		
 /*		Button testBtn = (Button)root.findViewById(R.id.testNotificationsButton);
 		testBtn.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +47,66 @@ public class MainFragment extends Fragment {
 		});*/
 		
 		return root;
+	}
+	
+	
+	//Set a click listener for the grid
+	private class GridClickListener implements
+	ListView.OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			// display view for selected nav drawer item
+			displayView(position);
+		}
+		}
+	
+	//Swap fragments when grid item clicked
+	private void displayView(int position) {
+		// update the main content by replacing fragments
+		Fragment fragment = null;
+		switch (position) {
+		case 0:
+			fragment = new MainFragment();
+			break;
+		case 1:
+			//should be InboxFragment, change this back
+			fragment = new MainFragment();
+			break;
+		case 2:
+			fragment = new MapCategoryFragment();
+			break;
+		case 3:
+			fragment = new SustainabilityCategoryFragment();
+			break;
+		case 4:
+			fragment = new CityCategoryFragment();
+			break;
+		case 5:
+			fragment = new Hoboken311Fragment();
+			break;
+		case 6:
+			fragment = new ProfileFragment();
+			break;
+		case 7:
+			fragment = new EmergencyCategoryFragment();
+		default:
+			break;
+		}
+
+		if (fragment != null) {
+			android.app.FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, fragment).commit();
+			// update selected item and title, then close the drawer
+//			mDrawerList.setItemChecked(position, true);
+//			mDrawerList.setSelection(position);
+//			setTitle(navMenuTitles[position]);
+//			mDrawerLayout.closeDrawer(mDrawerList);
+		} else {
+			// error in creating fragment
+			Log.e("MainFragment", "Error in creating fragment");
+		}
 	}
 	
 protected void displayNotification(){

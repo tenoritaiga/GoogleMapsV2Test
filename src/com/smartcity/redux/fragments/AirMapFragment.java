@@ -75,7 +75,8 @@ public class AirMapFragment extends SupportMapFragment {
 		private void initializeMap() {
 			if (googleMap == null) {
 				googleMap = ((SupportMapFragment) getFragmentManager()
-						.findFragmentById(R.id.activity_airmap)).getMap();
+						.findFragmentById(R.id.fragment1)).getMap();
+				//TODO: change this back from fragment1 to whatever it should really be
 
 				// check if map is created successfully or not
 				if (googleMap == null) {

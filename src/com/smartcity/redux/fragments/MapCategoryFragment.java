@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.maps.SupportMapFragment;
 import com.smartcity.redux.R;
 
 public class MapCategoryFragment extends Fragment {
@@ -19,17 +20,17 @@ public class MapCategoryFragment extends Fragment {
 		View root = inflater.inflate(R.layout.fragment_map_category, null);
 		Button button = (Button)root.findViewById(R.id.airmapButton);
 		
-		button.setOnClickListener(new View.OnClickListener() {
-		    public void onClick(View v) {
-
-		                    Fragment frag = new AirMapFragment();
-		                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-		                    ft.replace(R.id.frame_container, frag);
-		                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		                    ft.addToBackStack(null);
-		                    ft.commit();
-		                 }
-		     });
+//		button.setOnClickListener(new View.OnClickListener() {
+//		    public void onClick(View v) {
+//
+//		                    SupportMapFragment frag = new AirMapFragment();
+//		                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+//		                    ft.replace(R.id.frame_container, frag);
+//		                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//		                    ft.addToBackStack(null);
+//		                    ft.commit();
+//		                 }
+//		     });
 		
 		return root;
 	}

@@ -102,19 +102,17 @@ public class MainActivity extends Activity {
 		//Setup for Azure GCM
 		String connectionString = "your_listen_access_connection_string";
 		hub = new NotificationHub("your_notification_hub_name",connectionString,this);
-
+		
+		//Set up sliding drawer
 		mTitle = mDrawerTitle = getTitle();
-
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
 		// nav drawer icons from resources
 		navMenuIcons = getResources()
 				.obtainTypedArray(R.array.nav_drawer_icons);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
