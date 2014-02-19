@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    TextView mDisplay;
+    //TextView mDisplay;
     GoogleCloudMessaging gcm;
     AtomicInteger msgId = new AtomicInteger();
     SharedPreferences prefs;
@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		mDisplay = (TextView) findViewById(R.id.gcmTextView);
+		//mDisplay = (TextView) findViewById(R.id.gcmTextView);
 		context = getApplicationContext();
 
 		//Check for Google Play Services
@@ -340,7 +340,7 @@ public class MainActivity extends Activity {
 
 	        @Override
 	        protected void onPostExecute(String msg) {
-	            mDisplay.append(msg + "\n");
+	            //mDisplay.append(msg + "\n");
 	        }
 	    }.execute(null, null, null);
 	}
