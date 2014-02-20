@@ -42,4 +42,11 @@
         android:onClick="startGuideActivity"
         android:text="@string/guideButtonText" />
     
+    <Button
+        android:id="@+id/forms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startFormsActivity"
+        android:text="@string/formsButtonText" />
+    
    </LinearLayout>

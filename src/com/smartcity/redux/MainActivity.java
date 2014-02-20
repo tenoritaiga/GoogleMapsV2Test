@@ -614,4 +614,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,EmergencyOfferActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startFormsActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,FormsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }

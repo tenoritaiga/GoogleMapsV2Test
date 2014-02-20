@@ -260,7 +260,39 @@
         <activity
             android:name="com.smartcity.redux.GuideActivity"
             android:label="@string/title_activity_guide"
-			android:parentActivityName="com.smartcity.redux.MainActivity" >
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.FormsActivity"
+            android:label="@string/title_activity_forms"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.ParkingPermitActivity"
+            android:label="@string/title_activity_parking_permit"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.RecreationFormActivity"
+            android:label="@string/title_activity_recreation_form"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.VoterRegActivity"
+            android:label="@string/title_activity_voter_reg" 
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smartcity.redux.MainActivity" />

@@ -84,11 +84,15 @@
     <string name="diningButtonText">Dining</string>
     <string name="shoppingButtonText">Shopping</string>
     <string name="newsletterButtonText">Newsletter</string>
+    <string name="formsButtonText">Forms and Permits</string>
     <string name="guideButtonText">New Residents Guide</string>
     <string name="swift911ButtonText">Swift 911</string>
     <string name="emerReportButtonText">Emergency Report</string>
     <string name="emerNeedButtonText">Emergency Need</string>
     <string name="emerOfferButtonText">Emergency Offer</string>
+    <string name="parkingPermitButtonText">Parking Permits</string>
+    <string name="recreationFormButtonText">Recreation Registration Form</string>
+    <string name="voterFormButtonText">Voter Registration Form</string>
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -459,7 +463,11 @@
     <string name="title_activity_emergency_report">Emergency Report</string>
     <string name="title_activity_emergency_need">Emergency Need</string>
     <string name="title_activity_emergency_offer">Emergency Offer</string>
-    <string name="title_activity_newsletter">NewsletterActivity</string>
-    <string name="title_activity_guide">GuideActivity</string>
+    <string name="title_activity_newsletter">Newsletter</string>
+    <string name="title_activity_guide">New Resident Guide</string>
+    <string name="title_activity_forms">Forms and Permits</string>
+    <string name="title_activity_parking_permit">Parking Permits</string>
+    <string name="title_activity_recreation_form">Recreation Forms</string>
+    <string name="title_activity_voter_reg">Voter Registration</string>
 
 </resources>
