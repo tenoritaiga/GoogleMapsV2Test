@@ -13,6 +13,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,56 +35,22 @@ import com.smartcity.redux.jsonmodel.SearchResponse;
 import com.smartcity.redux.jsonmodel.Sensor;
 
 public class AirMapFragment extends SupportMapFragment {
-
-		private SupportMapFragment fragment;
+	
 		private GoogleMap googleMap;
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			View root = inflater.inflate(R.layout.activity_airmap, null);
-			//setupActionBar();
 			new JsonParser().execute();
 			
-			return root;
+			return super.onCreateView(inflater, container, savedInstanceState);
 		}
-		
-//		@Override
-//		public void onActivityCreated(Bundle savedInstanceState) {
-//			super.onActivityCreated(savedInstanceState);
-//			FragmentManager fm = getChildFragmentManager();
-//			fragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
-//			if (fragment == null) {
-//				fragment = SupportMapFragment.newInstance();
-//				fm.beginTransaction().replace(R.id.map, fragment).commit();
-//			}
-//		}
 
 		@Override
 		public void onResume() {
 			super.onResume();
 			if(googleMap == null) {
-				googleMap = fragment.getMap();
-				googleMap.addMarker(new MarkerOptions().position(new LatLng(0,0)));
-			}
-			
-			initializeMap();
-		}
-
-		/**
-		 * function to load map If map is not created it will create it for you
-		 * */
-		private void initializeMap() {
-			if (googleMap == null) {
-				googleMap = ((SupportMapFragment) getFragmentManager()
-						.findFragmentById(R.id.fragment1)).getMap();
-				//TODO: change this back from fragment1 to whatever it should really be
-
-				// check if map is created successfully or not
-				if (googleMap == null) {
-					Toast.makeText(getActivity(),
-							"Sorry! unable to create maps", Toast.LENGTH_SHORT)
-							.show();
-				}
+				googleMap = getMap();
+				//googleMap.addMarker(new MarkerOptions().position(new LatLng(0,0)));
 			}
 		}
 
@@ -140,9 +107,6 @@ public class AirMapFragment extends SupportMapFragment {
 				
 				try {
 
-					// Loading map
-					initializeMap();
-
 					// Changing map type
 					googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 					// googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -197,12 +161,9 @@ public class AirMapFragment extends SupportMapFragment {
 						//marker.setVisible(false);
 						
 					}
-					
-					
-					
+
 					googleMap.setInfoWindowAdapter(adapter);
 					
-							
 					//pass into the users current location
 					// Move the camera to last position with a zoom level
 							CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -213,40 +174,9 @@ public class AirMapFragment extends SupportMapFragment {
 									.newCameraPosition(cameraPosition));
 
 				} catch (Exception e) {
+					//TODO: Maybe notify the user if this fails
 					e.printStackTrace();
 				}
 			}
-			
 		}
-		
-		/**
-		 * Set up the {@link android.app.ActionBar}.
-		 */
-	/**
-		@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-		private void setupActionBar() {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-				getActionBar().setDisplayHomeAsUpEnabled(true);
-			}
-		}
-
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-			switch (item.getItemId()) {
-			case android.R.id.home:
-				// This ID represents the Home or Up button. In the case of this
-				// activity, the Up button is shown. Use NavUtils to allow users
-				// to navigate up one level in the application structure. For
-				// more details, see the Navigation pattern on Android Design:
-				//
-				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-				//
-				NavUtils.navigateUpFromSameTask(this);
-				return true;
-			}
-			return super.onOptionsItemSelected(item);
-			
-		}
-		**/
-
 }

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -16,6 +14,8 @@ import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -40,7 +40,7 @@ import com.smartcity.redux.fragments.SettingsFragment;
 import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
 import com.smartcity.redux.slidingmenu.NavDrawerItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -114,6 +114,8 @@ public class MainActivity extends Activity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
+		
+		
 
 		// adding nav drawer items to array
 		
@@ -204,9 +206,9 @@ public class MainActivity extends Activity {
 		// Handle action bar actions click
 		switch (item.getItemId()) {	
 		case R.id.action_settings:
-            Fragment frag = new SettingsFragment();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.frame_container, frag);
+            android.support.v4.app.Fragment frag = new SettingsFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.frame_container, new SettingsFragment());
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.addToBackStack(null);
             ft.commit();
@@ -407,7 +409,7 @@ public class MainActivity extends Activity {
 	 * */
 	private void displayView(int position) {
 		// update the main content by replacing fragments
-		Fragment fragment = null;
+		android.support.v4.app.Fragment fragment = null;
 		switch (position) {
 		case 0:
 			fragment = new MainFragment();
@@ -438,9 +440,8 @@ public class MainActivity extends Activity {
 		}
 
 		if (fragment != null) {
-			android.app.FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
+			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(position, true);
@@ -499,96 +500,4 @@ public class MainActivity extends Activity {
 	    }
 	    return true;
 	}
-
-	
-//	public void startAirmapActivity(View view){
-//		Intent intent = new Intent(MainActivity.this,AirMapFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startSettingsActivity(View view){
-//		Intent intent = new Intent(MainActivity.this,SettingsFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startTrafficActivity(View view){
-//		Intent intent = new Intent(MainActivity.this,TrafficMapFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startAirQualityActivity(View view){
-//		Intent intent = new Intent(MainActivity.this,AirQualityFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startProfileActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,ProfileFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startDirectionsActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,DirectionsFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startDirectionsInputActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,DirectionsInputFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	
-//	public void startHoboken311Activity(View view) {
-//		Intent intent = new Intent(MainActivity.this,Hoboken311Fragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startMyGasActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,MyGasFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startMyEnergyActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,MyEnergyFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startMyWaterActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,MyWaterFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startEnergyCalculatorActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,EnergyCalculatorFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startCityEventsActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,CityEventsFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startDiningActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,DiningFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startShoppingActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,ShoppingFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startEmergencyReportActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,EmergencyReportFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startEmergencyNeedActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,EmergencyNeedFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
-//	
-//	public void startEmergencyOfferActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,EmergencyOfferFragment.class);
-//		MainActivity.this.startActivity(intent);
-//	}
 }

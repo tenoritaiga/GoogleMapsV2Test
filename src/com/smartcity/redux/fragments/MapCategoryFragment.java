@@ -1,8 +1,8 @@
 package com.smartcity.redux.fragments;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,31 +20,18 @@ public class MapCategoryFragment extends Fragment {
 		View root = inflater.inflate(R.layout.fragment_map_category, null);
 		Button button = (Button)root.findViewById(R.id.airmapButton);
 		
-//		button.setOnClickListener(new View.OnClickListener() {
-//		    public void onClick(View v) {
-//
-//		                    SupportMapFragment frag = new AirMapFragment();
-//		                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-//		                    ft.replace(R.id.frame_container, frag);
-//		                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//		                    ft.addToBackStack(null);
-//		                    ft.commit();
-//		                 }
-//		     });
+		button.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+
+	            SupportMapFragment frag = new AirMapFragment();
+	            FragmentTransaction ft = getFragmentManager().beginTransaction();
+	            ft.replace(R.id.frame_container, frag);
+	            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+	            ft.addToBackStack(null);
+	            ft.commit();
+	         }
+		     });
 		
 		return root;
 	}
-	
-//	public void startMapActivity(View view){
-//		Intent intent = new Intent(getActivity(),AirMapFragment.class);
-//		getActivity().startActivity(intent);
-//	}
-//	
-//	public void startSettingsActivity(View view){
-//		Intent intent = new Intent(getActivity(),SettingsFragment.class);
-//		getActivity().startActivity(intent);
-//	}
-	
-	
-
 }

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
