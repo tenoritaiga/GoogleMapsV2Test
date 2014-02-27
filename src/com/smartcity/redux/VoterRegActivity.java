@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class VoterRegActivity extends Activity {
 
@@ -16,6 +17,16 @@ public class VoterRegActivity extends Activity {
 		setContentView(R.layout.activity_voter_reg);
 		
 		setupActionBar();
+		
+		 WebView webview = new WebView(this);
+		 setContentView(webview);
+		 
+		 webview.getSettings().setBuiltInZoomControls(true);
+		 webview.getSettings().setJavaScriptEnabled(true);
+		 
+		 String pdf = "http://www.state.nj.us/state/elections/form_pdf/voter-regis-forms/hudson-voter-reg-form-062212.pdf";
+		 
+		 webview.loadUrl("http://docs.google.com/gview?embedded=true&url=" + pdf);
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)

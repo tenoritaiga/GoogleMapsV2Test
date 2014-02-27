@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class ParkingPermitActivity extends Activity {
 
@@ -16,6 +17,16 @@ public class ParkingPermitActivity extends Activity {
 		setContentView(R.layout.activity_parking_permit);
 		
 		setupActionBar();
+		
+		 WebView webview = new WebView(this);
+		 setContentView(webview);
+		 
+		 webview.getSettings().setBuiltInZoomControls(true);
+		 webview.getSettings().setJavaScriptEnabled(true);
+		 
+		 String pdf = "http://www.hobokennj.org/docs/parking/916GardenApplication.pdf";
+		 
+		 webview.loadUrl("http://docs.google.com/gview?embedded=true&url=" + pdf);
 
 	}
 	
