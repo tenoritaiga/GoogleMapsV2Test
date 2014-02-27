@@ -1,17 +1,18 @@
 package com.smartcity.redux.fragments;
 
-import com.smartcity.redux.R;
-
 import android.annotation.TargetApi;
-import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+
+import com.smartcity.redux.R;
+import com.smartcity.redux.adapters.OverrideWebviewClient;
 
 public class CityEventsFragment extends Fragment {
 	
@@ -23,7 +24,9 @@ public class CityEventsFragment extends Fragment {
 		
 		 WebView webview = new WebView(getActivity());
 		 getActivity().setContentView(webview);
+		 webview.setWebViewClient(new OverrideWebviewClient());	//Set our custom client so we load URLs in the WebView
 		 webview.getSettings().setBuiltInZoomControls(true);
+		 webview.getSettings().setUserAgentString("Mozilla/5.0 (Android; Mobile; rv:26.0) Gecko/26.0 Firefox/26.0");
 		 webview.getSettings().setJavaScriptEnabled(true);
 		 webview.loadUrl("http://www.hobokennj.org/calendar/");
 		 

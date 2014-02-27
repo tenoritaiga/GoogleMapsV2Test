@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +22,10 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smartcity.redux.MainActivity;
+import com.smartcity.redux.NoticeService;
 import com.smartcity.redux.R;
 
 public class MainFragment extends Fragment implements OnItemClickListener {
@@ -38,6 +43,10 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 		GridView gridView = (GridView) root.findViewById(R.id.squareimagegrid);
 		gridView.setAdapter(new SquareImageAdapter(getActivity()));
 		gridView.setOnItemClickListener(this);
+		
+		//LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("my-event"));
+		
+		getActivity().startService(new Intent(getActivity(), NoticeService.class));
 
 		/*
 		 * Button testBtn =
@@ -48,6 +57,19 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 		 */
 
 		return root;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		IntentFilter filter = new IntentFilter(NoticeService.BROADCAST);
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(onNotice, filter);
+	}
+	
+	@Override
+	public void onPause() {
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(onNotice);
 	}
 
 	@Override
@@ -74,65 +96,6 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-
-	// //Set a click listener for the grid
-	// private class GridClickListener implements
-	// ListView.OnItemClickListener {
-	// @Override
-	// public void onItemClick(AdapterView<?> parent, View view, int position,
-	// long id) {
-	// // display view for selected nav drawer item
-	// displayView(position);
-	// }
-	// }
-
-	// Swap fragments when grid item clicked
-	private void displayView(int position) {
-		// update the main content by replacing fragments
-		android.support.v4.app.Fragment fragment = null;
-		// switch (position) {
-		// case 0:
-		// fragment = new MainFragment();
-		// break;
-		// case 1:
-		// //should be InboxFragment, change this back
-		// fragment = new MainFragment();
-		// break;
-		// case 2:
-		// fragment = new MapCategoryFragment();
-		// break;
-		// case 3:
-		// fragment = new SustainabilityCategoryFragment();
-		// break;
-		// case 4:
-		// fragment = new CityCategoryFragment();
-		// break;
-		// case 5:
-		// fragment = new Hoboken311Fragment();
-		// break;
-		// case 6:
-		// fragment = new ProfileFragment();
-		// break;
-		// case 7:
-		// fragment = new EmergencyCategoryFragment();
-		// default:
-		// break;
-		// }
-
-		if (fragment != null) {
-			android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-			// update selected item and title, then close the drawer
-			// mDrawerList.setItemChecked(position, true);
-			// mDrawerList.setSelection(position);
-			// setTitle(navMenuTitles[position]);
-			// mDrawerLayout.closeDrawer(mDrawerList);
-		} else {
-			// error in creating fragment
-			Log.e("MainFragment", "Error in creating fragment");
 		}
 	}
 
@@ -213,6 +176,25 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 		mNotificationManager.notify(notificationID, mBuilder.build());
 
 	}
+	
+//	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+//		
+//		@Override
+//		public void onReceive(Context context, Intent intent) {
+//			String message = intent.getStringExtra("message");
+//			Log.d("BROADCAST_RCVR","Got message: " + message);
+//			Toast.makeText(getActivity().getApplicationContext(), (String)message, 
+//					   Toast.LENGTH_LONG).show();
+//			//TODO: call addItems with the extras here once it works
+//		}
+//	};
+	
+	private BroadcastReceiver onNotice= new BroadcastReceiver() {
+		public void onReceive(Context context, Intent intent) {
+			//notice.setText(new Data().toString());
+			Log.d("BROADCAST_RCVR","Got message!");
+		}
+	};
 
 	private class SquareImageAdapter extends BaseAdapter {
 		private List<Item> items = new ArrayList<Item>();
@@ -222,12 +204,21 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 			inflater = LayoutInflater.from(context);
 
 			items.add(new Item(R.string.airmapButtonText, R.drawable.blue, AirMapFragment.class));
-			// items.add(new Item("Item 2", R.drawable.cyan));
+			//items.add(new Item("Item 2", R.drawable.cyan, ));
 			// items.add(new Item("Item 3", R.drawable.yellow));
 			// items.add(new Item("Item 4", R.drawable.orange));
 			// items.add(new Item("Item 5", R.drawable.magenta));
 			// items.add(new Item("Item 6", R.drawable.green));
 			// items.add(new Item("Item 7", R.drawable.violet));
+		}
+		
+		public void setItems(Item[] arr)
+		{
+			items.clear();
+			for(int i=0;i<arr.length;i++)
+			{
+				items.add(arr[i]);
+			}
 		}
 
 		@Override

@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -100,8 +101,11 @@ public class MainActivity extends FragmentActivity {
 		}
 		
 		//Setup for Azure GCM
-		String connectionString = "your_listen_access_connection_string";
-		hub = new NotificationHub("your_notification_hub_name",connectionString,this);
+		String connectionString = 
+				"sb://smartcity-hoboken-notificationhub-ns.servicebus.windows.net/;SharedAccessKeyName="
+				+ "DefaultListenSharedAccessSignature;SharedAccessKey=0HZRHQaD1yse3q7OFdufMc3VWfrd14P82TfOKVYxTRo=";
+		
+		hub = new NotificationHub("smartcity-notificationhub",connectionString,this);
 		
 		//Set up sliding drawer
 		mTitle = mDrawerTitle = getTitle();
@@ -187,7 +191,15 @@ public class MainActivity extends FragmentActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			// display view for selected nav drawer item
-			displayView(position);
+			//displayView(position);
+			
+			Log.d("Position",Integer.toString(position));
+			
+			if(position == 2)
+			{
+				//Log.d("Broadcaster","Sending message...");
+				sendMessage("Maps category stuff");
+			}
 		}
 	}
 
@@ -328,7 +340,7 @@ public class MainActivity extends FragmentActivity {
 
 	        @Override
 	        protected void onPostExecute(String msg) {
-	            mDisplay.append(msg + "\n");
+	            //mDisplay.append(msg + "\n");
 	        }
 	    }.execute(null, null, null);
 	}
@@ -439,19 +451,26 @@ public class MainActivity extends FragmentActivity {
 			break;
 		}
 
-		if (fragment != null) {
-			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
-
-			// update selected item and title, then close the drawer
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-			mDrawerLayout.closeDrawer(mDrawerList);
-		} else {
-			// error in creating fragment
-			Log.e("MainActivity", "Error in creating fragment");
-		}
+//		if (fragment != null) {
+//			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+//
+//			// update selected item and title, then close the drawer
+//			mDrawerList.setItemChecked(position, true);
+//			mDrawerList.setSelection(position);
+//			setTitle(navMenuTitles[position]);
+//			mDrawerLayout.closeDrawer(mDrawerList);
+//		} else {
+//			// error in creating fragment
+//			Log.e("MainActivity", "Error in creating fragment");
+//		}
+	}
+	
+	private void sendMessage(String text) {
+		Intent intent = new Intent("onNotice");
+		//intent.putExtra("message", text);
+		Log.d("sendMessage","Sending message " + intent.getAction());
+		LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 	}
 
 	@Override
