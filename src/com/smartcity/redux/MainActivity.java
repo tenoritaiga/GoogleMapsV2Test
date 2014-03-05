@@ -613,4 +613,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,FormsActivity.class);
 		MainActivity.this.startActivity(intent);
 	}
+	
+	public void startPollActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,PollActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }

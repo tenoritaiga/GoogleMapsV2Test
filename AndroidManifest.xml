@@ -291,7 +291,15 @@
         </activity>
         <activity
             android:name="com.smartcity.redux.VoterRegActivity"
-            android:label="@string/title_activity_voter_reg" 
+            android:label="@string/title_activity_voter_reg"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.PollActivity"
+            android:label="@string/title_activity_poll"
             android:parentActivityName="com.smartcity.redux.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
