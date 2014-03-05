@@ -56,4 +56,11 @@
         android:onClick="startPollActivity"
         android:text="@string/pollButtonText" />
     
+    <Button
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startQuestionActivity"
+        android:text="@string/questionButtonText" />
+    
    </LinearLayout>
