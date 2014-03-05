@@ -20,7 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.smartcity.redux.AirMapActivity;
+//import com.smartcity.redux.AirMapActivity;
 import com.smartcity.redux.MainActivity;
 import com.smartcity.redux.R;
 import com.smartcity.redux.SettingsActivity;
@@ -185,11 +185,12 @@ protected void displayNotification(){
 	        }
 	    }
 	}
-	
+	/**
 	public void startMapActivity(View view){
 		Intent intent = new Intent(getActivity(),AirMapActivity.class);
 		getActivity().startActivity(intent);
 	}
+	**/
 	
 	public void startSettingsActivity(View view){
 		Intent intent = new Intent(getActivity(),SettingsActivity.class);

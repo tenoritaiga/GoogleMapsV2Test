@@ -512,12 +512,6 @@ public class MainActivity extends Activity {
 	    }
 	    return true;
 	}
-
-	
-	public void startAirmapActivity(View view){
-		Intent intent = new Intent(MainActivity.this,AirMapActivity.class);
-		MainActivity.this.startActivity(intent);
-	}
 	
 	public void startSettingsActivity(View view){
 		Intent intent = new Intent(MainActivity.this,SettingsActivity.class);

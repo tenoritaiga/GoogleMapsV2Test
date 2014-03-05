@@ -1,6 +1,6 @@
 package com.smartcity.redux.fragments;
 
-import com.smartcity.redux.AirMapActivity;
+//import com.smartcity.redux.AirMapActivity;
 import com.smartcity.redux.R;
 import com.smartcity.redux.SettingsActivity;
 
@@ -18,11 +18,12 @@ public class MapCategoryFragment extends Fragment {
 
 		return inflater.inflate(R.layout.fragment_map_category, null);
 	}
-	
+	/**
 	public void startMapActivity(View view){
 		Intent intent = new Intent(getActivity(),AirMapActivity.class);
 		getActivity().startActivity(intent);
 	}
+	**/
 	
 	public void startSettingsActivity(View view){
 		Intent intent = new Intent(getActivity(),SettingsActivity.class);
