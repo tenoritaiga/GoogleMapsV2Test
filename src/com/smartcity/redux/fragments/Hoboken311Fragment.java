@@ -36,6 +36,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+//import com.smartcity.redux.AirMapActivity;
+import com.smartcity.redux.Hoboken311MapActivity;
+>>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
 import com.smartcity.redux.R;
 
 public class Hoboken311Fragment extends Fragment implements OnItemSelectedListener {

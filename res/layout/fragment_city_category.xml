@@ -27,4 +27,39 @@
         android:onClick="startShoppingActivity"
         android:text="@string/shoppingButtonText" />
     
+    <Button
+        android:id="@+id/newsletter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startNewsletterActivity"
+        android:text="@string/newsletterButtonText" />
+    
+    <Button
+        android:id="@+id/guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startGuideActivity"
+        android:text="@string/guideButtonText" />
+    
+    <Button
+        android:id="@+id/forms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startFormsActivity"
+        android:text="@string/formsButtonText" />
+    
+    <Button
+        android:id="@+id/poll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startPollActivity"
+        android:text="@string/pollButtonText" />
+    
+    <Button
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startQuestionActivity"
+        android:text="@string/questionButtonText" />
+    
    </LinearLayout>

@@ -64,7 +64,7 @@ public class MainActivity extends FragmentActivity {
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    TextView mDisplay;
+    //TextView mDisplay;
     GoogleCloudMessaging gcm;
     AtomicInteger msgId = new AtomicInteger();
     SharedPreferences prefs;
@@ -83,7 +83,7 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		mDisplay = (TextView) findViewById(R.id.gcmTextView);
+		//mDisplay = (TextView) findViewById(R.id.gcmTextView);
 		context = getApplicationContext();
 
 		//Check for Google Play Services
@@ -519,4 +519,118 @@ public class MainActivity extends FragmentActivity {
 	    }
 	    return true;
 	}
+<<<<<<< HEAD
+=======
+	
+	public void startSettingsActivity(View view){
+		Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startTrafficActivity(View view){
+		Intent intent = new Intent(MainActivity.this,TrafficMapActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startAirQualityActivity(View view){
+		Intent intent = new Intent(MainActivity.this,AirQualityActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startProfileActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startDirectionsActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,DirectionsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startDirectionsInputActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,DirectionsInputActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	
+	public void startHoboken311Activity(View view) {
+		Intent intent = new Intent(MainActivity.this,Hoboken311Activity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startMyGasActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MyGasActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startMyEnergyActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MyEnergyActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startMyWaterActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MyWaterActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEnergyCalculatorActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EnergyCalculatorActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startCityEventsActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,CityEventsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startDiningActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,DiningActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startShoppingActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,ShoppingActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startNewsletterActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,NewsletterActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startGuideActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,GuideActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEmergencyReportActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EmergencyReportActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEmergencyNeedActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EmergencyNeedActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startEmergencyOfferActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,EmergencyOfferActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startFormsActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,FormsActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startPollActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,PollActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+	
+	public void startQuestionActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,QuestionActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
+>>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
 }

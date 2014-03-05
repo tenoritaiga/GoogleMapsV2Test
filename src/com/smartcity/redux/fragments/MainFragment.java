@@ -24,6 +24,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+//import com.smartcity.redux.AirMapActivity;
+>>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
 import com.smartcity.redux.MainActivity;
 import com.smartcity.redux.NoticeService;
 import com.smartcity.redux.R;
@@ -261,6 +265,7 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 		}
 
 	}
+<<<<<<< HEAD
 
 	public class Item {
 		final public int name;
@@ -283,6 +288,17 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 
 	public void startSettingsActivity(View view) {
 		Intent intent = new Intent(getActivity(), SettingsFragment.class);
+=======
+	/**
+	public void startMapActivity(View view){
+		Intent intent = new Intent(getActivity(),AirMapActivity.class);
+		getActivity().startActivity(intent);
+	}
+	**/
+	
+	public void startSettingsActivity(View view){
+		Intent intent = new Intent(getActivity(),SettingsActivity.class);
+>>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
 		getActivity().startActivity(intent);
 	}
 
