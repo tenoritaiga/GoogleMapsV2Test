@@ -69,6 +69,7 @@ public class MainFragment extends Fragment implements OnItemClickListener {
 	
 	@Override
 	public void onPause() {
+		super.onPause();
 		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(onNotice);
 	}
 

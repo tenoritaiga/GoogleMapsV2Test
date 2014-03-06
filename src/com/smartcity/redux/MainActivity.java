@@ -24,7 +24,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -191,7 +190,7 @@ public class MainActivity extends FragmentActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			// display view for selected nav drawer item
-			//displayView(position);
+			displayView(position);
 			
 			Log.d("Position",Integer.toString(position));
 			
@@ -431,7 +430,7 @@ public class MainActivity extends FragmentActivity {
 			fragment = new MainFragment();
 			break;
 		case 2:
-			fragment = new MainFragment();
+			fragment = new MapCategoryFragment();
 			break;
 		case 3:
 			fragment = new SustainabilityCategoryFragment();
@@ -451,19 +450,19 @@ public class MainActivity extends FragmentActivity {
 			break;
 		}
 
-//		if (fragment != null) {
-//			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
-//
-//			// update selected item and title, then close the drawer
-//			mDrawerList.setItemChecked(position, true);
-//			mDrawerList.setSelection(position);
-//			setTitle(navMenuTitles[position]);
-//			mDrawerLayout.closeDrawer(mDrawerList);
-//		} else {
-//			// error in creating fragment
-//			Log.e("MainActivity", "Error in creating fragment");
-//		}
+		if (fragment != null) {
+			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+
+			// update selected item and title, then close the drawer
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerList);
+		} else {
+			// error in creating fragment
+			Log.e("MainActivity", "Error in creating fragment");
+		}
 	}
 	
 	private void sendMessage(String text) {
