@@ -1,38 +1,40 @@
-package com.smartcity.redux;
+package com.smartcity.redux.fragments;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.annotation.TargetApi;
-import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 
-public class VoterRegActivity extends Activity {
+import com.smartcity.redux.R;
 
+public class PollFragment extends Fragment{
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_voter_reg);
-		
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View root = inflater.inflate(R.layout.activity_poll, null);
 		setupActionBar();
 		
-		 WebView webview = new WebView(this);
-		 setContentView(webview);
+		 WebView webview = new WebView(getActivity());
+		 getActivity().setContentView(webview);
 		 
 		 webview.getSettings().setBuiltInZoomControls(true);
 		 webview.getSettings().setJavaScriptEnabled(true);
 		 
-		 String pdf = "http://www.state.nj.us/state/elections/form_pdf/voter-regis-forms/hudson-voter-reg-form-062212.pdf";
-		 
-		 webview.loadUrl("http://docs.google.com/gview?embedded=true&url=" + pdf);
+		 webview.loadUrl("https://docs.google.com/forms/d/1r3HZhsRRTTxGId6ajZt1h5fWh_2le1ezWNgdIThxoMQ/viewform");
+		
+		return root;
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 	}
 	
@@ -47,20 +49,10 @@ public class VoterRegActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 		
 	}
-/**
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.voter_reg, menu);
-		return true;
-	}
-	
-	**/
-
 }
