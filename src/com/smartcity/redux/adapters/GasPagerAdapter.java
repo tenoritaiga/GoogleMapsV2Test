@@ -22,9 +22,8 @@ public class GasPagerAdapter extends FragmentPagerAdapter {
 	 */
 	private MyGasFragment MyGasFragment;
 
-	public GasPagerAdapter(MyGasFragment MyGasFragment, FragmentManager fm) {
+	public GasPagerAdapter(FragmentManager fm) {
 		super(fm);
-		this.MyGasFragment = MyGasFragment;
 	}
 
 	/**

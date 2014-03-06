@@ -48,7 +48,7 @@ import com.smartcity.redux.adapters.GasPagerAdapter;
 
 public class MyGasFragment extends Fragment implements ActionBar.TabListener {
 	
-	GasPagerAdapter mGasPagerAdapter;
+	//GasPagerAdapter mGasPagerAdapter;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -74,12 +74,11 @@ public class MyGasFragment extends Fragment implements ActionBar.TabListener {
 
 				// Create the adapter that will return a fragment for each of the two
 				// primary sections of the app.
-				mGasPagerAdapter = new GasPagerAdapter(
-						this, getActivity().getSupportFragmentManager());
+				GasPagerAdapter mGasPagerAdapter = new GasPagerAdapter(getActivity().getSupportFragmentManager());
 
 				// Set up the ViewPager with the sections adapter.
-				mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
-				mViewPager.setAdapter(mGasPagerAdapter);
+				ViewPager mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
+				mViewPager.setAdapter(new GasPagerAdapter(getChildFragmentManager()));
 
 				// When swiping between different sections, select the corresponding
 				// tab. We can also use ActionBar.Tab#select() to do this if we have
