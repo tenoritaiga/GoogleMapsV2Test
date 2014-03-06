@@ -2,30 +2,10 @@ package com.smartcity.redux;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.maps.MapView;
-import com.microsoft.windowsazure.messaging.NotificationHub;
-import com.smartcity.redux.adapters.SlidingMenuAdapter;
-import com.smartcity.redux.fragments.EmergencyCategoryFragment;
-import com.smartcity.redux.fragments.Hoboken311Fragment;
-import com.smartcity.redux.fragments.InboxFragment;
-import com.smartcity.redux.fragments.MainFragment;
-import com.smartcity.redux.fragments.MapCategoryFragment;
-import com.smartcity.redux.fragments.ProfileFragment;
-import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
-import com.smartcity.redux.slidingmenu.NavDrawerItem;
-import com.smartcity.redux.fragments.CityCategoryFragment;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,26 +15,29 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.microsoft.windowsazure.messaging.NotificationHub;
+import com.smartcity.redux.adapters.SlidingMenuAdapter;
+import com.smartcity.redux.fragments.CityCategoryFragment;
+import com.smartcity.redux.fragments.EmergencyCategoryFragment;
+import com.smartcity.redux.fragments.Hoboken311Fragment;
+import com.smartcity.redux.fragments.InboxFragment;
+import com.smartcity.redux.fragments.MainFragment;
+import com.smartcity.redux.fragments.MapCategoryFragment;
+import com.smartcity.redux.fragments.ProfileFragment;
+import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
+import com.smartcity.redux.slidingmenu.NavDrawerItem;
 
 public class MainActivity extends Activity {
 	
