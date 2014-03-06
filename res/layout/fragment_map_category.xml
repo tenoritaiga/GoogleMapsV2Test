@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill_horizontal"
     android:orientation="vertical" >
-<<<<<<< HEAD
 
    <Button
         android:id="@+id/airmapButton"
@@ -13,10 +12,6 @@
         android:layout_height="45dp"
         android:drawableLeft="@drawable/cloud"
         android:text="@string/airmapButtonText" />
-
-=======
-    
->>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
     <Button
         android:id="@+id/trafficButton"
         android:layout_width="match_parent"

@@ -1,8 +1,5 @@
 package com.smartcity.redux.fragments;
 
-<<<<<<< HEAD
-=======
-//import com.smartcity.redux.AirMapActivity;
 import com.smartcity.redux.R;
 import com.smartcity.redux.SettingsActivity;
 
