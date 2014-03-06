@@ -49,12 +49,12 @@ public class EmergencyReportFragment extends Fragment {
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getActivity().getMenuInflater().inflate(R.menu.emergency_report, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getActivity().getMenuInflater().inflate(R.menu.emergency_report, menu);
+//		return true;
+//	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -112,27 +112,27 @@ public class EmergencyReportFragment extends Fragment {
 			    json.put("NumberAndStreet", "10 Test Drive");
 				json.put("PhoneNumber", "123-867-5309");
 				
-				final RadioGroup rad_medEme = (RadioGroup)findViewById(R.id.rad_report_group);
-				final RadioGroup rad_food = (RadioGroup)findViewById(R.id.rad_report_group1);
-				final RadioGroup rad_water = (RadioGroup)findViewById(R.id.rad_report_group2);
-				final RadioGroup rad_power = (RadioGroup)findViewById(R.id.rad_report_group3);
-				final RadioGroup rad_med = (RadioGroup)findViewById(R.id.rad_report_group4);
-				final RadioGroup rad_heat = (RadioGroup)findViewById(R.id.rad_report_group5);
-				final RadioGroup rad_charge = (RadioGroup)findViewById(R.id.rad_report_group6);
-				final RadioGroup rad_lodge = (RadioGroup)findViewById(R.id.rad_report_group7);
-				final RadioGroup rad_internet = (RadioGroup)findViewById(R.id.rad_report_group8);
-				final RadioGroup rad_gas = (RadioGroup)findViewById(R.id.rad_report_group9);
+				final RadioGroup rad_medEme = (RadioGroup)getActivity().findViewById(R.id.rad_report_group);
+				final RadioGroup rad_food = (RadioGroup)getActivity().findViewById(R.id.rad_report_group1);
+				final RadioGroup rad_water = (RadioGroup)getActivity().findViewById(R.id.rad_report_group2);
+				final RadioGroup rad_power = (RadioGroup)getActivity().findViewById(R.id.rad_report_group3);
+				final RadioGroup rad_med = (RadioGroup)getActivity().findViewById(R.id.rad_report_group4);
+				final RadioGroup rad_heat = (RadioGroup)getActivity().findViewById(R.id.rad_report_group5);
+				final RadioGroup rad_charge = (RadioGroup)getActivity().findViewById(R.id.rad_report_group6);
+				final RadioGroup rad_lodge = (RadioGroup)getActivity().findViewById(R.id.rad_report_group7);
+				final RadioGroup rad_internet = (RadioGroup)getActivity().findViewById(R.id.rad_report_group8);
+				final RadioGroup rad_gas = (RadioGroup)getActivity().findViewById(R.id.rad_report_group9);
 				
-				String medEmeValue = ((RadioButton)findViewById(rad_medEme.getCheckedRadioButtonId())).getText().toString();
-				String foodValue = ((RadioButton)findViewById(rad_food.getCheckedRadioButtonId())).getText().toString();
-				String waterValue = ((RadioButton)findViewById(rad_water.getCheckedRadioButtonId())).getText().toString();
-				String powerValue = ((RadioButton)findViewById(rad_power.getCheckedRadioButtonId())).getText().toString();
-				String medValue = ((RadioButton)findViewById(rad_med.getCheckedRadioButtonId())).getText().toString();
-				String heatValue = ((RadioButton)findViewById(rad_heat.getCheckedRadioButtonId())).getText().toString();
-				String chargeValue = ((RadioButton)findViewById(rad_charge.getCheckedRadioButtonId())).getText().toString();
-				String lodgeValue = ((RadioButton)findViewById(rad_lodge.getCheckedRadioButtonId())).getText().toString();
-				String internetValue = ((RadioButton)findViewById(rad_internet.getCheckedRadioButtonId())).getText().toString();
-				String gasValue = ((RadioButton)findViewById(rad_gas.getCheckedRadioButtonId())).getText().toString();
+				String medEmeValue = ((RadioButton)getActivity().findViewById(rad_medEme.getCheckedRadioButtonId())).getText().toString();
+				String foodValue = ((RadioButton)getActivity().findViewById(rad_food.getCheckedRadioButtonId())).getText().toString();
+				String waterValue = ((RadioButton)getActivity().findViewById(rad_water.getCheckedRadioButtonId())).getText().toString();
+				String powerValue = ((RadioButton)getActivity().findViewById(rad_power.getCheckedRadioButtonId())).getText().toString();
+				String medValue = ((RadioButton)getActivity().findViewById(rad_med.getCheckedRadioButtonId())).getText().toString();
+				String heatValue = ((RadioButton)getActivity().findViewById(rad_heat.getCheckedRadioButtonId())).getText().toString();
+				String chargeValue = ((RadioButton)getActivity().findViewById(rad_charge.getCheckedRadioButtonId())).getText().toString();
+				String lodgeValue = ((RadioButton)getActivity().findViewById(rad_lodge.getCheckedRadioButtonId())).getText().toString();
+				String internetValue = ((RadioButton)getActivity().findViewById(rad_internet.getCheckedRadioButtonId())).getText().toString();
+				String gasValue = ((RadioButton)getActivity().findViewById(rad_gas.getCheckedRadioButtonId())).getText().toString();
 				
 				boolean boolPower = boolCheck(powerValue);     // Bool Values that are going be sent to DB
 				boolean boolFood = boolCheck(foodValue);

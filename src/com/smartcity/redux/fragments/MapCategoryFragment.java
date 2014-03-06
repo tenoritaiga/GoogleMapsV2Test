@@ -1,11 +1,5 @@
 package com.smartcity.redux.fragments;
 
-import com.smartcity.redux.R;
-import com.smartcity.redux.SettingsActivity;
-
-import android.app.Fragment;
-import android.content.Intent;
->>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,19 +34,4 @@ public class MapCategoryFragment extends Fragment {
 		
 		return root;
 	}
-<<<<<<< HEAD
-=======
-	/**
-	public void startMapActivity(View view){
-		Intent intent = new Intent(getActivity(),AirMapActivity.class);
-		getActivity().startActivity(intent);
-	}
-	**/
-	
-	public void startSettingsActivity(View view){
-		Intent intent = new Intent(getActivity(),SettingsActivity.class);
-		getActivity().startActivity(intent);
-	}
-
->>>>>>> 05072e795744a3b6c5513d04c2c835ae796ebd08
 }
