@@ -24,13 +24,16 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -43,7 +46,7 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.smartcity.redux.R;
 import com.smartcity.redux.adapters.GasPagerAdapter;
 
-public class MyGasFragment extends FragmentActivity implements ActionBar.TabListener {
+public class MyGasFragment extends Fragment implements ActionBar.TabListener {
 	
 	GasPagerAdapter mGasPagerAdapter;
 
@@ -53,65 +56,67 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 	ViewPager mViewPager;
 	
 	Activity activity;
-
+	
+	
 	/**
 	 * Called when the gas consumption activity is created - sets up the tabbed 
 	 * pages and executes the API call for getting average gas consumption data.
 	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_my_gas);
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View root = inflater.inflate(R.layout.activity_my_gas, null);
+		
 		// Set up the action bar.
-		final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		// Show the Up button in the action bar.
-		actionBar.setDisplayHomeAsUpEnabled(true);
+				final ActionBar actionBar = getActivity().getActionBar();
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				// Show the Up button in the action bar.
+				actionBar.setDisplayHomeAsUpEnabled(true);
 
-		// Create the adapter that will return a fragment for each of the two
-		// primary sections of the app.
-		mGasPagerAdapter = new GasPagerAdapter(
-				this, getSupportFragmentManager());
+				// Create the adapter that will return a fragment for each of the two
+				// primary sections of the app.
+				mGasPagerAdapter = new GasPagerAdapter(
+						this, getActivity().getSupportFragmentManager());
 
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mGasPagerAdapter);
+				// Set up the ViewPager with the sections adapter.
+				mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
+				mViewPager.setAdapter(mGasPagerAdapter);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
-		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-					@Override
-					public void onPageSelected(int position) {
-						actionBar.setSelectedNavigationItem(position);
-					}
-				});
+				// When swiping between different sections, select the corresponding
+				// tab. We can also use ActionBar.Tab#select() to do this if we have
+				// a reference to the Tab.
+				mViewPager
+						.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+							@Override
+							public void onPageSelected(int position) {
+								actionBar.setSelectedNavigationItem(position);
+							}
+						});
 
-		// For each of the sections in the app, add a tab to the action bar.
-		for (int i = 0; i < mGasPagerAdapter.getCount(); i++) {
-			// Create a tab with text corresponding to the page title defined by
-			// the adapter. Also specify this Activity object, which implements
-			// the TabListener interface, as the callback (listener) for when
-			// this tab is selected.
-			actionBar.addTab(actionBar.newTab()
-					.setText(mGasPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
-		}
+				// For each of the sections in the app, add a tab to the action bar.
+				for (int i = 0; i < mGasPagerAdapter.getCount(); i++) {
+					// Create a tab with text corresponding to the page title defined by
+					// the adapter. Also specify this Activity object, which implements
+					// the TabListener interface, as the callback (listener) for when
+					// this tab is selected.
+					actionBar.addTab(actionBar.newTab()
+							.setText(mGasPagerAdapter.getPageTitle(i))
+							.setTabListener(this));
+				}
+				
+				activity = getActivity();
+				
+				// Execute the API call for getting average gas consumption data.
+				new JsonGasAvgParser().execute();
+				new JsonGasRecordParser().execute();
 		
-		activity = this;
 		
-		// Execute the API call for getting average gas consumption data.
-		new JsonGasAvgParser().execute();
-		new JsonGasRecordParser().execute();
+		return root;
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.my_gas, menu);
-		return true;
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+	    inflater.inflate(R.menu.my_gas, menu);
+	    super.onCreateOptionsMenu(menu,inflater);
 	}
 
 	@Override
@@ -125,7 +130,7 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -159,7 +164,7 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 	 */
 	public void showDatePickerDialog(View v) {
 		DatePickerFragment newFragment = new DatePickerFragment();
-		newFragment.show(getSupportFragmentManager(), "datePicker");
+		newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
 	}
 	
 	/**
@@ -251,9 +256,9 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.cons_avg);
+				EditText editText = (EditText) getActivity().findViewById(R.id.cons_avg);
 				editText.setText(jsonObject.getString("UserAverage30Day"));
-				editText = (EditText) findViewById(R.id.cons_avg_all);
+				editText = (EditText) getActivity().findViewById(R.id.cons_avg_all);
 				editText.setText(jsonObject.getString("CityAverage30Day"));
 				
 				// init example series data
@@ -269,7 +274,7 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 				
 				graphView.addSeries(exampleSeries); // data
 				
-				LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
+				LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.graph1);
 				layout.addView(graphView);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -328,7 +333,7 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 				Double total = 0.0;
 				
 				for (int i=0; i<jsonArray.length(); i++) {
-					tableLayout = (TableLayout) findViewById(R.id.gasResultsTable);
+					tableLayout = (TableLayout) getActivity().findViewById(R.id.gasResultsTable);
 					tableRow = new TableRow(activity);
 					tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
 					
@@ -356,7 +361,7 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 					total += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Gallons")));
 				}
 				
-				EditText gasTotal = (EditText) findViewById(R.id.cons_total);
+				EditText gasTotal = (EditText) getActivity().findViewById(R.id.cons_total);
 				gasTotal.setText(total.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -378,11 +383,11 @@ public class MyGasFragment extends FragmentActivity implements ActionBar.TabList
 			
 			try {
 				json.put("UserID", 1);
-				TextView textView = (TextView) findViewById(R.id.view_date);
+				TextView textView = (TextView) getActivity().findViewById(R.id.view_date);
 				json.put("Date", textView.getText().toString());
-				EditText editText = (EditText) findViewById(R.id.edit_gallons);
+				EditText editText = (EditText) getActivity().findViewById(R.id.edit_gallons);
 				json.put("Gallons", Double.parseDouble(editText.getText().toString()));
-				editText = (EditText) findViewById(R.id.edit_cost);
+				editText = (EditText) getActivity().findViewById(R.id.edit_cost);
 				json.put("Cost", Double.parseDouble(editText.getText().toString()));
 				
 				DefaultHttpClient client = new DefaultHttpClient();

@@ -228,7 +228,6 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="45dp"
 	        android:drawableLeft="@drawable/gas"
-	        android:onClick="startMyGasActivity"
 	        android:text="@string/myGasButtonText" />
 	
 	    <Button
@@ -236,7 +235,6 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="45dp"
 	        android:drawableLeft="@drawable/gas"
-	        android:onClick="startMyEnergyActivity"
 	        android:text="@string/myEnergyButtonText" />
 	    
 	    <Button
@@ -244,14 +242,12 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="45dp"
 	        android:drawableLeft="@drawable/gas"
-	        android:onClick="startMyWaterActivity"
 	        android:text="@string/myWaterButtonText" />
 	
 	    <Button
 	        android:id="@+id/energyCalcButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:onClick="startEnergyCalculatorActivity"
 	        android:text="@string/energyCalcButtonText" />
 	
 	</LinearLayout>

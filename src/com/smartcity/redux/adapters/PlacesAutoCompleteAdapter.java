@@ -34,12 +34,15 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null) {
                     // Retrieve the autocomplete results.
-                    resultList = ((DirectionsInputFragment)getContext()).autocomplete(constraint.toString());
+                	
+                	//TODO: Re-enable this
+                    //resultList = ((DirectionsInputFragment)getContext()).autocomplete(constraint.toString());
 
                     // Assign the data to the FilterResults
                     filterResults.values = resultList;
                     filterResults.count = resultList.size();
                 }
+                
                 return filterResults;
             }
 

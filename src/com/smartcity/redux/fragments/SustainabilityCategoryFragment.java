@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -33,12 +35,52 @@ public class SustainabilityCategoryFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
+		View root = inflater.inflate(R.layout.fragment_sustainability_category, null);
+		
+		Button gasButton = (Button)root.findViewById(R.id.gasButton);
+		Button energyButton = (Button)root.findViewById(R.id.energyButton);
+		Button waterButton = (Button)root.findViewById(R.id.waterButton);
+		Button energyCalcButton = (Button)root.findViewById(R.id.energyCalcButton);
+		
+		gasButton.setOnClickListener(onClickListener);
+		energyButton.setOnClickListener(onClickListener);
+		waterButton.setOnClickListener(onClickListener);
 
 		new JsonGasAvgParser().execute();
 		new JsonEnergyAvgParser().execute();
 		new JsonWaterAvgParser().execute();
-		return inflater.inflate(R.layout.fragment_sustainability_category, null);
+		
+		return root;
 	}
+	
+private OnClickListener onClickListener = new OnClickListener() {
+		
+		Fragment fragment = null;
+		
+		@Override
+		public void onClick(View v) {
+			switch(v.getId()) {
+			case R.id.gasButton:
+				fragment = new MyGasFragment();
+				break;
+			case R.id.trafficButton:
+				fragment = new TrafficMapFragment();
+				break;
+			case R.id.directionsButton:
+				fragment = new DirectionsInputFragment();
+				break;
+			}
+			
+			if (fragment != null) {
+				android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+				fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+			} else {
+				// error in creating fragment
+				Log.e("SustainabilityCategoryFragment", "Error in creating fragment");
+			}
+		}
+	};
 	
 	/**
 	 * Performs an HTTP GET request to retrieve an InputStream containing JSON 
