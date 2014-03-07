@@ -3,11 +3,12 @@ package com.smartcity.redux.adapters;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 
-import com.smartcity.redux.fragments.DirectionsInputFragment;
+import com.smartcity.redux.MainActivity;
 
 public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterable {
     private ArrayList<String> resultList;
@@ -36,13 +37,20 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
                     // Retrieve the autocomplete results.
                 	
                 	//TODO: Re-enable this
-                    //resultList = ((DirectionsInputFragment)getContext()).autocomplete(constraint.toString());
+                    resultList = ((MainActivity)getContext()).autocomplete(constraint.toString());
 
                     // Assign the data to the FilterResults
                     filterResults.values = resultList;
                     filterResults.count = resultList.size();
                 }
+                else
+                	Log.d("ERROR","constraint is null!!!");
                 
+                for(int i=0;i<resultList.size();i++)
+                {
+                	Log.d("RESULTS",resultList.get(i));
+                }
+
                 return filterResults;
             }
 
