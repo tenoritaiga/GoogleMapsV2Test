@@ -128,13 +128,14 @@ protected void displayNotification(){
 	    public SquareImageAdapter(Context context) {
 	        inflater = LayoutInflater.from(context);
 
-	        items.add(new Item("Item 1",       R.drawable.hoboken3));
-	        items.add(new Item("Item 2",   R.drawable.hoboken2));
-	        items.add(new Item("Item 3", R.drawable.hoboken1));
-	        items.add(new Item("Item 4",      R.drawable.hoboken1));
-	        items.add(new Item("Item 5",     R.drawable.hoboken1));
-	        items.add(new Item("Item 6",      R.drawable.hoboken1));
-	        items.add(new Item("Item 7",      R.drawable.hoboken1));
+	        items.add(new Item("Directions",       R.drawable.square_maps));
+	        items.add(new Item("City Guide",   R.drawable.square_coffee));
+	        items.add(new Item("Sustainability",      R.drawable.square_leaf));
+	        items.add(new Item("Environmental Maps",      R.drawable.square_cloud));
+	        items.add(new Item("Hoboken 311",      R.drawable.square_flag));
+	        items.add(new Item("Alerts",     R.drawable.square_alerts));
+	        items.add(new Item("Settings", R.drawable.square_settings));
+
 	    }
 
 	    @Override
