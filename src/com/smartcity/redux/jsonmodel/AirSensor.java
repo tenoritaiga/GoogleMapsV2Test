@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 public class AirSensor {
 	@SerializedName("SensorName")
 	public String SensorName;
-	
+
 	@SerializedName("SensorType")
 	public String SensorType;
-	
+
 	@SerializedName("Readings")
 	public Readings Readings;
 	
@@ -17,5 +17,6 @@ public class AirSensor {
 	
 	@SerializedName("DateTime")
 	public DateTime DateTime;
+	
 
 }

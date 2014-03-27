@@ -40,7 +40,7 @@ public class AirQualityAdapter implements InfoWindowAdapter{
 			
 			textViewType = (TextView) v.findViewById(R.id.textViewType);
 			textViewType.setText("Sensor Type: " + marker.getSnippet());
-			
+			/*
 			TextView PM10 = (TextView) v.findViewById(R.id.PM10);
 			PM10.setText("PM10: " + sensor.Readings.PM10);
 			
@@ -58,7 +58,8 @@ public class AirQualityAdapter implements InfoWindowAdapter{
 		
 
 			TextView DateTime = (TextView) v.findViewById(R.id.DateTime);
-			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");
+			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");*/
+			
 		}
 		return (v);
 	}

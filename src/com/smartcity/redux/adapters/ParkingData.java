@@ -50,9 +50,9 @@ public class ParkingData implements InfoWindowAdapter{
 			
 			TextView Noise = (TextView) v.findViewById(R.id.Noise);
 			Noise.setText("Noise: " + sensor.Readings.Noise);
-			*/
+			
 			TextView DateTime = (TextView) v.findViewById(R.id.DateTime);
-			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");
+			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");*/
 		}
 		return (v);
 	}

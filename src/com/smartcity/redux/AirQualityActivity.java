@@ -31,7 +31,6 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.gson.Gson;
 import com.smartcity.redux.adapters.AirQualityAdapter;
 import com.smartcity.redux.jsonmodel.AirQualitySearchResponse;
-import com.smartcity.redux.jsonmodel.Sensor;
 import com.smartcity.redux.jsonmodel.AirSensor;
 
 import java.io.IOException;
@@ -219,10 +218,6 @@ public class AirQualityActivity extends Activity {
 
 		@Override
 		protected AirQualitySearchResponse doInBackground(Void... params) {
-			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			//String url = "http://pastebin.com/raw.php?i=ikLGcHbY";
-			//String url = "http://pastebin.com/raw.php?i=R18q6rPy";
-			//String url = "http://pastebin.com/raw.php?i=tY3u23TF";
 			String url = "http://pastebin.com/raw.php?i=Hej6LrLA";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
@@ -318,30 +313,54 @@ public class AirQualityActivity extends Activity {
 					
 					
 					//Log.d("STREAM","We got back: " + response.AirSensors);
-					
+					/*
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
-			        .snippet(sensor.SensorType)
+			        .snippet(sensor.SensorType + sensor.Readings.CO)
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
 					
-					
+					*/
 					
 					if (sensor.SensorType.equals("Air"))
 					{
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+				        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
+				        .title(sensor.SensorName)
+				        .snippet(sensor.SensorType + " | CO Levels: " + sensor.Readings.CO + " | PM10 Levels: " + sensor.Readings.PM10 + " | PM25 Levels: " + sensor.Readings.PM2_5)
+				        .icon(BitmapDescriptorFactory.fromResource(resID)));
+						
 						air_markers.add(marker);
+						
+						adapter.hashMap.put(marker, sensor);
 					}
 					else if (sensor.SensorType.equals("Noise"))
 					{
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+				        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
+				        .title(sensor.SensorName)
+				        .snippet(sensor.SensorType + " | Level: " + sensor.Readings.Noise)
+				        .icon(BitmapDescriptorFactory.fromResource(resID)));
+						
 						noise_markers.add(marker);
+						
+						adapter.hashMap.put(marker, sensor);
 					}
 					else if (sensor.SensorType.equals("Greenhouse"))
 					{
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+				        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
+				        .title(sensor.SensorName)
+				        .snippet(sensor.SensorType + " | CO2 Levels: " + sensor.Readings.CO2)
+				        .icon(BitmapDescriptorFactory.fromResource(resID)));
+						
 						greenhouse_markers.add(marker);
+						
+						adapter.hashMap.put(marker, sensor);
 					}
 					
 					
-					adapter.hashMap.put(marker, sensor);
+					//adapter.hashMap.put(marker, sensor);
 					
 				}
 				
