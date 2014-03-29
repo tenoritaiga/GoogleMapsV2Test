@@ -213,7 +213,7 @@ public class MyWaterActivity extends FragmentActivity implements
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=suvU0Tbb";
-			String url = "http://schoboken.cloudapp.net:82/api/UserWaterConsumptionAverages?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserWaterConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -283,7 +283,7 @@ public class MyWaterActivity extends FragmentActivity implements
 		@Override
 		protected JSONArray doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=MmjUucDV";
-			String url = "http://schoboken.cloudapp.net:82/api/UserWaterConsumptionData?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserWaterConsumptionData?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -373,7 +373,7 @@ public class MyWaterActivity extends FragmentActivity implements
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=suvU0Tbb";
-			String url = "http://schoboken.cloudapp.net:82/api/UserWaterConsumptionTotals?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserWaterConsumptionTotals?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -441,7 +441,7 @@ public class MyWaterActivity extends FragmentActivity implements
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
-				HttpPost postRequest  = new HttpPost("http://schoboken.cloudapp.net:82/api/WaterConsumption");
+				HttpPost postRequest  = new HttpPost("http://smartcity1.cloudapp.net/api/WaterConsumption");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");

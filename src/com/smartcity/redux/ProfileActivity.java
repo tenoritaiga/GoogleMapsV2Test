@@ -11,6 +11,7 @@ import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -114,7 +115,7 @@ public class ProfileActivity extends Activity {
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=s4qzrKDF";
-			String url = "http://schoboken.cloudapp.net:82/api/Users?user_name=test_username";
+			String url = "http://smartcity1.cloudapp.net/api/Users?user_name=test_username";
 			
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -258,7 +259,7 @@ public class ProfileActivity extends Activity {
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				//HttpPut putRequest = new HttpPut("http://pastebin.com/raw.php?i=s4qzrKDF");
-				HttpPut putRequest = new HttpPut("http://schoboken.cloudapp.net:82/api/Users");
+				HttpPut putRequest = new HttpPut("http://smartcity1.cloudapp.net/api/Users");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");

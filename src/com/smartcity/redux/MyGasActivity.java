@@ -219,7 +219,7 @@ public class MyGasActivity extends FragmentActivity implements
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=QiXs9eZU";
-			String url = "http://schoboken.cloudapp.net:82/api/UserGasConsumptionAverages?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserGasConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -290,7 +290,7 @@ public class MyGasActivity extends FragmentActivity implements
 		@Override
 		protected JSONArray doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=up92S6EE";
-			String url = "http://schoboken.cloudapp.net:82/api/UserGasConsumptionData?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserGasConsumptionData?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -395,7 +395,7 @@ public class MyGasActivity extends FragmentActivity implements
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
-				HttpPost postRequest  = new HttpPost("http://schoboken.cloudapp.net:82/api/GasConsumption");
+				HttpPost postRequest  = new HttpPost("http://smartcity1.cloudapp.net/api/GasConsumption");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");

@@ -89,7 +89,7 @@ public class SustainabilityCategoryFragment extends Fragment {
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=QiXs9eZU";
-			String url = "http://schoboken.cloudapp.net:82/api/UserGasConsumptionAverages?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserGasConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -154,7 +154,7 @@ public class SustainabilityCategoryFragment extends Fragment {
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=hizxN4XD";
-			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionAverages?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserEnergyConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -222,7 +222,7 @@ public class SustainabilityCategoryFragment extends Fragment {
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=suvU0Tbb";
-			String url = "http://schoboken.cloudapp.net:82/api/UserWaterConsumptionAverages?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserWaterConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			

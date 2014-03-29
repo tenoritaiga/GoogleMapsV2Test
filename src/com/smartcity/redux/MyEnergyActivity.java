@@ -213,7 +213,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=hizxN4XD";
-			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionAverages?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserEnergyConsumptionAverages?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -289,7 +289,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 		@Override
 		protected JSONArray doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=iarB92kH";
-			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionData?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserEnergyConsumptionData?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -390,7 +390,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 		@Override
 		protected JSONObject doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=hizxN4XD";
-			String url = "http://schoboken.cloudapp.net:82/api/UserEnergyConsumptionTotals?user_id=1";
+			String url = "http://smartcity1.cloudapp.net/api/UserEnergyConsumptionTotals?user_id=1";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
@@ -462,7 +462,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
-				HttpPost postRequest  = new HttpPost("http://schoboken.cloudapp.net:82/api/EnergyConsumption");
+				HttpPost postRequest  = new HttpPost("http://smartcity1.cloudapp.net/api/EnergyConsumption");
 				System.out.println(json.toString());
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType("application/json");
