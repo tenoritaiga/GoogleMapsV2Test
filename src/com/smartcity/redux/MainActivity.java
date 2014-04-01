@@ -28,6 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.microsoft.windowsazure.messaging.NotificationHub;
+import com.microsoft.windowsazure.notifications.NotificationsManager;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
 import com.smartcity.redux.fragments.CityCategoryFragment;
 import com.smartcity.redux.fragments.EmergencyCategoryFragment;
@@ -37,6 +38,7 @@ import com.smartcity.redux.fragments.MainFragment;
 import com.smartcity.redux.fragments.MapCategoryFragment;
 import com.smartcity.redux.fragments.ProfileFragment;
 import com.smartcity.redux.fragments.SustainabilityCategoryFragment;
+import com.smartcity.redux.gcm.AzureGCMHandler;
 import com.smartcity.redux.slidingmenu.NavDrawerItem;
 
 public class MainActivity extends Activity {
@@ -75,17 +77,18 @@ public class MainActivity extends Activity {
     //Windows Azure GCM integration
     private NotificationHub hub;
 
-    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//Set up for Azure GCM
+		NotificationsManager.handleNotifications(this,SENDER_ID,AzureGCMHandler.class);
+		
 		//mDisplay = (TextView) findViewById(R.id.gcmTextView);
 		context = getApplicationContext();
 
-		//Check for Google Play Services
-		
+		//Check for Google Play Services	
 		if(checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(this);
 			//Resetting regid in registerWithNotificationHubs(), but we need it defined here first
@@ -99,8 +102,10 @@ public class MainActivity extends Activity {
 		}
 		
 		//Setup for Azure GCM
-		String connectionString = "your_listen_access_connection_string";
-		hub = new NotificationHub("your_notification_hub_name",connectionString,this);
+		String connectionString = "Endpoint=sb://smartcity-hoboken-notifications-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=3J/xUaPxPW1MYGBU8a1dg5lJ2yREMeHHmr8rDNtHz7M=";
+		hub = new NotificationHub("notifications-integration",connectionString,this);
+		
+		registerWithNotificationHubs();
 
 		mTitle = mDrawerTitle = getTitle();
 
@@ -221,6 +226,7 @@ public class MainActivity extends Activity {
 	      @Override
 	      protected Object doInBackground(Object... params) {
 	         try {
+	        	 Log.d("GCM","Registering with server, ID "+SENDER_ID);
 	            String regid = gcm.register(SENDER_ID);
 	            hub.register(regid);
 	         } catch (Exception e) {

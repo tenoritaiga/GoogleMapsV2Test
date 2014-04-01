@@ -47,7 +47,7 @@
 
         <!-- GCM receiver -->
 
-        <receiver
+<!--         <receiver
             android:name="com.smartcity.redux.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
@@ -55,7 +55,15 @@
 
                 <category android:name="com.smartcity.redux" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
+        
+        <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
+    android:permission="com.google.android.c2dm.permission.SEND">
+    		<intent-filter>
+        		<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        		<category android:name="com.smartcity.redux" />
+    		</intent-filter>
+		</receiver>
 
         <service android:name="com.smartcity.redux.GcmIntentService" />
 
