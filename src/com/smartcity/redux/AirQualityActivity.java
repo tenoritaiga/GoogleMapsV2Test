@@ -218,7 +218,8 @@ public class AirQualityActivity extends Activity {
 
 		@Override
 		protected AirQualitySearchResponse doInBackground(Void... params) {
-			String url = "http://pastebin.com/raw.php?i=Hej6LrLA";
+			//String url = "http://pastebin.com/raw.php?i=Hej6LrLA";
+			String url="http://pastebin.com/raw.php?i=QE7g0EcQ";
 			//InputStream source = retrieveStream(url);
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
@@ -327,7 +328,7 @@ public class AirQualityActivity extends Activity {
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 				        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 				        .title(sensor.SensorName)
-				        .snippet(sensor.SensorType + " | CO Levels: " + sensor.Readings.CO + " | PM10 Levels: " + sensor.Readings.PM10 + " | PM25 Levels: " + sensor.Readings.PM2_5)
+				        .snippet(sensor.SensorType + '\n'+"CO Levels: " + sensor.Readings.CO + '\n'+ "PM10 Levels: " + sensor.Readings.PM10 + '\n'+"PM25 Levels: " + sensor.Readings.PM2_5)
 				        .icon(BitmapDescriptorFactory.fromResource(resID)));
 						
 						air_markers.add(marker);
@@ -339,7 +340,7 @@ public class AirQualityActivity extends Activity {
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 				        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 				        .title(sensor.SensorName)
-				        .snippet(sensor.SensorType + " | Level: " + sensor.Readings.Noise)
+				        .snippet(sensor.SensorType + '\n' + "Level: " + sensor.Readings.Noise)
 				        .icon(BitmapDescriptorFactory.fromResource(resID)));
 						
 						noise_markers.add(marker);
@@ -351,7 +352,7 @@ public class AirQualityActivity extends Activity {
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 				        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 				        .title(sensor.SensorName)
-				        .snippet(sensor.SensorType + " | CO2 Levels: " + sensor.Readings.CO2)
+				        .snippet(sensor.SensorType + '\n' + "CO2 Levels: " + sensor.Readings.CO2)
 				        .icon(BitmapDescriptorFactory.fromResource(resID)));
 						
 						greenhouse_markers.add(marker);
