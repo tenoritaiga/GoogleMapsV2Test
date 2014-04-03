@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.microsoft.windowsazure.notifications.NotificationsHandler;
 import com.smartcity.redux.MainActivity;
@@ -20,6 +21,7 @@ public class AzureGCMHandler extends NotificationsHandler {
 
 	@Override
 	public void onReceive(Context context, Bundle bundle) {
+		Log.d("GCM","MESSAGE RECEIVED!!!");
 	    ctx = context;
 	    String nhMessage = bundle.getString("msg");
 

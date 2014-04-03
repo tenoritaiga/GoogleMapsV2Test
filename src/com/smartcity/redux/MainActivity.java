@@ -26,8 +26,8 @@ import android.widget.ListView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.microsoft.windowsazure.messaging.NotificationHub;
+import com.google.android.gms.gcm.*;
+import com.microsoft.windowsazure.messaging.*;
 import com.microsoft.windowsazure.notifications.NotificationsManager;
 import com.smartcity.redux.adapters.SlidingMenuAdapter;
 import com.smartcity.redux.fragments.CityCategoryFragment;
@@ -65,14 +65,14 @@ public class MainActivity extends Activity {
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     //TextView mDisplay;
-    GoogleCloudMessaging gcm;
+    private GoogleCloudMessaging gcm;
     AtomicInteger msgId = new AtomicInteger();
     SharedPreferences prefs;
     Context context;
     String regid;
     
     //Google Console Sender ID   
-    String SENDER_ID = "442837429748";
+    private String SENDER_ID = "442837429748";
     
     //Windows Azure GCM integration
     private NotificationHub hub;
@@ -91,21 +91,21 @@ public class MainActivity extends Activity {
 		//Check for Google Play Services	
 		if(checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(this);
+			//Setup for Azure GCM
+			String connectionString = "Endpoint=sb://smartcity-hoboken-notifications-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=3J/xUaPxPW1MYGBU8a1dg5lJ2yREMeHHmr8rDNtHz7M=";
+			hub = new NotificationHub("notifications-integration",connectionString,this);
+			
+			registerWithNotificationHubs();
 			//Resetting regid in registerWithNotificationHubs(), but we need it defined here first
 			regid = getRegistrationId(context);
 
 			if(regid.isEmpty()) {
+				Log.d("REGISTRATION","GCM REGISTERING IN BACKGROUND");
 				registerInBackground();
 			}
 		} else {
 			Log.i("PLAY_SVCS_NOT_SUPPORTED", "No valid Google Play Services APK found.");
 		}
-		
-		//Setup for Azure GCM
-		String connectionString = "Endpoint=sb://smartcity-hoboken-notifications-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=3J/xUaPxPW1MYGBU8a1dg5lJ2yREMeHHmr8rDNtHz7M=";
-		hub = new NotificationHub("notifications-integration",connectionString,this);
-		
-		registerWithNotificationHubs();
 
 		mTitle = mDrawerTitle = getTitle();
 
@@ -179,8 +179,7 @@ public class MainActivity extends Activity {
 		}
 		//Otherwise restore previous value
 	}
-	
-	
+
 	
 	/**
 	 * Slide menu item click listener
