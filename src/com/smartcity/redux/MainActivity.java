@@ -97,12 +97,12 @@ public class MainActivity extends Activity {
 			
 			registerWithNotificationHubs();
 			//Resetting regid in registerWithNotificationHubs(), but we need it defined here first
-			regid = getRegistrationId(context);
+			//regid = getRegistrationId(context);
 
-			if(regid.isEmpty()) {
-				Log.d("REGISTRATION","GCM REGISTERING IN BACKGROUND");
-				registerInBackground();
-			}
+//			if(regid.isEmpty()) {
+//				Log.d("REGISTRATION","GCM REGISTERING IN BACKGROUND");
+//				registerInBackground();
+//			}
 		} else {
 			Log.i("PLAY_SVCS_NOT_SUPPORTED", "No valid Google Play Services APK found.");
 		}
@@ -227,6 +227,7 @@ public class MainActivity extends Activity {
 	         try {
 	        	 Log.d("GCM","Registering with server, ID "+SENDER_ID);
 	            String regid = gcm.register(SENDER_ID);
+	            Log.d("GCM","regid is "+regid);
 	            hub.register(regid);
 	         } catch (Exception e) {
 	            return e;
@@ -244,7 +245,7 @@ public class MainActivity extends Activity {
 	 * @return registration ID, or empty string if there is no existing
 	 *         registration ID.
 	 */
-	private String getRegistrationId(Context context) {
+/*	private String getRegistrationId(Context context) {
 	    final SharedPreferences prefs = getGCMPreferences(context);
 	    String registrationId = prefs.getString(PROPERTY_REG_ID, "");
 	    if (registrationId.isEmpty()) {
@@ -261,22 +262,22 @@ public class MainActivity extends Activity {
 	        return "";
 	    }
 	    return registrationId;
-	}
+	}*/
 	
 	/**
 	 * @return Application's {@code SharedPreferences}.
 	 */
-	private SharedPreferences getGCMPreferences(Context context) {
+/*	private SharedPreferences getGCMPreferences(Context context) {
 	    // This sample app persists the registration ID in shared preferences, but
 	    // how you store the regID in your app is up to you.
 	    return getSharedPreferences(MainActivity.class.getSimpleName(),
 	            Context.MODE_PRIVATE);
-	}
+	}*/
 	
 	/**
 	 * @return Application's version code from the {@code PackageManager}.
 	 */
-	private static int getAppVersion(Context context) {
+/*	private static int getAppVersion(Context context) {
 	    try {
 	        PackageInfo packageInfo = context.getPackageManager()
 	                .getPackageInfo(context.getPackageName(), 0);
@@ -285,7 +286,7 @@ public class MainActivity extends Activity {
 	        // should never happen
 	        throw new RuntimeException("Could not get package name: " + e);
 	    }
-	}
+	}*/
 	
 	/**
 	 * Registers the application with GCM servers asynchronously.
@@ -293,7 +294,7 @@ public class MainActivity extends Activity {
 	 * Stores the registration ID and app versionCode in the application's
 	 * shared preferences.
 	 */
-	private void registerInBackground() {
+/*	private void registerInBackground() {
 	    new AsyncTask<Void,Void,String>() {
 	        @Override
 	        protected String doInBackground(Void... params) {
@@ -331,7 +332,7 @@ public class MainActivity extends Activity {
 	            //mDisplay.append(msg + "\n");
 	        }
 	    }.execute(null, null, null);
-	}
+	}*/
 	
 	/**
 	 * Sends the registration ID to your server over HTTP, so it can use GCM/HTTP
@@ -339,9 +340,9 @@ public class MainActivity extends Activity {
 	 * device sends upstream messages to a server that echoes back the message
 	 * using the 'from' address in the message.
 	 */
-	private void sendRegistrationIdToBackend() {
+/*	private void sendRegistrationIdToBackend() {
 	    // Your implementation here.
-	}
+	}*/
 	
 	/**
 	 * Stores the registration ID and app versionCode in the application's
@@ -350,7 +351,7 @@ public class MainActivity extends Activity {
 	 * @param context application's context.
 	 * @param regId registration ID
 	 */
-	private void storeRegistrationId(Context context, String regId) {
+/*	private void storeRegistrationId(Context context, String regId) {
 	    final SharedPreferences prefs = getGCMPreferences(context);
 	    int appVersion = getAppVersion(context);
 	    Log.i("SAVING", "Saving regId on app version " + appVersion);
@@ -358,7 +359,7 @@ public class MainActivity extends Activity {
 	    editor.putString(PROPERTY_REG_ID, regId);
 	    editor.putInt(PROPERTY_APP_VERSION, appVersion);
 	    editor.commit();
-	}
+	}*/
 	
 /*	public void onClick(final View view) {
 	    if (view == findViewById(R.id.sendGCMButton)) {
