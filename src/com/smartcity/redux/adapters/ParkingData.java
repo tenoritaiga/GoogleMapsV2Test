@@ -15,6 +15,7 @@ import com.smartcity.redux.jsonmodel.ParkingSensor;
 public class ParkingData implements InfoWindowAdapter{
 	LayoutInflater inflater = null;
 	private TextView textViewTitle;
+	private TextView textViewType;
 	public Map <Marker, ParkingSensor> hashMap = new HashMap <Marker, ParkingSensor>();
 
 	public ParkingData(LayoutInflater inflater) {
@@ -35,6 +36,9 @@ public class ParkingData implements InfoWindowAdapter{
 			
 			textViewTitle = (TextView) v.findViewById(R.id.textViewTitle);
 			textViewTitle.setText(marker.getTitle());
+			
+			textViewType = (TextView) v.findViewById(R.id.textViewType);
+			textViewType.setText("Parking status: " + marker.getSnippet());
 			/*
 			TextView PM10 = (TextView) v.findViewById(R.id.PM10);
 			PM10.setText("PM10: " + sensor.Readings.PM10);
@@ -52,7 +56,8 @@ public class ParkingData implements InfoWindowAdapter{
 			Noise.setText("Noise: " + sensor.Readings.Noise);
 			
 			TextView DateTime = (TextView) v.findViewById(R.id.DateTime);
-			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");*/
+			DateTime.setText("Last updated today at: " + sensor.DateTime.Time+":00");
+			*/
 		}
 		return (v);
 	}

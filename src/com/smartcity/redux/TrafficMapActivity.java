@@ -190,6 +190,7 @@ public class TrafficMapActivity extends Activity {
 					Marker marker = googleMap.addMarker(new MarkerOptions()
 			        .position(new LatLng(sensor.Location.Latitude,sensor.Location.Longitude))
 			        .title(sensor.SensorName)
+			        .snippet("Available!")
 			        .icon(BitmapDescriptorFactory.fromResource(resID)));
 					
 					adapter.hashMap.put(marker, sensor);
