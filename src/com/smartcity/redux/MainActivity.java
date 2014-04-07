@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 			gcm = GoogleCloudMessaging.getInstance(this);
 			//Setup for Azure GCM
 			String connectionString = "Endpoint=sb://smartcity-hoboken-notifications-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=3J/xUaPxPW1MYGBU8a1dg5lJ2yREMeHHmr8rDNtHz7M=";
-			hub = new NotificationHub("notifications-integration",connectionString,this);
+			hub = new NotificationHub("smartcity-hoboken-notifications",connectionString,this);
 			
 			registerWithNotificationHubs();
 			//Resetting regid in registerWithNotificationHubs(), but we need it defined here first
