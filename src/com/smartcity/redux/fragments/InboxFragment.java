@@ -14,10 +14,10 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.smartcity.redux.R;
 import com.smartcity.redux.gcm.DatabaseHelper;
@@ -27,6 +27,7 @@ public class InboxFragment extends ListFragment {
 	private ArrayList<String> results = new ArrayList<String>();
 	private SQLiteDatabase newDB;
 	ListView messagesList;
+	ArrayAdapter<String> adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,13 +53,15 @@ public class InboxFragment extends ListFragment {
 			DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
 			newDB = db.getWritableDatabase();
 			Cursor c = newDB.rawQuery("SELECT * FROM messagesTable",null);
+			adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,results);
 			
 			if(c != null) {
 				if(c.moveToFirst()) {
 					do {
+						String id = Integer.toString(c.getInt(c.getColumnIndex("ID")));
 						String message = c.getString(c.getColumnIndex("MESSAGE"));
 						Log.d("INBOX","Adding message " + message);
-						results.add("Message: " + message);
+						results.add("ID: " + id + " " + message);
 					} while(c.moveToNext());
 				}
 			}
@@ -66,6 +69,16 @@ public class InboxFragment extends ListFragment {
 			Log.e("INBOX","Could not create or open the database! Error: " + e);
 		}
 	}
+	
+//	private void deleteFromDatabase(String id) {
+//		try {
+//			DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
+//			newDB = db.getWritableDatabase();
+//			Cursor c = newDB.rawQuery("SELECT * FROM messagesTable WHERE ID = " + id,null);
+//		} catch(SQLiteException e) {
+//			Log.e("INBOX","Could not create or open the database! Error: " + e);
+//		}
+//	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
@@ -76,13 +89,11 @@ public class InboxFragment extends ListFragment {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		super.onContextItemSelected(item);
-		
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		if(item.getTitle().equals("Delete")) {
-			CharSequence text = "Pressed delete";
-			int duration = Toast.LENGTH_SHORT;
-			
-			Toast toast = Toast.makeText(getActivity().getApplicationContext(),text,duration);
-			toast.show();
+			adapter.remove(adapter.getItem(info.position));
+			newDB.execSQL("DELETE FROM messagesTable WHERE ID='"+info.position+"'");
+			adapter.notifyDataSetChanged();
 		}
 		return true;
 	}
@@ -92,7 +103,6 @@ public class InboxFragment extends ListFragment {
 		tv.setText("Data shows up below");
 		messagesList.addHeaderView(tv);
 		registerForContextMenu(messagesList);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,results);
 		setListAdapter(adapter);
 		adapter.notifyDataSetChanged();
 		messagesList.setTextFilterEnabled(true);
