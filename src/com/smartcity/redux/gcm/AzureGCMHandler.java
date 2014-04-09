@@ -26,6 +26,10 @@ public class AzureGCMHandler extends NotificationsHandler {
 	    String nhMessage = bundle.getString("msg");
 
 	    sendNotification(nhMessage);
+	    
+	    Log.d("GCM","Writing message to sqlite database.");
+	    DatabaseHelper db = new DatabaseHelper(context);
+	    db.insertMsg(nhMessage);
 	}
 
 	private void sendNotification(String msg) {

@@ -5,7 +5,5 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/home/stiltzkin/Documents/repos/SmartCity2/libs/mobileservices-1.1.5.jar"/>
-	<classpathentry kind="lib" path="/home/stiltzkin/Documents/repos/SmartCity2/libs/notifications-1.0.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
