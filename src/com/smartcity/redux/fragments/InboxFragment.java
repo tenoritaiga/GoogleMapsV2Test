@@ -8,12 +8,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smartcity.redux.R;
 import com.smartcity.redux.gcm.DatabaseHelper;
@@ -63,12 +67,34 @@ public class InboxFragment extends ListFragment {
 		}
 	}
 	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		menu.add(0,1,0,"Delete");
+		super.onCreateContextMenu(menu,v,menuInfo);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		super.onContextItemSelected(item);
+		
+		if(item.getTitle().equals("Delete")) {
+			CharSequence text = "Pressed delete";
+			int duration = Toast.LENGTH_SHORT;
+			
+			Toast toast = Toast.makeText(getActivity().getApplicationContext(),text,duration);
+			toast.show();
+		}
+		return true;
+	}
+	
 	private void displayResultList() {
 		TextView tv = new TextView(getActivity());
 		tv.setText("Data shows up below");
 		messagesList.addHeaderView(tv);
-		
-		setListAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,results));
+		registerForContextMenu(messagesList);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,results);
+		setListAdapter(adapter);
+		adapter.notifyDataSetChanged();
 		messagesList.setTextFilterEnabled(true);
 	}
 
