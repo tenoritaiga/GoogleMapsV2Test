@@ -63,4 +63,11 @@
         android:onClick="startQuestionActivity"
         android:text="@string/questionButtonText" />
     
+    <Button
+        android:id="@+id/marketplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startMarketplaceActivity"
+        android:text="@string/marketplaceButtonText" />
+    
    </LinearLayout>

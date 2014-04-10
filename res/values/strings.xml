@@ -86,6 +86,7 @@
     <string name="newsletterButtonText">Newsletter</string>
     <string name="pollButtonText">City Poll</string>
     <string name="questionButtonText">Ask A Question!</string>
+    <string name="marketplaceButtonText">Marketplace</string>
     <string name="formsButtonText">Forms and Permits</string>
     <string name="guideButtonText">New Residents Guide</string>
     <string name="swift911ButtonText">Swift 911</string>
@@ -473,5 +474,6 @@
     <string name="title_activity_voter_reg">Voter Registration</string>
     <string name="title_activity_poll">City Poll</string>
     <string name="title_activity_question">Questions</string>
+    <string name="title_activity_marketplace">MarketplaceActivity</string>
 
 </resources>
