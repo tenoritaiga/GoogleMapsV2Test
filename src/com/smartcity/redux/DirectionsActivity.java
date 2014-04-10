@@ -101,23 +101,33 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
             Log.d("TRANSIT","Transit type is: " + transitType);
             
             //Default to driving directions
-            TravelMode tm = Routing.TravelMode.DRIVING;
+            //TravelMode tm = Routing.TravelMode.DRIVING;
             
-            if(transitType == "Walking")
+            //TEST: default to walking directions
+            //TravelMode tm = Routing.TravelMode.WALKING;
+            
+            TravelMode tm;
+            
+            if(transitType.compareTo("Walking") == 0)
             {
             	tm = Routing.TravelMode.WALKING;
             }
-            else if(transitType == "Driving")
+            else if(transitType.compareTo("Driving") == 0)
             {
             	tm = Routing.TravelMode.DRIVING;            	
             }
-            else if(transitType == "Biking")
+            else if(transitType.compareTo("Biking") == 0)
             {
             	tm = Routing.TravelMode.BIKING;
             }
-            else if(transitType == "Public Transit")
+            else if(transitType.compareTo("Public Transit") == 0)
             {
             	tm = Routing.TravelMode.TRANSIT;
+            }
+            else
+            {
+            	tm = Routing.TravelMode.DRIVING;
+            	Log.d("ELSE2","Entered else statement in Act");
             }
 
             Routing routing = new Routing(tm);
