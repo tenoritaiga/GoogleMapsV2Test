@@ -1,11 +1,22 @@
 package com.smartcity.redux;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.location.Criteria;
@@ -15,21 +26,36 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
+import android.test.mock.MockContext;
+import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
 public class EmergencyReportActivity extends Activity {
 
+	Activity activity;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_emergency_report);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		activity = this;
+		
+		new JsonEmerLayoutParser().execute();
 	}
 
 	/**
@@ -74,6 +100,146 @@ public class EmergencyReportActivity extends Activity {
 	}
 	
 	/**
+	 * Performs an HTTP GET request to retrieve an InputStream containing JSON 
+	 * data from the provided URL. If the request is successful, an InputStream 
+	 * is returned.
+	 * @param url
+	 * @return
+	 */
+	private static InputStream retrieveStream(String url) {
+		DefaultHttpClient client = new DefaultHttpClient();
+		HttpGet getRequest = new HttpGet(url);
+		
+		try{
+			HttpResponse getResponse = client.execute(getRequest);
+			final int statusCode = getResponse.getStatusLine().getStatusCode();
+			System.out.println(statusCode);
+			
+			if(statusCode != HttpStatus.SC_OK){
+				//Log.w(getClass().getSimpleName(),
+						//"Error " + statusCode + " for URL " + url);
+				System.out.println(statusCode);
+				return null;
+			}
+			
+			HttpEntity getResponseEntity = getResponse.getEntity();
+			return getResponseEntity.getContent();
+		}
+		
+		catch(IOException e){
+			getRequest.abort();
+			//Log.w(getClass().getSimpleName(),"Error for URL " + url, e);
+		}
+		return null;
+	}
+	
+	private class JsonEmerLayoutParser extends AsyncTask<Void,Void,JSONArray> {
+		
+		@Override
+		protected JSONArray doInBackground(Void... params) {
+			//String url = "http://pastebin.com/raw.php?i=up92S6EE";
+			String url = "http://pastebin.com/raw.php?i=WHVCzxWG";
+			InputStream stream = retrieveStream(url);
+			Log.d("STREAM", (stream == null) + "");
+			
+			try{
+				Reader reader = new InputStreamReader(stream);
+				BufferedReader bufRead = new BufferedReader(reader);
+				StringBuilder builder = new StringBuilder();
+				String line;
+				while ((line = bufRead.readLine()) != null) {
+					builder.append(line);
+					System.out.println(line);
+				}
+				String jsonString = builder.toString();
+				JSONArray jsonArray = new JSONArray(jsonString);
+				//System.out.println(new JSONObject(jsonObject.getString("HomeAddress")).getString("NumberAndStreet"));
+				return jsonArray;
+			}
+			catch(NullPointerException npe){
+				Log.e("ERROR","Warning: Null pointer exception while parsing JSON!",npe);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(JSONArray jsonArray) {
+			
+			try {
+				System.out.println(jsonArray.length());
+				System.out.println(jsonArray.getJSONObject(0).getString("NecessityID"));
+				
+				TableLayout tableLayout;
+				TableRow.LayoutParams params;
+				TableRow.LayoutParams params2;
+				TableRow tableRow;
+				TextView text;
+				RadioGroup group;
+				RadioButton yesButton;
+				RadioButton noButton;
+				EditText editText;
+				
+				for (int i=0; i<jsonArray.length(); i++) {
+					tableLayout = (TableLayout) findViewById(R.id.emerReportTable);
+					tableRow = new TableRow(activity);
+					tableRow.setPadding(0, 10, 0, 10);
+					tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+					
+					params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+					params.setMargins(0, 5, 0, 0);
+					params2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+					params2.setMargins(15, 5, 0, 0);
+					
+					text = new TextView(activity);
+					text.setText(jsonArray.getJSONObject(i).getString("NecessityName"));
+					text.setPadding(5, 0, 15, 0);
+					text.setTypeface(Typeface.DEFAULT_BOLD);
+					text.setTag(Integer.parseInt(jsonArray.getJSONObject(i).getString("NecessityID")));
+					text.setLayoutParams(params);
+					
+					group = new RadioGroup(activity);
+					group.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+					group.setOrientation(LinearLayout.HORIZONTAL);
+					
+					yesButton = new RadioButton(activity);
+					yesButton.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+					yesButton.setText("Yes");
+					
+					noButton = new RadioButton(activity);
+					noButton.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+					noButton.setText("No");
+					noButton.setChecked(true);
+					
+					group.addView(yesButton);
+					group.addView(noButton);
+					
+					editText = new EditText(activity);
+					editText.setLayoutParams(params2);
+					editText.setPadding(20, 0, 0, 0);
+					editText.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+					
+					tableRow.addView(text);
+					tableRow.addView(group);
+					//tableRow.addView(editText);
+					tableLayout.addView(tableRow);
+					
+					System.out.println(text.getTag());
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
 	 * Nested class for sending an emergency report through an API call - constructs a JSON 
 	 * object with the required data and makes an HTTP POST request to send the data to the server.
 	 * @author Class2013
@@ -103,50 +269,7 @@ public class EmergencyReportActivity extends Activity {
 			    
 			    json.put("NumberAndStreet", "10 Test Drive");
 				json.put("PhoneNumber", "123-867-5309");
-				
-				final RadioGroup rad_medEme = (RadioGroup)findViewById(R.id.rad_report_group);
-				final RadioGroup rad_food = (RadioGroup)findViewById(R.id.rad_report_group1);
-				final RadioGroup rad_water = (RadioGroup)findViewById(R.id.rad_report_group2);
-				final RadioGroup rad_power = (RadioGroup)findViewById(R.id.rad_report_group3);
-				final RadioGroup rad_med = (RadioGroup)findViewById(R.id.rad_report_group4);
-				final RadioGroup rad_heat = (RadioGroup)findViewById(R.id.rad_report_group5);
-				final RadioGroup rad_charge = (RadioGroup)findViewById(R.id.rad_report_group6);
-				final RadioGroup rad_lodge = (RadioGroup)findViewById(R.id.rad_report_group7);
-				final RadioGroup rad_internet = (RadioGroup)findViewById(R.id.rad_report_group8);
-				final RadioGroup rad_gas = (RadioGroup)findViewById(R.id.rad_report_group9);
-				
-				String medEmeValue = ((RadioButton)findViewById(rad_medEme.getCheckedRadioButtonId())).getText().toString();
-				String foodValue = ((RadioButton)findViewById(rad_food.getCheckedRadioButtonId())).getText().toString();
-				String waterValue = ((RadioButton)findViewById(rad_water.getCheckedRadioButtonId())).getText().toString();
-				String powerValue = ((RadioButton)findViewById(rad_power.getCheckedRadioButtonId())).getText().toString();
-				String medValue = ((RadioButton)findViewById(rad_med.getCheckedRadioButtonId())).getText().toString();
-				String heatValue = ((RadioButton)findViewById(rad_heat.getCheckedRadioButtonId())).getText().toString();
-				String chargeValue = ((RadioButton)findViewById(rad_charge.getCheckedRadioButtonId())).getText().toString();
-				String lodgeValue = ((RadioButton)findViewById(rad_lodge.getCheckedRadioButtonId())).getText().toString();
-				String internetValue = ((RadioButton)findViewById(rad_internet.getCheckedRadioButtonId())).getText().toString();
-				String gasValue = ((RadioButton)findViewById(rad_gas.getCheckedRadioButtonId())).getText().toString();
-				
-				boolean boolPower = boolCheck(powerValue);     // Bool Values that are going be sent to DB
-				boolean boolFood = boolCheck(foodValue);
-				boolean boolWater = boolCheck(waterValue);
-				boolean boolmedEme = boolCheck(medEmeValue);
-				boolean boolMed = boolCheck(medValue);
-				boolean boolHeat = boolCheck(heatValue);
-				boolean boolCharge = boolCheck(chargeValue);
-				boolean boolLodge = boolCheck(lodgeValue);
-				boolean boolInternet = boolCheck(internetValue);
-				boolean boolGas = boolCheck(gasValue);
-				
-				json.put("MedEmergency", boolmedEme);
-				json.put("Food", boolFood);
-				json.put("Water", boolWater);
-				json.put("Power", boolPower);
-				json.put("Medication", boolMed);
-				json.put("Heating", boolHeat);
-				json.put("Charging", boolCharge);
-				json.put("Lodging", boolLodge);
-				json.put("Internet", boolInternet);
-				json.put("NaturalGas", boolGas);
+
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");

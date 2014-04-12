@@ -1,255 +1,33 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Emergencyneed" >
-    
-    <RadioGroup
-        android:id="@+id/rad_need_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="70dp"
-        android:layout_marginTop="70dp"
-        android:orientation="horizontal" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    tools:context=".EmergencyOffer" >
 
-        <RadioButton
-            android:id="@+id/rad_need_yes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_yes" />
-
-        <RadioButton
-            android:id="@+id/rad_need_no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:checked="true"
-            android:text="@string/radio_no" />
-    </RadioGroup>
-    
-    <RadioGroup
-        android:id="@+id/rad_need_group1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/rad_need_group"
-        android:layout_below="@id/rad_need_group"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rad_need_yes1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_yes" />
-
-        <RadioButton
-            android:id="@+id/rad_need_no1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/radio_no" />
-    </RadioGroup>
-    
-    <RadioGroup
-        android:id="@+id/rad_need_group2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/rad_need_group1"
-        android:layout_below="@id/rad_need_group1"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rad_need_yes2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_yes" />
-
-        <RadioButton
-            android:id="@+id/rad_need_no2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/radio_no" />
-    </RadioGroup>
-    
-    
-    <RadioGroup
-        android:id="@+id/rad_need_group3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/rad_need_group2"
-        android:layout_below="@id/rad_need_group2"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rad_need_yes3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_yes" />
-
-        <RadioButton
-            android:id="@+id/rad_need_no3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/radio_no" />
-    </RadioGroup>
-    
-    <RadioGroup
-        android:id="@+id/rad_need_group4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/rad_need_group3"
-        android:layout_below="@id/rad_need_group3"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rad_need_yes4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_yes" />
-
-        <RadioButton
-            android:id="@+id/rad_need_no4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/radio_no" />
-    </RadioGroup>
-    
-    <RadioGroup
-        android:id="@+id/rad_need_group5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/rad_need_group4"
-        android:layout_below="@id/rad_need_group4"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rad_need_yes5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_yes" />
-
-        <RadioButton
-            android:id="@+id/rad_need_no5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/radio_no" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/txt_need_shower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/rad_need_group"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:text="@string/txt_offer_shower"
-        android:textSize="14sp"/>
-
-    <TextView
-        android:id="@+id/txt_need_food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/txt_need_shower"
-        android:layout_alignTop="@id/rad_need_group1"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:text="@string/txt_offer_food"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/txt_need_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/txt_need_food"
-        android:layout_alignTop="@id/rad_need_group2"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:text="@string/txt_offer_room"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/txt_need_charge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/txt_need_room"
-        android:layout_alignTop="@id/rad_need_group3"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:text="@string/txt_offer_charge"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/txt_need_expert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/txt_need_charge"
-        android:layout_alignTop="@id/rad_need_group4"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:text="@string/txt_offer_expert"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/txt_need_trans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/txt_need_expert"
-        android:layout_alignTop="@id/rad_need_group5"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:text="@string/txt_offer_trans"
-        android:textSize="14sp" />
-    
-    <Button
-        android:id="@+id/btn_need_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="@string/btn_need_submit" />
-    
-    <EditText
-        android:id="@+id/edit_room_need"
-        android:layout_width="35dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_food_need"
-        android:layout_alignTop="@+id/rad_need_group2"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="1"
-        android:text="@string/def_offer" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/edit_food_need"
-        android:layout_width="35dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_trans_need"
-        android:layout_alignTop="@+id/rad_need_group1"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="1"
-        android:text="@string/def_offer" />
-
-    <EditText
-        android:id="@+id/edit_trans_need"
-        android:layout_width="35dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/rad_need_group5"
-        android:layout_marginRight="15dp"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="1"
-        android:text="@string/def_offer" />
-
-</RelativeLayout>
+	<LinearLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:paddingBottom="@dimen/activity_vertical_margin"
+		    android:paddingLeft="@dimen/activity_horizontal_margin"
+		    android:paddingRight="@dimen/activity_horizontal_margin"
+		    android:paddingTop="@dimen/activity_vertical_margin"
+		    tools:context=".EmergencyOffer" >
+		    
+	    <TableLayout 
+            android:id="@+id/emerReportTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            
+	    </TableLayout>
+	    
+	    <Button
+	        android:id="@+id/btn_submit"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dip"
+	        android:layout_marginRight="10dip"
+	        android:text="@string/btn_submit" />
+	
+	</LinearLayout>
+</ScrollView>
