@@ -3,11 +3,14 @@ package com.smartcity.redux;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MarketplaceActivity extends Activity {
 //availablePointsText
@@ -39,21 +42,22 @@ public class MarketplaceActivity extends Activity {
 	
 	public void subPoints(int points)
 	{
-		/*
-		availablePoints = availablePoints - points;
-		if (availablePoints <= 0)
-		{
-			availablePoints = 0;
-		}
-		String p = Integer.toString(availablePoints);
-		ap.setText(p);
-		*/
+
+		Context context = getApplicationContext();
+		CharSequence text = "You do not have enough points for this item.";
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 250);
+		
+		
 		String p;
 		
 		if (availablePoints - points < 0)
 		{
 			//do nothing
 			//TODO: alert of some sort
+			toast.show();
 		}
 		else if (availablePoints - points == 0)
 		{
