@@ -134,7 +134,7 @@ protected void displayNotification(){
         
         public Class<? extends Activity> className;
 
-        Item(String name, int drawableId, Class classToLoad) {
+        Item(String name, int drawableId, Class<? extends Activity> classToLoad) {
             this.name = name;
             this.drawableId = drawableId;
             this.className = classToLoad;

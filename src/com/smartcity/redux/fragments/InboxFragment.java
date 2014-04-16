@@ -45,6 +45,7 @@ public class InboxFragment extends ListFragment {
 		
 		openAndQueryDatabase();
 		displayResultList();
+		Log.d("TEST","# of items: " + adapter.getCount());
 		
 	}
 	
@@ -59,9 +60,10 @@ public class InboxFragment extends ListFragment {
 				if(c.moveToFirst()) {
 					do {
 						String id = Integer.toString(c.getInt(c.getColumnIndex("ID")));
+						String priority = c.getString(c.getColumnIndex("PRIORITY"));
 						String message = c.getString(c.getColumnIndex("MESSAGE"));
 						Log.d("INBOX","Adding message " + message);
-						results.add("ID: " + id + " " + message);
+						results.add("ID: " + id + " P: " + priority + " " + message);
 					} while(c.moveToNext());
 				}
 			}
@@ -91,6 +93,9 @@ public class InboxFragment extends ListFragment {
 		super.onContextItemSelected(item);
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		if(item.getTitle().equals("Delete")) {
+			///XXX this is a dirty hack, we should actually be getting the unique ID from the database here
+			if(adapter.getCount() == 1)
+				info.position = 0;
 			adapter.remove(adapter.getItem(info.position));
 			newDB.execSQL("DELETE FROM messagesTable WHERE ID='"+info.position+"'");
 			adapter.notifyDataSetChanged();

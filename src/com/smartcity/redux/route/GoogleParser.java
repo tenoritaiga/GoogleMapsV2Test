@@ -69,8 +69,8 @@ public class GoogleParser extends XMLParser implements Parser {
                             final JSONObject start = step.getJSONObject("start_location");
                             
                             //Testing
-                            final JSONObject transit = step.getJSONObject("transit_details");
-                            Log.d("TRANSIT",transit.toString());
+                            //final JSONObject transit = step.getJSONObject("transit_details");
+                            //Log.d("TRANSIT",transit.toString());
                             
                             final LatLng position = new LatLng(start.getDouble("lat"),
                                     start.getDouble("lng"));

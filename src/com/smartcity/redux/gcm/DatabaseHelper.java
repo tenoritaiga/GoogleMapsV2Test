@@ -21,7 +21,7 @@ public void onCreate(SQLiteDatabase db) {
     // TODO Auto-generated method stub
 
     db.execSQL("CREATE TABLE " + TABLE_NAME
-            + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, MESSAGE STRING)");
+            + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, PRIORITY STRING, MESSAGE STRING)");
 }
 
 @Override
@@ -32,13 +32,14 @@ public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     onCreate(db);
 }
 
-public void insertMsg(String msg) {
+public void insertMsg(String msg, String priority) {
 
     SQLiteDatabase db = getWritableDatabase();
 
     ContentValues cv = new ContentValues();
 
     cv.put("MESSAGE", msg);
+    cv.put("PRIORITY",priority);
 
     db.insert(TABLE_NAME, null, cv);
 

@@ -24,12 +24,13 @@ public class AzureGCMHandler extends NotificationsHandler {
 		Log.d("GCM","MESSAGE RECEIVED!!!");
 	    ctx = context;
 	    String nhMessage = bundle.getString("msg");
+	    String nhPriority = bundle.getString("priority");
 
 	    sendNotification(nhMessage);
 	    
 	    Log.d("GCM","Writing message to sqlite database.");
 	    DatabaseHelper db = new DatabaseHelper(context);
-	    db.insertMsg(nhMessage);
+	    db.insertMsg(nhMessage,nhPriority);
 	}
 
 	private void sendNotification(String msg) {

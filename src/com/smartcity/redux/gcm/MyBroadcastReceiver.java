@@ -34,7 +34,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 	            
 	            //EXPERIMENTAL: Write received message to SQLite database
 	            DatabaseHelper db = new DatabaseHelper(context);
-	            db.insertMsg(intent.getExtras().toString());
+	            db.insertMsg(intent.getExtras().toString(),"Default");
 	        }
 	        setResultCode(Activity.RESULT_OK);
 	}
