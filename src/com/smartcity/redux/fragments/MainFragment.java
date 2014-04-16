@@ -3,10 +3,9 @@ package com.smartcity.redux.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,18 +13,25 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.smartcity.redux.AirQualityActivity;
+import com.smartcity.redux.DirectionsInputActivity;
+import com.smartcity.redux.GuideActivity;
+import com.smartcity.redux.Hoboken311Activity;
+import com.smartcity.redux.InboxActivity;
 //import com.smartcity.redux.AirMapActivity;
 import com.smartcity.redux.MainActivity;
 import com.smartcity.redux.R;
 import com.smartcity.redux.SettingsActivity;
+import com.smartcity.redux.SustainabilityCategoryActivity;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements OnItemClickListener {
 	
     // Notifications
     private NotificationManager mNotificationManager;
@@ -42,6 +48,7 @@ public class MainFragment extends Fragment {
 		GridView gridView = (GridView)root.findViewById(R.id.squareimagegrid);
 		gridView.setAdapter(new SquareImageAdapter(getActivity()));
 		
+		gridView.setOnItemClickListener(this);
 /*		Button testBtn = (Button)root.findViewById(R.id.testNotificationsButton);
 		testBtn.setOnClickListener(new View.OnClickListener() {
 			
@@ -121,20 +128,33 @@ protected void displayNotification(){
 		
 	}
 	
-	private class SquareImageAdapter extends BaseAdapter {
+    public static class Item {
+        final String name;
+        final int drawableId;
+        
+        public Class<? extends Activity> className;
+
+        Item(String name, int drawableId, Class classToLoad) {
+            this.name = name;
+            this.drawableId = drawableId;
+            this.className = classToLoad;
+        }
+    }
+	
+	private static class SquareImageAdapter extends BaseAdapter {
 	    private List<Item> items = new ArrayList<Item>();
 	    private LayoutInflater inflater;
 
 	    public SquareImageAdapter(Context context) {
 	        inflater = LayoutInflater.from(context);
 
-	        items.add(new Item("Directions",       R.drawable.square_maps));
-	        items.add(new Item("City Guide",   R.drawable.square_coffee));
-	        items.add(new Item("Sustainability",      R.drawable.square_leaf));
-	        items.add(new Item("Environmental Maps",      R.drawable.square_cloud));
-	        items.add(new Item("Hoboken 311",      R.drawable.square_flag));
-	        items.add(new Item("Alerts",     R.drawable.square_alerts));
-	        items.add(new Item("Settings", R.drawable.square_settings));
+	        items.add(new Item("Directions",       R.drawable.square_maps, DirectionsInputActivity.class));
+	        items.add(new Item("City Guide",   R.drawable.square_coffee, GuideActivity.class));
+	        items.add(new Item("Sustainability",      R.drawable.square_leaf, SustainabilityCategoryActivity.class));
+	        items.add(new Item("Environmental Maps",      R.drawable.square_cloud, AirQualityActivity.class));
+	        items.add(new Item("Hoboken 311",      R.drawable.square_flag, Hoboken311Activity.class));
+	        items.add(new Item("Alerts",     R.drawable.square_alerts, InboxActivity.class));
+	        items.add(new Item("Settings", R.drawable.square_settings, SettingsActivity.class));
 
 	    }
 
@@ -176,22 +196,17 @@ protected void displayNotification(){
 	        return v;
 	    }
 
-	    private class Item {
-	        final String name;
-	        final int drawableId;
 
-	        Item(String name, int drawableId) {
-	            this.name = name;
-	            this.drawableId = drawableId;
-	        }
-	    }
 	}
-	/**
-	public void startMapActivity(View view){
-		Intent intent = new Intent(getActivity(),AirMapActivity.class);
-		getActivity().startActivity(intent);
+	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		
+		Item item = (Item) parent.getAdapter().getItem(position);
+		
+		Intent intent = new Intent(getActivity(), item.className);
+		startActivity(intent);
 	}
-	**/
 	
 	public void startSettingsActivity(View view){
 		Intent intent = new Intent(getActivity(),SettingsActivity.class);

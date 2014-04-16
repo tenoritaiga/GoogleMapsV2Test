@@ -235,7 +235,7 @@
 	        android:id="@+id/energyButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="45dp"
-	        android:drawableLeft="@drawable/gas"
+	        android:drawableLeft="@drawable/energy"
 	        android:onClick="startMyEnergyActivity"
 	        android:text="@string/myEnergyButtonText" />
 	    
@@ -243,7 +243,7 @@
 	        android:id="@+id/waterButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="45dp"
-	        android:drawableLeft="@drawable/gas"
+	        android:drawableLeft="@drawable/droplet"
 	        android:onClick="startMyWaterActivity"
 	        android:text="@string/myWaterButtonText" />
 	
@@ -251,6 +251,7 @@
 	        android:id="@+id/energyCalcButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:drawableLeft="@drawable/calculator"
 	        android:onClick="startEnergyCalculatorActivity"
 	        android:text="@string/energyCalcButtonText" />
 	

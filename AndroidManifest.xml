@@ -332,11 +332,15 @@
         </activity>
         <activity
             android:name="com.smartcity.redux.MarketplaceActivity"
-            android:label="@string/title_activity_marketplace" 
-			android:parentActivityName="com.smartcity.redux.MainActivity" >
+            android:label="@string/title_activity_marketplace"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smartcity.redux.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.smartcity.redux.SustainabilityCategoryActivity"
+            android:label="@string/title_activity_sustainability_category" >
         </activity>
     </application>
 
