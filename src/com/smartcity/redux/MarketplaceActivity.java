@@ -2,6 +2,8 @@ package com.smartcity.redux;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,7 @@ public class MarketplaceActivity extends Activity {
 	
 	public void subPoints(int points)
 	{
+		/*
 		availablePoints = availablePoints - points;
 		if (availablePoints <= 0)
 		{
@@ -44,6 +47,26 @@ public class MarketplaceActivity extends Activity {
 		}
 		String p = Integer.toString(availablePoints);
 		ap.setText(p);
+		*/
+		String p;
+		
+		if (availablePoints - points < 0)
+		{
+			//do nothing
+			//TODO: alert of some sort
+		}
+		else if (availablePoints - points == 0)
+		{
+			availablePoints = 0;
+			p = Integer.toString(availablePoints);
+			ap.setText(p);
+		}
+		else
+		{
+			availablePoints = availablePoints - points;
+			p = Integer.toString(availablePoints);
+			ap.setText(p);
+		}
 		
 	}
 	
