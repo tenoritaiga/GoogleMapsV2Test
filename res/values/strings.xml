@@ -475,7 +475,7 @@
     <string name="title_activity_poll">City Poll</string>
     <string name="title_activity_question">Questions</string>
     <string name="title_activity_marketplace">MarketplaceActivity</string>
-    <string name="title_activity_sustainability_category">SustainabilityCategoryActivity</string>
+    <string name="title_activity_sustainability_category">My Sustainability</string>
 
     
     <string name="getText">Redeem!</string>
