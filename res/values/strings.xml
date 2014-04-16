@@ -477,4 +477,6 @@
     <string name="title_activity_marketplace">MarketplaceActivity</string>
     <string name="title_activity_sustainability_category">SustainabilityCategoryActivity</string>
 
+    
+    <string name="getText">Redeem!</string>
 </resources>
