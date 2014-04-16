@@ -367,7 +367,8 @@
     <string name="title_section2_water">View Usage Data</string>
     <string name="title_section1_inbox">Received Messages</string>
     <string name="title_section2_inbox">Sent Messages</string>
-    <string name="title_activity_directions_input">Transit Information</string>
+    <string name="title_activity_directions_input">Navigation</string>
+    <string name="title_activity_directions_info">Route Information</string>
 
     <string-array name="spn_directions_type">
         <item>Driving</item>
@@ -402,7 +403,6 @@
     <string name="show_cost">Total Cost</string>
     <string name="show_gas">Gas (therms)</string>
     <string name="show_elect">Elect. (kWh)</string>
-    <string name="title_activity_directions_info">DirectionsInfoActivity</string>
     <string name="title_activity_my_energy">My Energy</string>
     <string name="title_activity_my_water">My Water</string>
     <string name="welcomeText"></string>

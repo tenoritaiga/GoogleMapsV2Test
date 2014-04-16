@@ -170,7 +170,11 @@
         </activity>
         <activity
             android:name="com.smartcity.redux.DirectionsInfoActivity"
-            android:label="@string/title_activity_directions_info" >
+            android:label="@string/title_activity_directions_info"
+            android:parentActivityName="com.smartcity.redux.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smartcity.redux.MainActivity" />
         </activity>
         <activity
             android:name="com.smartcity.redux.MyEnergyActivity"
