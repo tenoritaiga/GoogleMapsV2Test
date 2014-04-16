@@ -100,7 +100,7 @@ public class DirectionsInfoActivity extends FragmentActivity
             start = new LatLng(startLat,startLong);
             end = new LatLng(destLat,destLong);
 
-            Log.d("TRANSIT","Transit type is: " + transitType);
+            //Log.d("TRANSIT","Transit type is: " + transitType);
             
             //Default to driving directions
             //TravelMode tm = Routing.TravelMode.DRIVING;
@@ -126,7 +126,7 @@ public class DirectionsInfoActivity extends FragmentActivity
             else
             {
             	tm = Routing.TravelMode.DRIVING;
-            	Log.d("ELSE","Entered else statement in InfoAct");
+            	//Log.d("ELSE","Entered else statement in InfoAct");
             }
 
             Routing routing = new Routing(tm);
@@ -136,10 +136,10 @@ public class DirectionsInfoActivity extends FragmentActivity
             
             List<Segment> seg = route.getSegments();
             
-            Log.d("SEG",seg.toString());
+            //Log.d("SEG",seg.toString());
             
             for (Segment segment : seg) {
-            	Log.d("OKAY",segment.getInstruction());
+            	//Log.d("OKAY",segment.getInstruction());
             	dirlist.add(segment.getInstruction());
               }
             
