@@ -196,10 +196,10 @@ public class EmergencyOfferActivity extends Activity {
 					noButton = new RadioButton(activity);
 					noButton.setLayoutParams(new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
 					noButton.setText("No");
-					noButton.setChecked(true);
 					
 					group.addView(yesButton);
 					group.addView(noButton);
+					group.check(noButton.getId());
 					
 					editText = new EditText(activity);
 					editText.setLayoutParams(params2);
