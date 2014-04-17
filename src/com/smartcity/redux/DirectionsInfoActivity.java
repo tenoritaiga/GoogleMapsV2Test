@@ -45,6 +45,7 @@ public class DirectionsInfoActivity extends FragmentActivity
     
     protected int calories;
     protected int emissions;
+    protected float gas;
     protected String transit;
     protected int dist;
     
@@ -156,6 +157,7 @@ public class DirectionsInfoActivity extends FragmentActivity
             TextView et = (TextView)findViewById(R.id.emissionsTextView);
             TextView ct = (TextView)findViewById(R.id.caloriesTextView);
             TextView td = (TextView)findViewById(R.id.totalDistanceTextView);
+            TextView gt = (TextView)findViewById(R.id.gasTextView);
 
             lv.setAdapter(arrayAdapter);
             
@@ -173,30 +175,36 @@ public class DirectionsInfoActivity extends FragmentActivity
             {
           	  calories = (int) Math.round(routeCalc * 95);
           	  emissions = 0;
+          	  gas = 0;
             }
             else if(transit.compareTo("Driving") == 0)
             {
             	calories = 0;
             	emissions = (int) Math.round(routeCalc * .375);
+            	gas = (float) (Math.round((routeCalc / 25)*10))/10; //assuming the average gas mileage is 25 mpg
             }
             else if(transit.compareTo("Biking") == 0)
             {
           	  calories = (int) Math.round(routeCalc * 64);
           	  emissions = 0;
+          	  gas = 0;
             }
             else if(transit.compareTo("Public Transit") == 0)
             {
             	emissions = 0;
+            	gas = 0;
             }
 
             String cal = Integer.toString(calories);
             String emi = Integer.toString(emissions);
+            String gasString = Float.toString(gas);
             String distanceStr = Integer.toString(intRoute);
             
             ct.setText(cal + " cal");
             et.setText(emi + " kg CO2");
             td.setText("Total Distance: " + distanceStr + " mi");
-  
+            gt.setText(gasString + "gal");
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

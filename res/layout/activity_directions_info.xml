@@ -45,7 +45,7 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="50px"
+        android:layout_width="25px"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/gcmTextView"
         android:layout_below="@+id/totalDistanceTextView"
@@ -57,16 +57,19 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
         android:layout_marginBottom="14dp"
-        android:layout_toRightOf="@+id/gcmTextView"
+        android:layout_toRightOf="@+id/imageView1"
+        android:layout_marginLeft="5dp"
         android:text="TextView" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="50px"
+        android:layout_width="25px"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
-        android:layout_toLeftOf="@+id/startDirectionsMapButton"
+        android:layout_toRightOf="@+id/caloriesTextView"
+        android:layout_marginLeft="15dp"
         android:src="@drawable/gas" />
+    <!-- android:layout_toLeftOf="@+id/startDirectionsMapButton" -->
 
     <TextView
         android:id="@+id/emissionsTextView"
@@ -74,8 +77,28 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/caloriesTextView"
         android:layout_alignBottom="@+id/caloriesTextView"
-        android:layout_alignLeft="@+id/startDirectionsMapButton"
-        android:layout_marginLeft="26dp"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_marginLeft="5dp"
+        android:text="TextView" />
+    <!--  android:layout_alignLeft="@+id/startDirectionsMapButton" -->
+
+	<ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="25px"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_toRightOf="@+id/emissionsTextView"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/gas" />
+	
+	<TextView
+        android:id="@+id/gasTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/emissionsTextView"
+        android:layout_alignBottom="@+id/emissionsTextView"
+        android:layout_toRightOf="@+id/imageView3"
+        android:layout_marginLeft="5dp"
         android:text="TextView" />
 
 </RelativeLayout>
