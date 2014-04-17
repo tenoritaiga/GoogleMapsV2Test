@@ -194,7 +194,7 @@ public class DirectionsInfoActivity extends FragmentActivity
             String distanceStr = Integer.toString(intRoute);
             
             ct.setText(cal + " cal");
-            et.setText(emi + " gal");
+            et.setText(emi + " kg CO2");
             td.setText("Total Distance: " + distanceStr + " mi");
   
         } catch (Exception e) {

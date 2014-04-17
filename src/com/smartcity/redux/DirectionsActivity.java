@@ -174,10 +174,12 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
 
       
       // Start marker
+      /*
       MarkerOptions options = new MarkerOptions();
       options.position(start);
       options.icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue));
       options.title("Route Info");
+      */
       
       
       double routeCalc;
@@ -215,7 +217,13 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
       //String distanceStr = Integer.toString(routeDistance);
       String distanceStr = Integer.toString(intRoute);
       
-      options.snippet("Calories Burned: " + cal + " Emissions (kg CO2): " + emi + " " + distanceStr + "miles");
+      //moved to here
+      MarkerOptions options = new MarkerOptions()
+      .position(start)
+      .title("Route Info")
+      .snippet("Calories Burned: "+cal+" | Emissions (kg CO2): "+emi +" | "+distanceStr+"miles")
+      .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue));
+      
       Marker marker = map.addMarker(options);
       //Log.d("this is my error message ", distanceStr) --> it MIGHT expect a string 
       Log.d(TAG, "THE VALUE OF DISTANCE IS:" + distanceStr);
