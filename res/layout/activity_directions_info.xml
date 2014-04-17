@@ -68,7 +68,7 @@
         android:layout_alignBottom="@+id/imageView1"
         android:layout_toRightOf="@+id/caloriesTextView"
         android:layout_marginLeft="15dp"
-        android:src="@drawable/gas" />
+        android:src="@drawable/cloud" />
     <!-- android:layout_toLeftOf="@+id/startDirectionsMapButton" -->
 
     <TextView
