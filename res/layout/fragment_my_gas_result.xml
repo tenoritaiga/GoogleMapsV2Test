@@ -17,60 +17,63 @@
         <LinearLayout 
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
+	    	android:paddingBottom="5dip"
 	    	android:orientation="horizontal"
 	    	tools:context=".MyGasActivity$DummySectionFragment" >
 	 
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:paddingRight="10dip"
 	            android:text="@string/total_consumption"
 	            android:textSize="15sp" />
 	        
-	        <EditText android:id="@+id/cons_total"
+	        <TextView android:id="@+id/cons_total"
 	            android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
-	        	android:text="@string/total_cons" 
-	        	android:inputType="text" />        
+	        	android:text="@string/total_cons" />        
 	        
 	    </LinearLayout>
 	    
         <LinearLayout 
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
+	    	android:paddingBottom="5dip"
 	    	android:orientation="horizontal"
 	    	tools:context=".MyGasActivity$DummySectionFragment" >
 	 
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:paddingRight="10dip"
 	            android:text="@string/average_monthly"
 	            android:textSize="15sp" />
 	        
-	        <EditText android:id="@+id/cons_avg"
+	        <TextView android:id="@+id/cons_avg"
 	            android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
-	        	android:text="@string/avg_mon" 
-	        	android:inputType="text" />        
+	        	android:text="@string/avg_mon" />        
 	        
 	    </LinearLayout>
 	    
         <LinearLayout 
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
+	    	android:paddingBottom="5dip"
 	    	android:orientation="horizontal"
 	    	tools:context=".MyGasActivity$DummySectionFragment" >
 	 
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:paddingRight="10dip"
 	            android:text="@string/average_monthly_all"
 	            android:textSize="15sp" />
 	        
-	        <EditText android:id="@+id/cons_avg_all"
+	        <TextView android:id="@+id/cons_avg_all"
 	            android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
-	        	android:text="@string/avg_mon_all" 
-	        	android:inputType="text" />        
+	        	android:text="@string/avg_mon_all" />        
 	        
 	    </LinearLayout>
 	    

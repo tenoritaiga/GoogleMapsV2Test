@@ -252,14 +252,14 @@ public class MyEnergyActivity extends FragmentActivity implements
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.gas_cons_avg);
-				editText.setText(jsonObject.getString("UserAverageGas30Day"));
-				editText = (EditText) findViewById(R.id.gas_cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverageGas30Day"));
-				editText = (EditText) findViewById(R.id.elect_cons_avg);
-				editText.setText(jsonObject.getString("UserAverageElectricity30Day"));
-				editText = (EditText) findViewById(R.id.elect_cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverageElectricity30Day"));
+				TextView textView = (TextView) findViewById(R.id.gas_cons_avg);
+				textView.setText(jsonObject.getString("UserAverageGas30Day"));
+				textView = (TextView) findViewById(R.id.gas_cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverageGas30Day"));
+				textView = (TextView) findViewById(R.id.elect_cons_avg);
+				textView.setText(jsonObject.getString("UserAverageElectricity30Day"));
+				textView = (TextView) findViewById(R.id.elect_cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverageElectricity30Day"));
 				
 				// init example series data
 				GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
@@ -429,10 +429,10 @@ public class MyEnergyActivity extends FragmentActivity implements
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.gas_cons_total);
-				editText.setText(jsonObject.getString("TotalGas"));
-				editText = (EditText) findViewById(R.id.elect_cons_total);
-				editText.setText(jsonObject.getString("TotalElectricity"));
+				TextView textView = (TextView) findViewById(R.id.gas_cons_total);
+				textView.setText(jsonObject.getString("TotalGas"));
+				textView = (TextView) findViewById(R.id.elect_cons_total);
+				textView.setText(jsonObject.getString("TotalElectricity"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

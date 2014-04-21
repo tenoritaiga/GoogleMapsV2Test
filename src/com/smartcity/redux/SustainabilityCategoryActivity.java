@@ -20,7 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
 public class SustainabilityCategoryActivity extends Activity {
 
@@ -124,10 +124,10 @@ public class SustainabilityCategoryActivity extends Activity {
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.sust_cons_avg);
-				editText.setText(jsonObject.getString("UserAverage30Day"));
-				editText = (EditText) findViewById(R.id.sust_cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverage30Day"));
+				TextView textView = (TextView) findViewById(R.id.sust_cons_avg);
+				textView.setText(jsonObject.getString("UserAverage30Day"));
+				textView = (TextView) findViewById(R.id.sust_cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverage30Day"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -188,14 +188,14 @@ public class SustainabilityCategoryActivity extends Activity {
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.sust_gas_cons_avg);
-				editText.setText(jsonObject.getString("UserAverageGas30Day"));
-				editText = (EditText) findViewById(R.id.sust_gas_cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverageGas30Day"));
-				editText = (EditText) findViewById(R.id.sust_elect_cons_avg);
-				editText.setText(jsonObject.getString("UserAverageElectricity30Day"));
-				editText = (EditText) findViewById(R.id.sust_elect_cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverageElectricity30Day"));
+				TextView textView = (TextView) findViewById(R.id.sust_gas_cons_avg);
+				textView.setText(jsonObject.getString("UserAverageGas30Day"));
+				textView = (TextView) findViewById(R.id.sust_gas_cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverageGas30Day"));
+				textView = (TextView) findViewById(R.id.sust_elect_cons_avg);
+				textView.setText(jsonObject.getString("UserAverageElectricity30Day"));
+				textView = (TextView) findViewById(R.id.sust_elect_cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverageElectricity30Day"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -256,10 +256,10 @@ public class SustainabilityCategoryActivity extends Activity {
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.sust_water_cons_avg);
-				editText.setText(jsonObject.getString("UserAverage30Day"));
-				editText = (EditText) findViewById(R.id.sust_water_cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverage30Day"));
+				TextView textView = (TextView) findViewById(R.id.sust_water_cons_avg);
+				textView.setText(jsonObject.getString("UserAverage30Day"));
+				textView = (TextView) findViewById(R.id.sust_water_cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverage30Day"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

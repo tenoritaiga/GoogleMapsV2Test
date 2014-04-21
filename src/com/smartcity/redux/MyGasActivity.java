@@ -259,10 +259,10 @@ public class MyGasActivity extends FragmentActivity implements
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.cons_avg);
-				editText.setText(jsonObject.getString("UserAverage30Day"));
-				editText = (EditText) findViewById(R.id.cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverage30Day"));
+				TextView textView = (TextView) findViewById(R.id.cons_avg);
+				textView.setText(jsonObject.getString("UserAverage30Day"));
+				textView = (TextView) findViewById(R.id.cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverage30Day"));
 				
 				// init example series data
 				GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
@@ -364,7 +364,7 @@ public class MyGasActivity extends FragmentActivity implements
 					total += (Double.parseDouble(jsonArray.getJSONObject(i).getString("Gallons")));
 				}
 				
-				EditText gasTotal = (EditText) findViewById(R.id.cons_total);
+				TextView gasTotal = (TextView) findViewById(R.id.cons_total);
 				gasTotal.setText(total.toString());
 			} catch (Exception e) {
 				e.printStackTrace();

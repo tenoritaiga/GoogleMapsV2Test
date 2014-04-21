@@ -252,10 +252,10 @@ public class MyWaterActivity extends FragmentActivity implements
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.cons_avg);
-				editText.setText(jsonObject.getString("UserAverage30Day"));
-				editText = (EditText) findViewById(R.id.cons_avg_all);
-				editText.setText(jsonObject.getString("CityAverage30Day"));
+				TextView textView = (TextView) findViewById(R.id.cons_avg);
+				textView.setText(jsonObject.getString("UserAverage30Day"));
+				textView = (TextView) findViewById(R.id.cons_avg_all);
+				textView.setText(jsonObject.getString("CityAverage30Day"));
 				
 				// init example series data
 				GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
@@ -412,8 +412,8 @@ public class MyWaterActivity extends FragmentActivity implements
 		protected void onPostExecute(JSONObject jsonObject) {
 			
 			try {
-				EditText editText = (EditText) findViewById(R.id.cons_total);
-				editText.setText(jsonObject.getString("Total"));
+				TextView textView = (TextView) findViewById(R.id.cons_total);
+				textView.setText(jsonObject.getString("Total"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
