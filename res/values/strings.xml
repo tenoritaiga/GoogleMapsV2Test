@@ -384,6 +384,7 @@
     <string name="cost">Total Cost</string>
     <string name="edit_cost">$0.00</string>
     <string name="button_gas_save">Save</string>
+    <string name="button_refresh">Refresh</string>
     <string name="gas_usage">Gas Usage (therms)</string>
     <string name="electricity_usage">Electricity Usage (kWh)</string>
     <string name="total_consumption">Total Consumption (past 3 mo.):   </string>

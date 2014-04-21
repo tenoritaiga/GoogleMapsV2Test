@@ -321,14 +321,15 @@ public class MyWaterActivity extends FragmentActivity implements
 				System.out.println(jsonArray.length());
 				System.out.println(jsonArray.getJSONObject(0).getString("WaterConsumptionID"));
 				
-				TableLayout tableLayout;
+				TableLayout tableLayout = (TableLayout) findViewById(R.id.waterResultsTable);
 				TableRow tableRow;
 				TextView text1;
 				TextView text2;
 				//Double total = 0.0;
 				
+				tableLayout.removeViews(1, tableLayout.getChildCount()-1);
+				
 				for (int i=0; i<jsonArray.length(); i++) {
-					tableLayout = (TableLayout) findViewById(R.id.waterResultsTable);
 					tableRow = new TableRow(activity);
 					tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
 					
@@ -459,6 +460,9 @@ public class MyWaterActivity extends FragmentActivity implements
 	
 	public void saveWaterUsage(View view) {
 		new JsonWaterSender().execute();
+		new JsonWaterAvgParser().execute();
+		new JsonWaterTotalParser().execute();
+		new JsonWaterRecordParser().execute();
 	}
 
 }

@@ -327,7 +327,7 @@ public class MyEnergyActivity extends FragmentActivity implements
 				System.out.println(jsonArray.length());
 				System.out.println(jsonArray.getJSONObject(0).getString("EnergyConsumptionID"));
 				
-				TableLayout tableLayout;
+				TableLayout tableLayout = (TableLayout) findViewById(R.id.energyResultsTable);
 				TableRow tableRow;
 				TextView text1;
 				TextView text2;
@@ -335,8 +335,9 @@ public class MyEnergyActivity extends FragmentActivity implements
 				//Double total = 0.0;
 				//Double total2 = 0.0;
 				
+				tableLayout.removeViews(1, tableLayout.getChildCount()-1);
+				
 				for (int i=0; i<jsonArray.length(); i++) {
-					tableLayout = (TableLayout) findViewById(R.id.energyResultsTable);
 					tableRow = new TableRow(activity);
 					tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
 					
@@ -480,6 +481,9 @@ public class MyEnergyActivity extends FragmentActivity implements
 	
 	public void saveEnergyUsage(View view) {
 		new JsonEnergySender().execute();
+		new JsonEnergyAvgParser().execute();
+		new JsonEnergyTotalParser().execute();
+		new JsonEnergyRecordParser().execute();
 	}
 
 }
