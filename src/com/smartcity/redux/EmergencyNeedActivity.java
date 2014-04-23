@@ -119,7 +119,7 @@ public class EmergencyNeedActivity extends Activity {
 		@Override
 		protected JSONArray doInBackground(Void... params) {
 			//String url = "http://pastebin.com/raw.php?i=up92S6EE";
-			String url = "http://pastebin.com/raw.php?i=WHVCzxWG";
+			String url = "http://smartcity1.cloudapp.net/api/CommunityResourceSharing?necessity_group=0";
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
