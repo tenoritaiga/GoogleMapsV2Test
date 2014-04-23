@@ -180,7 +180,7 @@ public class EmergencyOfferActivity extends Activity {
 					
 					text = new TextView(activity);
 					text.setText(jsonArray.getJSONObject(i).getString("NecessityName"));
-					text.setPadding(5, 0, 15, 0);
+					text.setPadding(5, 0, 5, 0);
 					text.setTypeface(Typeface.DEFAULT_BOLD);
 					text.setTag(Integer.parseInt(jsonArray.getJSONObject(i).getString("NecessityID")));
 					text.setLayoutParams(params);
