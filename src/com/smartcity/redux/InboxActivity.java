@@ -6,14 +6,10 @@ import android.util.Log;
 
 public class InboxActivity extends ListActivity {
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d("INBOX","In Inbox OnCreate");
-
+		//Log.d("INBOX","In Inbox OnCreate");
+		setContentView(R.layout.fragment_inbox);
 	}
-	
-
-
 }
