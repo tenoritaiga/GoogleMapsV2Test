@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 public class QuestionActivity extends Activity {
@@ -14,10 +16,16 @@ public class QuestionActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.activity_question);
 		 setupActionBar();
 			
 		 WebView webview = new WebView(this);
+		 webview.setWebChromeClient(new WebChromeClient() {
+			 public void onProgressChanged(WebView view, int progress) {
+				 QuestionActivity.this.setProgress(progress * 100);
+			 }
+		 });
 		 setContentView(webview);
 		 
 		 webview.getSettings().setBuiltInZoomControls(true);

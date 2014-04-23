@@ -60,8 +60,8 @@ public class InboxFragment extends ListFragment {
 			if(c != null) {
 				if(c.moveToFirst()) {
 					do {
-						String id = Integer.toString(c.getInt(c.getColumnIndex("ID")));
-						String priority = c.getString(c.getColumnIndex("PRIORITY"));
+						//String id = Integer.toString(c.getInt(c.getColumnIndex("ID")));
+						//String priority = c.getString(c.getColumnIndex("PRIORITY"));
 						String message = c.getString(c.getColumnIndex("MESSAGE"));
 						Log.d("INBOX","Adding message " + message);
 						results.add(message);
