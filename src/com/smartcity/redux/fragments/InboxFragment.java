@@ -27,13 +27,14 @@ public class InboxFragment extends ListFragment {
 	private ArrayList<String> results = new ArrayList<String>();
 	private SQLiteDatabase newDB;
 	ListView messagesList;
+	
+	
 	ArrayAdapter<String> adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.fragment_inbox,null);
-
 		
 		return rootView;
 	}
@@ -63,7 +64,7 @@ public class InboxFragment extends ListFragment {
 						String priority = c.getString(c.getColumnIndex("PRIORITY"));
 						String message = c.getString(c.getColumnIndex("MESSAGE"));
 						Log.d("INBOX","Adding message " + message);
-						results.add("ID: " + id + " P: " + priority + " " + message);
+						results.add(message);
 					} while(c.moveToNext());
 				}
 			}
@@ -104,9 +105,6 @@ public class InboxFragment extends ListFragment {
 	}
 	
 	private void displayResultList() {
-		TextView tv = new TextView(getActivity());
-		tv.setText("Data shows up below");
-		messagesList.addHeaderView(tv);
 		registerForContextMenu(messagesList);
 		setListAdapter(adapter);
 		adapter.notifyDataSetChanged();

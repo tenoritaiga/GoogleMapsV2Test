@@ -96,6 +96,7 @@
     <string name="parkingPermitButtonText">Parking Permits</string>
     <string name="recreationFormButtonText">Recreation Registration Form</string>
     <string name="voterFormButtonText">Voter Registration Form</string>
+    <string name="noMessagesText">No Messages.</string>
 
     <string-array name="spn_street">
         <item>Select Street</item>
@@ -467,8 +468,6 @@
     <string name="title_activity_emergency_report">Emergency Report</string>
     <string name="title_activity_emergency_need">Emergency Need</string>
     <string name="title_activity_emergency_offer">Emergency Offer</string>
-    <string name="title_activity_newsletter">Newsletter</string>
-    <string name="title_activity_guide">New Resident Guide</string>
     <string name="title_activity_forms">Forms and Permits</string>
     <string name="title_activity_parking_permit">Parking Permits</string>
     <string name="title_activity_recreation_form">Recreation Forms</string>
