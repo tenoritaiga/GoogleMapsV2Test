@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -64,10 +65,21 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
 	    if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
 	        buildAlertMessageNoGps();
 	    }
+	    
+	    LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE); 
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
         
         String startingPoint = extras.getString("startingPoint");
         String destination = extras.getString("destination");
         String transitType = extras.getString("transitType");
+        
+        if (startingPoint.matches(""))
+			Log.d("STARTING POINT", "directions info: starting point is null");
+		else
+			Log.d("STARTING POINT", startingPoint);
+        
         
         transit = transitType;
         
@@ -79,14 +91,33 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
         
         Geocoder coder = new Geocoder(this);
         try {
-            ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
+        	if (startingPoint.matches(""))
+        	{
+        		//startLong = longitude;
+        		//startLat = latitude;
+    			Log.d("STARTING POINT", "inside if");
+    			ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
+        		for(Address add : startingPoints){
+        			//if (statement) {//Controls to ensure it is right address such as country etc.
+        				startLong = add.getLongitude();
+        				startLat = add.getLatitude();
+        				//}
+        		}
+        		startLong = longitude;
+        		startLat = latitude;
+        	}
+        	else
+        	{
+        		ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
+        		for(Address add : startingPoints){
+        			//if (statement) {//Controls to ensure it is right address such as country etc.
+        				startLong = add.getLongitude();
+        				startLat = add.getLatitude();
+        				//}
+        		}
+        	}
+        	
             ArrayList<Address> destPoints = (ArrayList<Address>) coder.getFromLocationName(destination, 15);
-            for(Address add : startingPoints){
-                //if (statement) {//Controls to ensure it is right address such as country etc.
-                    startLong = add.getLongitude();
-                    startLat = add.getLatitude();
-                //}
-            }
             
             for(Address add : destPoints){
                 //if (statement) {//Controls to ensure it is right address such as country etc.
@@ -102,11 +133,14 @@ public class DirectionsActivity extends FragmentActivity implements RoutingListe
             map = fm.getMap();
 
             //Hardcode to center of Hoboken for now
-            CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(40.745713,-74.033221));
+            //CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(40.745713,-74.033221));
+            CameraUpdate center=CameraUpdateFactory.newLatLng(new LatLng(latitude,longitude));
             CameraUpdate zoom=  CameraUpdateFactory.zoomTo(15);
 
             map.moveCamera(center);
             map.animateCamera(zoom);
+            
+            map.setMyLocationEnabled(true);
             
             start = new LatLng(startLat,startLong);
             end = new LatLng(destLat,destLong);

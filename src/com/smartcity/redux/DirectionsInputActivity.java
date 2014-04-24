@@ -152,10 +152,17 @@ public class DirectionsInputActivity extends Activity implements OnItemClickList
 		EditText destination = (EditText) findViewById(R.id.destinationInput);
 		Spinner transitSpinner = (Spinner) findViewById(R.id.spn_directions_type);
 		
+		
+		
 		String startingPointText = startingPoint.getText().toString();
 		String destinationText = destination.getText().toString();
 		String transitType = transitSpinner.getSelectedItem().toString();
 		
+		if (startingPointText.matches(""))
+			Log.d("STARTING POINT", "starting point is null");
+		else
+			Log.d("STARTING POINT", startingPointText);
+		 
 		intent.putExtra("startingPoint",startingPointText);
 		intent.putExtra("destination", destinationText);
 		intent.putExtra("transitType",transitType);

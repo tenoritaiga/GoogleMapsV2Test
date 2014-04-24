@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,12 +75,24 @@ public class DirectionsInfoActivity extends FragmentActivity
 	        buildAlertMessageNoGps();
 	    }
         
+	    LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE); 
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
+        
+        Log.d("LONG", Double.toString(longitude));
+        Log.d("LAT", Double.toString(latitude));
         
         Bundle extras = getIntent().getExtras();
         
         startingPoint = extras.getString("startingPoint");
         destination = extras.getString("destination");
         transitType = extras.getString("transitType");
+       
+        if (startingPoint.matches(""))
+			Log.d("STARTING POINT", "directions info act: starting point is null");
+		else
+			Log.d("STARTING POINT", startingPoint);
         
         transit = transitType;
         
@@ -91,15 +105,33 @@ public class DirectionsInfoActivity extends FragmentActivity
 
         Geocoder coder = new Geocoder(this);
         try {
-            ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
-            ArrayList<Address> destPoints = (ArrayList<Address>) coder.getFromLocationName(destination, 15);
-            for(Address add : startingPoints){
-                //if (statement) {//Controls to ensure it is right address such as country etc.
-                    startLong = add.getLongitude();
-                    startLat = add.getLatitude();
-                //}
-            }
+        	if (startingPoint.matches(""))
+        	{
+        		//startLong = longitude;
+        		//startLat = latitude;
+    			Log.d("STARTING POINT", "inside if");
+    			ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
+        		for(Address add : startingPoints){
+        			//if (statement) {//Controls to ensure it is right address such as country etc.
+        				startLong = add.getLongitude();
+        				startLat = add.getLatitude();
+        				//}
+        		}
+        		startLong = longitude;
+        		startLat = latitude;
+        	}
+        	else
+        	{
+        		ArrayList<Address> startingPoints = (ArrayList<Address>) coder.getFromLocationName(startingPoint, 15);
+        		for(Address add : startingPoints){
+        			//if (statement) {//Controls to ensure it is right address such as country etc.
+        				startLong = add.getLongitude();
+        				startLat = add.getLatitude();
+        				//}
+        		}
+        	}
             
+            ArrayList<Address> destPoints = (ArrayList<Address>) coder.getFromLocationName(destination, 15);
             for(Address add : destPoints){
                 //if (statement) {//Controls to ensure it is right address such as country etc.
                     destLong = add.getLongitude();
