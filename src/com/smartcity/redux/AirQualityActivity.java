@@ -4,11 +4,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -74,6 +79,13 @@ public class AirQualityActivity extends Activity {
     private List<Marker> air_markers = new ArrayList<Marker>();
     private List<Marker> noise_markers = new ArrayList<Marker>();
     private List<Marker> greenhouse_markers = new ArrayList<Marker>();
+    
+    //final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+    
+    private LocationManager manager; 
+
+ 
+    
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,6 +199,11 @@ public class AirQualityActivity extends Activity {
 						.show();
 			}
 		}
+		manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+		
+	    if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+	        buildAlertMessageNoGps();
+	    }
 	}
 	
 	private static InputStream retrieveStream(String url) {
@@ -410,5 +427,23 @@ public class AirQualityActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 		
 	}
+	
+	 private void buildAlertMessageNoGps() {
+		    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+		           .setCancelable(false)
+		           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+		                   startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+		               }
+		           })
+		           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+		                    dialog.cancel();
+		               }
+		           });
+		    final AlertDialog alert = builder.create();
+		    alert.show();
+		}
 
 }
