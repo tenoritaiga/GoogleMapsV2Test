@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.Locale;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -53,6 +57,8 @@ public class DirectionsInfoActivity extends FragmentActivity
     String destination;
     String transitType;
     
+    private LocationManager manager;
+    
     /**
      * This activity loads a map and then displays the route and pushpins on it.
      */
@@ -60,6 +66,13 @@ public class DirectionsInfoActivity extends FragmentActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions_info);
+        
+        manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+		
+	    if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+	        buildAlertMessageNoGps();
+	    }
+        
         
         Bundle extras = getIntent().getExtras();
         
@@ -251,4 +264,21 @@ public class DirectionsInfoActivity extends FragmentActivity
 		return super.onOptionsItemSelected(item);
 		
 	}
+	 private void buildAlertMessageNoGps() {
+		    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+		           .setCancelable(false)
+		           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+		                   startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+		               }
+		           })
+		           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+		                    dialog.cancel();
+		               }
+		           });
+		    final AlertDialog alert = builder.create();
+		    alert.show();
+		}
 }

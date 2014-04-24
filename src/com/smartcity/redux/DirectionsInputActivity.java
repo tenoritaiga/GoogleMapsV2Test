@@ -14,10 +14,14 @@ import org.json.JSONObject;
 
 import com.smartcity.redux.adapters.PlacesAutoCompleteAdapter;
 
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -33,10 +37,18 @@ import android.widget.Toast;
 
 public class DirectionsInputActivity extends Activity implements OnItemClickListener {
 
+	private LocationManager manager;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_directions_input);
+		
+		 manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+			
+		    if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+		        buildAlertMessageNoGps();
+		    }
 		
 		AutoCompleteTextView destinationInput = (AutoCompleteTextView) findViewById(R.id.destinationInput);
 		AutoCompleteTextView startingPointInput = (AutoCompleteTextView) findViewById(R.id.startingPointInput);
@@ -174,4 +186,22 @@ public class DirectionsInputActivity extends Activity implements OnItemClickList
 		return super.onOptionsItemSelected(item);
 	}
 
+	 private void buildAlertMessageNoGps() {
+		    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+		           .setCancelable(false)
+		           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+		                   startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+		               }
+		           })
+		           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+		                    dialog.cancel();
+		               }
+		           });
+		    final AlertDialog alert = builder.create();
+		    alert.show();
+		}
+	
 }
