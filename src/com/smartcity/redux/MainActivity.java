@@ -613,8 +613,8 @@ public class MainActivity extends Activity {
 		MainActivity.this.startActivity(intent);
 	}
 	
-//	public void startMarketplaceActivity(View view) {
-//		Intent intent = new Intent(MainActivity.this,MarketplaceActivity.class);
-//		MainActivity.this.startActivity(intent);
-//	}
+	public void startMarketplaceActivity(View view) {
+		Intent intent = new Intent(MainActivity.this,MarketplaceActivity.class);
+		MainActivity.this.startActivity(intent);
+	}
 }
