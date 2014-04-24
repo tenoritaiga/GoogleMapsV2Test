@@ -245,4 +245,9 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 		}
 	}
+	
+	public void startRegistrationActivity(View view) {
+		Intent intent = new Intent(LoginActivity.this,RegistrationActivity.class);
+		LoginActivity.this.startActivity(intent);
+	}
 }
