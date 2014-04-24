@@ -1,6 +1,7 @@
 package com.smartcity.redux;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -11,6 +12,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -99,6 +101,12 @@ public class RegistrationActivity extends Activity {
 				postRequest.setEntity(se);
 				HttpResponse response = client.execute(postRequest);
 				System.out.println(response.getStatusLine().getStatusCode());
+				
+				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+					Intent intent = new Intent(RegistrationActivity.this,MainActivity.class);
+					RegistrationActivity.this.startActivity(intent);
+				}
+				
 				return null;
 			}
 			catch (Exception e) {
