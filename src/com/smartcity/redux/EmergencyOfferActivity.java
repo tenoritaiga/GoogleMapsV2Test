@@ -10,17 +10,27 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -78,6 +88,14 @@ public class EmergencyOfferActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public boolean boolCheck(String radValue){
+		if(radValue == "Yes"){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	/**
@@ -168,7 +186,7 @@ public class EmergencyOfferActivity extends Activity {
 				EditText editText;
 				
 				for (int i=0; i<jsonArray.length(); i++) {
-					tableLayout = (TableLayout) findViewById(R.id.emerReportTable);
+					tableLayout = (TableLayout) findViewById(R.id.emerOfferTable);
 					tableRow = new TableRow(activity);
 					tableRow.setPadding(0, 10, 0, 10);
 					tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
@@ -218,6 +236,89 @@ public class EmergencyOfferActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * Nested class for sending an emergency offer record through an API call - constructs a JSON 
+	 * object with the required data and makes an HTTP POST request to send the data to the server.
+	 * @author Class2013
+	 *
+	 */
+	private class JsonEmerOfferSender extends AsyncTask<Void,Void,Void> {
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			JSONArray array = new JSONArray();
+			JSONObject json = new JSONObject();
+			
+			try {
+				double latitude =  40.737165;
+			    double longitude = -74.030969;
+			    LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+			    Criteria crit = new Criteria();
+		        String towers = lm.getBestProvider(crit,false);
+		        Location location = lm.getLastKnownLocation(towers);
+		        latitude = location.getLatitude();
+			    longitude = location.getLongitude();
+			    
+			    TableLayout tableLayout = (TableLayout) findViewById(R.id.emerOfferTable);
+			    TableRow tableRow;
+			    TextView textView;
+			    EditText editText;
+			    int tag;
+			    String value;
+			    RadioGroup group;
+			    boolean boolVal;
+			    int quant;
+			    for (int i=0; i<tableLayout.getChildCount(); i++) {
+			    	tableRow = (TableRow) tableLayout.getChildAt(i);
+			    	textView = (TextView) tableRow.getChildAt(0);
+			    	
+			    	tag = Integer.parseInt(textView.getTag().toString());
+			    	System.out.println("Tag: " + tag);
+			    	
+			    	group = (RadioGroup) tableRow.getChildAt(1);
+			    	value = ((RadioButton)findViewById(group.getCheckedRadioButtonId())).getText().toString();
+			    	System.out.println("Value: " + value);
+			    	boolVal = boolCheck(value);
+			    	System.out.println(boolVal);
+			    	
+			    	editText = (EditText) tableRow.getChildAt(2);
+			    	
+			    	if (boolVal) {
+			    		if (!(editText.getText().toString().equals("")))
+			    			quant = Integer.parseInt(editText.getText().toString());
+			    		else
+			    			quant = 0;
+			    		json = new JSONObject();
+			    		json.put("NecessityID", tag);
+			    		json.put("Quantity", quant);
+			    		array.put(json);
+			    	}
+			    }
+				
+				DefaultHttpClient client = new DefaultHttpClient();
+				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
+				String requestString = "http://smartcity1.cloudapp.net/api/CommunityResourceSharingNecessityRecords?user_id=1&latitude=" + latitude + "&longitude=" + longitude;
+				System.out.println(requestString);
+				System.out.println(array.toString());
+				HttpPost postRequest  = new HttpPost(requestString);
+				StringEntity se = new StringEntity(array.toString());
+				se.setContentType("application/json");
+				se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+				postRequest.setEntity(se);
+				HttpResponse response = client.execute(postRequest);
+				System.out.println(response.getStatusLine().getStatusCode());
+				return null;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+	}
+	
+	public void sendEmerOffer(View view) {
+		new JsonEmerOfferSender().execute();
 	}
 
 }
