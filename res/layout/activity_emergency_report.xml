@@ -27,6 +27,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dip"
 	        android:layout_marginRight="10dip"
+	        android:onClick="sendEmerReport"
 	        android:text="@string/btn_submit" />
 	
 	</LinearLayout>

@@ -249,12 +249,10 @@ public class EmergencyReportActivity extends Activity {
 		
 		@Override
 		protected Void doInBackground(Void... params) {
+			JSONArray array = new JSONArray();
 			JSONObject json = new JSONObject();
-			JSONObject jsonLocation = new JSONObject();
 			
 			try {
-				json.put("UserID", 1);
-				
 				double latitude =  40.737165;
 			    double longitude = -74.030969;
 			    LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -263,19 +261,41 @@ public class EmergencyReportActivity extends Activity {
 		        Location location = lm.getLastKnownLocation(towers);
 		        latitude = location.getLatitude();
 			    longitude = location.getLongitude();
-			    jsonLocation.put("Latitude", latitude);
-			    jsonLocation.put("Longitude", longitude);
-			    json.put("Location", jsonLocation);
 			    
-			    json.put("NumberAndStreet", "10 Test Drive");
-				json.put("PhoneNumber", "123-867-5309");
-
+			    TableLayout tableLayout = (TableLayout) findViewById(R.id.emerReportTable);
+			    TableRow tableRow;
+			    TextView textView;
+			    int tag;
+			    String value;
+			    RadioGroup group;
+			    boolean boolVal;
+			    for (int i=0; i<tableLayout.getChildCount(); i++) {
+			    	tableRow = (TableRow) tableLayout.getChildAt(i);
+			    	textView = (TextView) tableRow.getChildAt(0);
+			    	tag = Integer.parseInt(textView.getTag().toString());
+			    	System.out.println("Tag: " + tag);
+			    	
+			    	group = (RadioGroup) tableRow.getChildAt(1);
+			    	value = ((RadioButton)findViewById(group.getCheckedRadioButtonId())).getText().toString();
+			    	System.out.println("Value: " + value);
+			    	boolVal = boolCheck(value);
+			    	System.out.println(boolVal);
+			    	
+			    	if (!boolVal) {
+			    		json = new JSONObject();
+			    		json.put("NecessityID", tag);
+			    		json.put("Quantity", 0);
+			    		array.put(json);
+			    	}
+			    }
 				
 				DefaultHttpClient client = new DefaultHttpClient();
 				//HttpPost postRequest = new HttpPost("http://pastebin.com/raw.php?i=QiXs9eZU");
-				HttpPost postRequest  = new HttpPost("http://schoboken.cloudapp.net:82/api/GasConsumption");
-				System.out.println(json.toString());
-				StringEntity se = new StringEntity(json.toString());
+				String requestString = "http://smartcity1.cloudapp.net/api/CommunityResourceSharingNecessityRecords?user_id=1&latitude=" + latitude + "&longitude=" + longitude;
+				System.out.println(requestString);
+				System.out.println(array.toString());
+				HttpPost postRequest  = new HttpPost(requestString);
+				StringEntity se = new StringEntity(array.toString());
 				se.setContentType("application/json");
 				se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 				postRequest.setEntity(se);
