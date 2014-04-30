@@ -1,15 +1,20 @@
 package com.smartcity.redux;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,12 +25,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
-import com.smartcity.redux.adapters.ParkingData;
-import com.smartcity.redux.adapters.ProblemDataAdapter;
-import com.smartcity.redux.jsonmodel.Hoboken311SearchResponse;
-import com.smartcity.redux.jsonmodel.ParkingSearchResponse;
-import com.smartcity.redux.jsonmodel.ParkingSensor;
-import com.smartcity.redux.jsonmodel.Problem;
+import com.smartcity.redux.adapters.ReportDataAdapter;
+import com.smartcity.redux.jsonmodel.Report;
 
 import android.os.AsyncTask;
 import android.os.Build;
@@ -39,15 +40,15 @@ import android.widget.Toast;
 
 public class Hoboken311MapActivity extends Activity {
 	
+	
+	
 	private GoogleMap googleMap;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hoboken311_map);
-		
-		setupActionBar();
-		
+				
 		new JsonParser().execute();
 	}
 	
@@ -99,32 +100,42 @@ public class Hoboken311MapActivity extends Activity {
 		return null;
 	}
 	
-	private class JsonParser extends AsyncTask<Void,Void,Hoboken311SearchResponse>{
+	private class JsonParser extends AsyncTask<Void,Void,JSONArray>{
 
 		@Override
-		protected Hoboken311SearchResponse doInBackground(Void... params) {
-			//String url = "http://pastebin.com/raw.php?i=1VnxAK78";
-			String url = "http://pastebin.com/raw.php?i=vTEbTCDT";  // TODO URL (and activity.java)
-			// http://schoboken.cloudapp.net:82/api/GetProblems?
-			//InputStream source = retrieveStream(url);
+		protected JSONArray doInBackground(Void... params) {
+			String url = "http://smartcity1.cloudapp.net/api/CityReportingReport"; 
 			InputStream stream = retrieveStream(url);
 			Log.d("STREAM", (stream == null) + "");
 			
 			try{
-				Gson gson = new Gson();
 				Reader reader = new InputStreamReader(stream);
-				Hoboken311SearchResponse response = gson.fromJson(reader,Hoboken311SearchResponse.class);
-				return response;
+				BufferedReader bufRead = new BufferedReader(reader);
+				StringBuilder builder = new StringBuilder();
+				String line;
+				while ((line = bufRead.readLine()) != null) {
+					builder.append(line);
+					System.out.println(line);
+				}
+				String jsonString = builder.toString();
+				JSONArray jsonArray = new JSONArray(jsonString);
+				return jsonArray;
 			}
 			catch(NullPointerException npe){
 				Log.e("ERROR","Warning: Null pointer exception while parsing JSON!",npe);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(Hoboken311SearchResponse response){
+		protected void onPostExecute(JSONArray jsonArray){
 
 			
 			try {
@@ -161,50 +172,42 @@ public class Hoboken311MapActivity extends Activity {
 				
 				//Set up custom info window adapter
 				
-				ProblemDataAdapter adapter = new ProblemDataAdapter(getLayoutInflater());
-				// TODO this is where sub-classes are used (below, and in the adapter)
+				ReportDataAdapter adapter = new ReportDataAdapter(getLayoutInflater());
+
 				double latitude = 40.745066;
 				double longitude = -74.024294;
 				
 				String res = "markercolor";
 				int resID;
 				
-				for(Problem problem : response.Problems){
-				//	System.out.println(problem.ProblemDetails.Category.toString());
-					if(problem.ProblemDetails.Category.toString().equals("Utilities & Flooding") || 
-							problem.ProblemDetails.Category.toString().equals("Signs, Signals & Lights") ||
-							problem.ProblemDetails.Category.toString().equals("Health & Social Services") ||
-							problem.ProblemDetails.Category.toString().equals("Animals"))
-					{
-						resID = getResources().getIdentifier("alert","drawable",getPackageName());
-						// RED
-					}
-					else if(problem.ProblemDetails.Category.toString().equals("Parks & Trees"))
-						// GREEN
-					{
-						resID = getResources().getIdentifier("alert_g","drawable",getPackageName());
-					}
-					else if(problem.ProblemDetails.Category.toString().equals("Business & Construction") ||
-							problem.ProblemDetails.Category.toString().equals("Garbage, Recycling & Graffiti") ||
-							problem.ProblemDetails.Category.toString().equals("Parking") ||
-							problem.ProblemDetails.Category.toString().equals("Transportation, Sidewalks & Streets"))
-					{
-						resID = getResources().getIdentifier("alert_o","drawable",getPackageName());
-						// ORANGE
-					}
-					else
-					{
-						resID = getResources().getIdentifier("alert_y","drawable",getPackageName());
-						// DEFAULT CASE, YELLOW
-					}
-					//Log.d("STREAM","We got back: " + response.Problems);
-					Marker marker = googleMap.addMarker(new MarkerOptions()
-			        .position(new LatLng(problem.Location.Latitude,problem.Location.Longitude))
-			        .title(problem.ProblemDetails.Name)
-			        .icon(BitmapDescriptorFactory.fromResource(resID)));
-					adapter.hashMap.put(marker, problem);
+				ArrayList<Report> reports = new ArrayList<Report>();
+				JSONObject jsonObject;
+				
+				for(int i=0; i<jsonArray.length(); i++) {
+					jsonObject = jsonArray.getJSONObject(i);
+					reports.add(new Report(jsonObject.getInt("ReportID"),
+							jsonObject.getInt("UserID"),
+							jsonObject.getInt("CategoryID"),
+							jsonObject.getString("CategoryName"),
+							jsonObject.getString("Comment"),
+							jsonObject.getDouble("Latitude"),
+							jsonObject.getDouble("Longitude"),
+							jsonObject.getString("DateReported"),
+							jsonObject.getString("DateOccurred")));
 				}
 				
+				for(Report report : reports){
+					
+					resID = getResources().getIdentifier("alert_y","drawable",getPackageName());
+					
+					//XXX work w/ backend queries for implementation of different colors for category types 
+	
+					Marker marker = googleMap.addMarker(new MarkerOptions()
+			        .position(new LatLng(report.Latitude,report.Longitude))
+			        .title(report.CategoryName)
+			        .icon(BitmapDescriptorFactory.fromResource(resID)));
+					adapter.hashMap.put(marker, report);
+								
 				googleMap.setInfoWindowAdapter(adapter);
 				
 						// Move the camera to last position with a zoom level
@@ -214,12 +217,15 @@ public class Hoboken311MapActivity extends Activity {
 
 						googleMap.animateCamera(CameraUpdateFactory
 								.newCameraPosition(cameraPosition));
+				}
+
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {

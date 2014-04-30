@@ -8,7 +8,7 @@
     android:padding="10dp" >
 
     <TextView
-        android:id="@+id/problemMarkerTitle"
+        android:id="@+id/reportMarkerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -25,14 +25,14 @@
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 
-    <!--  
+    
     <TextView
         android:id="@+id/TimeOfReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txtview"
         android:textColor="@android:color/black" />
-        -->
+       
 
     <TextView
         android:id="@+id/TimeOfProblem"

@@ -10,15 +10,15 @@ import android.widget.TextView;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.Marker;
 import com.smartcity.redux.R;
-import com.smartcity.redux.jsonmodel.Problem;
+import com.smartcity.redux.jsonmodel.Report;
 
-public class ProblemDataAdapter implements InfoWindowAdapter {
+public class ReportDataAdapter implements InfoWindowAdapter {
 	LayoutInflater inflater = null;
-	private TextView problemMarkerTitle;
+	private TextView reportMarkerTitle;
 	
-	public Map <Marker, Problem> hashMap = new HashMap <Marker, Problem>();
+	public Map <Marker, Report> hashMap = new HashMap <Marker, Report>();
 
-	public ProblemDataAdapter(LayoutInflater inflater) {
+	public ReportDataAdapter(LayoutInflater inflater) {
 		this.inflater = inflater;
 	}
 	
@@ -32,22 +32,22 @@ public class ProblemDataAdapter implements InfoWindowAdapter {
 	public View getInfoWindow(Marker marker) {
 		View v = inflater.inflate(R.layout.marker311, null);
 		if (marker != null) {
-			Problem problem = hashMap.get(marker);
+			Report report = hashMap.get(marker);
 			
-			problemMarkerTitle = (TextView) v.findViewById(R.id.problemMarkerTitle);
-			problemMarkerTitle.setText(marker.getTitle());
+			reportMarkerTitle = (TextView) v.findViewById(R.id.reportMarkerTitle);
+			reportMarkerTitle.setText(marker.getTitle());
 			
 			TextView ReportedBy = (TextView) v.findViewById(R.id.ReportedBy);
-			ReportedBy.setText("Reported by: " + problem.UserName);			
+			ReportedBy.setText("Reported by user " + report.UserID);			
 			
-		/*	TextView TimeOfReport = (TextView) v.findViewById(R.id.TimeOfReport);
-			TimeOfReport.setText("at: " + problem.DateTimeReported); */	
+			TextView TimeOfReport = (TextView) v.findViewById(R.id.TimeOfReport);
+			TimeOfReport.setText("reported: " + report.DateReported);
 			
 			TextView TimeOfProblem = (TextView) v.findViewById(R.id.TimeOfProblem);
-			TimeOfProblem.setText("from: " + problem.DateTimeOccurred.Date.toString() + " at " + problem.DateTimeOccurred.Time);	
+			TimeOfProblem.setText("occurred: " + report.DateOccurred);	
 			
 			TextView Comment = (TextView) v.findViewById(R.id.Comment);
-			Comment.setText("Comment: " + problem.ProblemDetails.Comment);
+			Comment.setText("Comment: " + report.Comment);
 		}
 		return (v);
 	}

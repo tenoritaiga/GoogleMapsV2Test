@@ -15,27 +15,22 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
      <Spinner
-        android:id="@+id/spn_prob_spec"
+        android:id="@+id/spn_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spn_prob"
-        android:layout_alignRight="@+id/spn_prob"
-        android:layout_below="@+id/spn_prob" />
+        android:layout_alignLeft="@+id/spn_categoryType"
+        android:layout_alignRight="@+id/spn_categoryType"
+        android:layout_below="@+id/spn_categoryType"
+        android:prompt="@string/spn_pending"  />
 
     <Spinner
-        android:id="@+id/spn_prob_spec2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spn_prob_spec"
-        android:layout_alignRight="@+id/spn_prob_spec"
-        android:layout_below="@+id/spn_prob_spec" />
-
-    <Spinner
-        android:id="@+id/spn_prob"
+        android:id="@+id/spn_categoryType"
         android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txt_prob"
-        android:layout_below="@+id/txt_prob" />
+        android:layout_below="@+id/txt_prob"
+        android:prompt="@string/spn_pending"
+		/>
 
     <Button
         android:id="@+id/btn_311_map"
@@ -65,6 +60,8 @@
         android:layout_below="@+id/dateText1"
         android:layout_marginTop="14dp"
         android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:hint="@string/txt_time" />
 
     <TextView
@@ -81,17 +78,19 @@
         android:id="@+id/dateText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/comment_311_text"
+        android:layout_below="@+id/address"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:hint="@string/txt_date" />
 
     <EditText
         android:id="@+id/comment_311_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spn_prob_spec2"
+        android:layout_below="@+id/spn_category"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="@string/txt_311_comment"
@@ -99,6 +98,26 @@
 
         <requestFocus />
     </EditText>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_311_map"
+        android:layout_below="@+id/comment_311_text"
+        android:layout_marginTop="15dp"
+        android:checked="false"
+        android:text="@string/gps_toggle" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/comment_311_text"
+        android:layout_below="@+id/switch1"
+        android:ems="10"
+        android:hint="@string/address_hint"
+        android:inputType="textPostalAddress" />
 
 </RelativeLayout>
 
