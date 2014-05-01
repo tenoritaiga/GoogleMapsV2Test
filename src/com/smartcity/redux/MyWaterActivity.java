@@ -42,6 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyWaterActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -62,9 +63,14 @@ public class MyWaterActivity extends FragmentActivity implements
 	ViewPager mViewPager;
 	
 	Activity activity;
+	
+	Toast not200, yay200;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		not200 = Toast.makeText(this, "Backend didn't like that", Toast.LENGTH_SHORT);
+		yay200 = Toast.makeText(this, "Success!", Toast.LENGTH_SHORT);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_water);
 
@@ -450,6 +456,9 @@ public class MyWaterActivity extends FragmentActivity implements
 				postRequest.setEntity(se);
 				HttpResponse response = client.execute(postRequest);
 				System.out.println(response.getStatusLine().getStatusCode());
+				if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { 
+					yay200.show();
+				} else { not200.show(); }
 				return null;
 			} catch (Exception e) {
 				e.printStackTrace();

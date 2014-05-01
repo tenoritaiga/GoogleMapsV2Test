@@ -39,14 +39,20 @@ import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 public class EmergencyReportActivity extends Activity {
 
 	Activity activity;
 	
+	Toast not200, yay200;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		not200 = Toast.makeText(this, "Backend didn't like that", Toast.LENGTH_SHORT);
+		yay200 = Toast.makeText(this, "Success!", Toast.LENGTH_SHORT);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_emergency_report);
 		// Show the Up button in the action bar.
@@ -300,6 +306,9 @@ public class EmergencyReportActivity extends Activity {
 				postRequest.setEntity(se);
 				HttpResponse response = client.execute(postRequest);
 				System.out.println(response.getStatusLine().getStatusCode());
+				if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { 
+					yay200.show();
+				} else { not200.show(); }
 				return null;
 			} catch (Exception e) {
 				e.printStackTrace();
